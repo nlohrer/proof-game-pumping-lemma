@@ -1,6 +1,7 @@
 import GameServer.Commands
+import Game.FormalLanguages.BasicDefinitions
 
--- import Mathlib.Tactic.Common
+import Mathlib.Tactic.Common
 
 /-! Use this file to add things that should be available in all levels.
 

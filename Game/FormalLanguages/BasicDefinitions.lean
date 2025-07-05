@@ -127,7 +127,8 @@ def pumping_property (L : Set Word) :=
   ∃ (n : ℕ) (hpos : n > 0),
   ∀ z ∈ L,
   (hlen : z.length > n) →
-    ∃ (u v w : Word) (heq : z = u ∘ v ∘ w),
+    ∃ (u v w : Word),
+      z = u ∘ v ∘ w ∧
       |u ∘ v| ≤ n ∧
       |v| ≥ 1 ∧
       ∀ (i : ℕ), u ∘ v ^ i ∘ w ∈ L

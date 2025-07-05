@@ -1,16 +1,17 @@
 import Game.Metadata
 
 World "LeanBasics"
-Level 2
+Level 3
 
-Title "Second Level"
+Title "Third Level"
 
-Introduction "This text is shown as first message when the level is played.
-You can insert hints in the proof below. They will appear in this side panel
-depending on the proof a user provides."
+Introduction "
+# Introduction
+In this level, we'll be looking at...
+"
 
 Statement (h : x = 2) (g: y = 4) : x + x = y := by
-  Hint "You can either start using `{h}` or `{g}`."
+  Hint "You can either abc start using"
   Branch
     rw [g]
     Hint "You should use `{h}` now."
@@ -24,5 +25,3 @@ Conclusion "This last message appears if the level is solved."
 /- Use these commands to add items to the game's inventory. -/
 
 NewTactic rw rfl
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
