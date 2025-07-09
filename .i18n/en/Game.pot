@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Jun  5 13:49:08 2025\n"
+"POT-Creation-Date: Wed Jul  9 13:11:42 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -20,56 +20,234 @@ msgstr ""
 msgid "intermediate goal solved! 🎉"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L01_HelloWorld
-msgid "First Level"
+#: Game.Levels.LeanBasics.L01_rfl
+msgid "rfl"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L01_HelloWorld
-msgid "This text is shown as first message when the level is played.\n"
-"You can insert hints in the proof below. They will appear in this side panel\n"
-"depending on the proof a user provides."
+#: Game.Levels.LeanBasics.L01_rfl
+msgid "# Introduction\n"
+"Let's look at some of the very basics of Lean.\n"
+"## Proof state\n"
+"In the middle bottom of the screen, you'll find the proof state, which includes\n"
+"both the goal of the proof, as well as all objects and assumptions that you may\n"
+"use to arrive at the proof.\n"
+"## rfl\n"
+"The `rfl` tactic closes the goal with pure reflexivity."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L01_HelloWorld
-msgid "You can either start using `«{h}»` or `«{g}»`."
+#: Game.Levels.LeanBasics.L01_rfl
+msgid "Use `rfl` to close the goal immediately."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L01_HelloWorld
+#: Game.Levels.LeanBasics.L01_rfl
+msgid "Good! `rfl` isn't required very often, but we do need it sometimes."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L02_exact
+msgid "exact"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L02_exact
+msgid "# exact\n"
+"whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L02_exact
+msgid "Use `exact «{h}»` to close the goal immediately."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L02_exact
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L03_Third
+msgid "Third Level"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L03_Third
+msgid "# Introduction\n"
+"In this level, we'll be looking at..."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L03_Third
+msgid "You can either abc start using"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L03_Third
 msgid "You should use `«{h}»` now."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L01_HelloWorld
+#: Game.Levels.LeanBasics.L03_Third
 msgid "You should use `«{g}»` now."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L01_HelloWorld
+#: Game.Levels.LeanBasics.L03_Third
 msgid "This last message appears if the level is solved."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L02_Second
-msgid "Second Level"
+#: Game.Levels.LeanBasics.L04_intro
+msgid "exact"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L02_Second
-msgid "This text is shown as first message when the level is played.\n"
-"You can insert hints in the proof below. They will appear in this side panel\n"
-"depending on the proof a user provides."
+#: Game.Levels.LeanBasics.L04_intro
+msgid "# intro\n"
+"We use the `intro` tactic to handle both `∀`-statements, and to introduce the antecedent\n"
+"of an implication."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L02_Second
-msgid "You can either start using `«{h}»` or `«{g}»`."
+#: Game.Levels.LeanBasics.L04_intro
+msgid "start with `intro A`"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L02_Second
-msgid "You should use `«{h}»` now."
+#: Game.Levels.LeanBasics.L04_intro
+msgid "Now, `intro ha` will introduce the antecedent into our given hypotheses."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L02_Second
-msgid "You should use `«{g}»` now."
+#: Game.Levels.LeanBasics.L04_intro
+msgid "Good!"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L02_Second
-msgid "This last message appears if the level is solved."
+#: Game.Levels.LeanBasics.L05_apply
+msgid "apply"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L05_apply
+msgid "# apply\n"
+"whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L05_apply
+msgid "Use `apply «{hAB}» at «{hA}»`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L05_apply
+msgid "`exact «{hA}»` will close the goal now."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L05_apply
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L06_have
+msgid "have"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L06_have
+msgid "# have\n"
+"Sometimes, we want to construct sub-hypotheses of our own. We can do this with the\n"
+"`have` tactic."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L06_have
+msgid "Use `exact «{h}»` to close the goal immediately"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L06_have
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L07_clear
+msgid "exact"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L07_clear
+msgid "# clear\n"
+"Sometimes, especially when proving a lemma via `have`, the proof state might include a\n"
+"lot of hypotheses that are not necessary to achieve the current goal. To keep them from\n"
+"distracting us, we can use the `clear` tactic to remove them."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L07_clear
+msgid "Use `clear «{a}» «{b}» «{c}» «{d}» «{e}» «{f}» «{hy}» «{hz}» «{y}» «{z}»` to remove the unneeded hypotheses"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L07_clear
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L08_constructor
+msgid "exact"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L08_constructor
+msgid "# Induction\n"
+"To work through certain structures, the `constructor` can be useful."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L08_constructor
+msgid "Use `constructor` to split the conjunction we want to prove into two separate goals."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L08_constructor
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L09_induction
+msgid "exact"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L09_induction
+msgid "# Induction\n"
+"We utilize several inductive structures that we can handle with the `induction'` tactic."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L09_induction
+msgid "Use `induction' «{n}» with n ih` to start a proof by induction"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L09_induction
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L10_match
+msgid "exact"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L10_match
+msgid "# match\n"
+"For some structures, we might just need to match the forms that they can appear in."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L10_match
+msgid "Use `exact «{h}»` to close the goal immediately"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L10_match
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L11_simp_only
+msgid "exact"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L11_simp_only
+msgid "# simp only\n"
+"whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L11_simp_only
+msgid "Use `exact «{h}»` to close the goal immediately"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L11_simp_only
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L12_simp_all_only
+msgid "exact"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L12_simp_all_only
+msgid "# simp_all only\n"
+"whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L12_simp_all_only
+msgid "Use `exact «{h}»` to close the goal immediately"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L12_simp_all_only
+msgid "Good!"
 msgstr ""
 
 #: Game.Levels.LeanBasics
@@ -77,32 +255,32 @@ msgid "Lean Basics"
 msgstr ""
 
 #: Game.Levels.LeanBasics
-msgid "This introduction is shown before one enters level 1 of the demo world. Use markdown."
+msgid "This introductory part serves as a refresher for Lean."
 msgstr ""
 
-#: Game.Levels.Lemmas.L01_FirstLemma
+#: Game.Levels.Lemmas.L01_Introduction
 msgid "First Lemma"
 msgstr ""
 
-#: Game.Levels.Lemmas.L01_FirstLemma
+#: Game.Levels.Lemmas.L01_Introduction
 msgid "This text is shown as first message when the level is played.\n"
 "You can insert hints in the proof below. They will appear in this side panel\n"
 "depending on the proof a user provides."
 msgstr ""
 
-#: Game.Levels.Lemmas.L01_FirstLemma
-msgid "You can either start using `«{h}»` or `«{g}»`."
+#: Game.Levels.Lemmas.L01_Introduction
+msgid "You can lemma either start using `«{h}»` or `«{g}»`."
 msgstr ""
 
-#: Game.Levels.Lemmas.L01_FirstLemma
+#: Game.Levels.Lemmas.L01_Introduction
 msgid "You should use `«{h}»` now."
 msgstr ""
 
-#: Game.Levels.Lemmas.L01_FirstLemma
+#: Game.Levels.Lemmas.L01_Introduction
 msgid "You should use `«{g}»` now."
 msgstr ""
 
-#: Game.Levels.Lemmas.L01_FirstLemma
+#: Game.Levels.Lemmas.L01_Introduction
 msgid "This last message appears if the level is solved."
 msgstr ""
 
@@ -125,7 +303,7 @@ msgid "This text is shown as first message when the level is played.\n"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L01_First
-msgid "You can either start using `«{h}»` or `«{g}»`."
+msgid "You can first nonreg either start using `«{h}»` or `«{g}»`."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L01_First

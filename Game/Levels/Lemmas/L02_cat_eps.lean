@@ -1,25 +1,19 @@
 import Game.Metadata
+import Game.FormalLanguages.BasicDefinitions
 
 World "Lemmas"
 Level 1
 
-Title "First Lemma"
+Title "cat_eps"
 
-Introduction "This text is shown as first message when the level is played.
-You can insert hints in the proof below. They will appear in this side panel
-depending on the proof a user provides."
+Introduction "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
 
-Statement (h : x = 2) (g: y = 4) : x + x = y := by
-  Hint "You can lemma either start using `{h}` or `{g}`."
-  Branch
-    rw [g]
-    Hint "You should use `{h}` now."
-    rw [h]
-  rw [h]
-  Hint "You should use `{g}` now."
-  rw [g]
+Statement cat_eps (w : Regular.Word) : w.cat .ε = w := by
+  induction' w with s w ih
+  · rw [Regular.Word.cat]
+  · rw [Regular.Word.cat, ih]
 
-Conclusion "This last message appears if the level is solved."
+Conclusion "Good!"
 
 /- Use these commands to add items to the game's inventory. -/
 

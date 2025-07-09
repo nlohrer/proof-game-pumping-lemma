@@ -1,4 +1,4 @@
-import Game.Levels.Lemmas.L01_FirstLemma
+import Game.Levels.Lemmas.L01_introduction
 
 World "Lemmas"
 Title "Lemmas"
