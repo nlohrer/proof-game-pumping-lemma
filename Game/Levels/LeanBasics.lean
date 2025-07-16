@@ -10,6 +10,8 @@ import Game.Levels.LeanBasics.L09_induction
 import Game.Levels.LeanBasics.L10_match
 import Game.Levels.LeanBasics.L11_simp_only
 import Game.Levels.LeanBasics.L12_simp_all_only
+import Game.Levels.LeanBasics.L13_omega
+import Game.Levels.LeanBasics.L14_split_ifs
 
 World "LeanBasics"
 Title "Lean Basics"

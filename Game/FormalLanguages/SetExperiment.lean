@@ -60,7 +60,7 @@ lemma Word.cat_assoc (x y z : Word) : (x ∘ y) ∘ z = x ∘ y ∘ z := by
   induction' x with s w ih <;> simp_all only [cat]
 
 @[simp]
-lemma Word.assoc_count {s : Char} (x y : Word) :
+lemma Word.cat_count {s : Char} (x y : Word) :
     (x ∘ y).count s = x.count s + y.count s := by
   induction' x with s' w ih
   · simp_all only [cat, count, Nat.zero_add]
@@ -72,10 +72,10 @@ lemma Word.assoc_count {s : Char} (x y : Word) :
     next h => simp_all only
 
 @[simp]
-lemma Word.assoc_count_zero {s : Char} (x y : Word) :
+lemma Word.cat_count_zero {s : Char} (x y : Word) :
     (x ∘ y).count s = 0 → x.count s = 0 ∧ y.count s = 0 := by
   intro hcatcount
-  apply And.intro <;> simp_all only [assoc_count, Nat.add_eq_zero_iff]
+  apply And.intro <;> simp_all only [cat_count, Nat.add_eq_zero_iff]
 
 @[simp]
 lemma Word.cat_chars (x y : Word) : (x ∘ y).chars = x.chars ∪ y.chars := by
@@ -208,7 +208,7 @@ lemma not_pump : ¬pumping_property anbn_lang := by
   push_neg
   intro n hpos
   let z : Word := ('a' ^+^ n) ∘ ('b' ^+^ n)
-  have hzinnonreg : z ∈ anbn := by
+  have hzinanbn : z ∈ anbn := by
     simp_all only [gt_iff_lt]
     rw [anbn]
     simp only [Set.mem_setOf_eq]
@@ -216,12 +216,12 @@ lemma not_pump : ¬pumping_property anbn_lang := by
   use z
   simp only [gt_iff_lt, ge_iff_le]
   constructor
-  · exact hzinnonreg
+  · exact hzinanbn
   · have heq : z = 'a' ^+^ n ∘ 'b' ^+^ n := rfl
     constructor
-    · rw [anbn] at hzinnonreg
+    · rw [anbn] at hzinanbn
       rw [heq, Word.cat_len]
-      clear hzinnonreg
+      clear hzinanbn
       repeat rw [Symbol.pow_len]
       exact Nat.lt_add_of_pos_right hpos
     · intro u v w hcons hlenlower hv
@@ -236,16 +236,16 @@ lemma not_pump : ¬pumping_property anbn_lang := by
           symm at hcons
           rw [← Word.cat_assoc] at hcons
           apply Word.cons_a n (u ∘ v) w ('b' ^+^ n) hcons hlenlower
-        exact (@Word.assoc_count_zero 'b' u v huv).right
+        exact (@Word.cat_count_zero 'b' u v huv).right
       have hatleastonea : v.count 'a' > 0 := by
-        have hthing := anbn_lang.word_constraint z hzinnonreg
+        have hthing := anbn_lang.word_constraint z hzinanbn
         have hsub : v.chars ⊆ z.chars := by
           have hleft := Word.cat_char_subset_left v w
           have hright := Word.cat_char_subset_right u (v ∘ w)
           rw [hcons]
           exact fun _ hin ↦ hright (hleft hin)
         have hvchars : v.chars ⊆ {'a', 'b'} := fun _ a_1 ↦ hthing (hsub a_1)
-        clear hzinnonreg hlenlower hcons heq u w z hpos n hthing hsub
+        clear hzinanbn hlenlower hcons heq u w z hpos n hthing hsub
         induction' v with s w ih
         · simp_all only [Word.length, Nat.le_zero_eq, Nat.succ_ne_self]
         · simp_all only [gt_iff_lt, Word.length, Nat.le_add_right, Word.count, ↓Char.isValue]
@@ -271,31 +271,31 @@ lemma not_pump : ¬pumping_property anbn_lang := by
       simp only [Word.pow, Word.cat_eps, Set.mem_setOf_eq] at hin
       simp_all only [gt_iff_lt, Word.cat_assoc, z]
       have huneven : (u ∘ v ∘ v ∘ w).count 'a' ≠ (u ∘ v ∘ v ∘ w).count 'b' := by
-        simp only [Word.assoc_count, ne_eq, z]
+        simp only [Word.cat_count, ne_eq, z]
         apply Aesop.BuiltinRules.not_intro
         intro heq
         have hcount : (u ∘ v ∘ w).count 'a' = (u ∘ v ∘ w).count 'b' := by
           rw [← hcons]
           clear hcons
-          simp_all only [Nat.zero_add, Word.assoc_count, Symbol.pow_count, ite_true, ite_false,
+          simp_all only [Nat.zero_add, Word.cat_count, Symbol.pow_count, ite_true, ite_false,
             Nat.add_zero]
           simp_all only [↓Char.isValue,
             Char.reduceEq,
             ↓reduceIte,
             Nat.add_zero,
             Nat.zero_add]
-        simp only [Word.assoc_count] at hcount
+        simp only [Word.cat_count] at hcount
         have hgoal : v.count 'a' = v.count 'b' := by
           omega
         simp_all only [lt_self_iff_false, z]
       rcases hin with ⟨m, hm⟩
       have heven : (u ∘ v ∘ v ∘ w).count 'a' = (u ∘ v ∘ v ∘ w).count 'b' := by
         clear huneven
-        simp_all only [Word.assoc_count, Symbol.pow_count, ite_true, ite_false, Nat.add_zero,
+        simp_all only [Word.cat_count, Symbol.pow_count, ite_true, ite_false, Nat.add_zero,
           Nat.zero_add]
         simp_all only [↓Char.isValue,
           Char.reduceEq,
           ↓reduceIte,
           Nat.add_zero,
           Nat.zero_add]
-      simp_all only [Word.assoc_count, ne_eq, z]
+      simp_all only [Word.cat_count, ne_eq, z]

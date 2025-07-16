@@ -1,28 +1,25 @@
 import Game.Metadata
 
 World "Lemmas"
-Level 1
+Level 7
 
-Title "First Lemma"
+Title "cat_len"
 
-Introduction "This text is shown as first message when the level is played.
-You can insert hints in the proof below. They will appear in this side panel
-depending on the proof a user provides."
+Introduction "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
 
-Statement (h : x = 2) (g: y = 4) : x + x = y := by
-  Hint "You can lemma either start using `{h}` or `{g}`."
-  Branch
-    rw [g]
-    Hint "You should use `{h}` now."
-    rw [h]
-  rw [h]
-  Hint "You should use `{g}` now."
-  rw [g]
+namespace Regular
+/-- To determine the length of the concatenation of two words, you can add the length of both words. -/
+TheoremDoc Regular.cat_len as "cat_len" in "cat"
 
-Conclusion "This last message appears if the level is solved."
+/-- The amount of symbols in a word. -/
+DefinitionDoc Regular.Word.length as "length"
+NewDefinition Regular.Word.length
 
-/- Use these commands to add items to the game's inventory. -/
+lemma cat_len (x y : Word) :
+    |(x ∘ y)| = |x| + |y| := by
+  induction' x with s x ih
+  · simp only [Word.cat, Word.length, Nat.zero_add]
+  · rw [Word.length, Nat.add_assoc, ← ih]
+    simp_all only [Word.length]
 
-NewTactic rw rfl
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
+Conclusion "Good!"

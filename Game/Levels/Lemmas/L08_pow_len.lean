@@ -1,28 +1,26 @@
 import Game.Metadata
 
 World "Lemmas"
-Level 1
+Level 8
 
-Title "First Lemma"
+Title "pow_len"
 
-Introduction "This text is shown as first message when the level is played.
-You can insert hints in the proof below. They will appear in this side panel
-depending on the proof a user provides."
+Introduction "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
 
-Statement (h : x = 2) (g: y = 4) : x + x = y := by
-  Hint "You can lemma either start using `{h}` or `{g}`."
-  Branch
-    rw [g]
-    Hint "You should use `{h}` now."
-    rw [h]
-  rw [h]
-  Hint "You should use `{g}` now."
-  rw [g]
+namespace Regular
+TheoremTab "pow"
+/-- The length of cⁿ is n for any character c. -/
+TheoremDoc Regular.pow_len as "pow_len" in "pow"
 
-Conclusion "This last message appears if the level is solved."
+/-- The power of a symbol: aⁿ = a...a repeated n times. -/
+DefinitionDoc Symbol.Pow as "Pow"
+NewDefinition Symbol.Pow
 
-/- Use these commands to add items to the game's inventory. -/
+Statement pow_len {s : Char} (n : ℕ) : |s ^+^ n| = n := by
+  induction' n with n ih
+  · rfl
+  · simp only [Word.length]
+    rw [ih]
+    exact Nat.one_add _
 
-NewTactic rw rfl
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
+Conclusion "Good!"

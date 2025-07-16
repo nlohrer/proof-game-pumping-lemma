@@ -24,3 +24,4 @@ Conclusion "
 Good! `rfl` isn't required very often, but we do need it sometimes."
 
 NewTactic rfl
+HiddenNewTactic «sorry»

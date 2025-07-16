@@ -1,28 +1,25 @@
 import Game.Metadata
 
 World "Lemmas"
-Level 1
+Level 9
 
-Title "First Lemma"
+Title "pow_count"
 
-Introduction "This text is shown as first message when the level is played.
-You can insert hints in the proof below. They will appear in this side panel
-depending on the proof a user provides."
+Introduction "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
 
-Statement (h : x = 2) (g: y = 4) : x + x = y := by
-  Hint "You can lemma either start using `{h}` or `{g}`."
-  Branch
-    rw [g]
-    Hint "You should use `{h}` now."
-    rw [h]
-  rw [h]
-  Hint "You should use `{g}` now."
-  rw [g]
+namespace Regular
+/-- A word of the form cⁿ will contain n instances of the character c, and none of any other character. -/
+TheoremDoc Regular.pow_count as "pow_count" in "pow"
 
-Conclusion "This last message appears if the level is solved."
+Statement pow_count {s₁ s₂ : Char} (n : ℕ) :
+    (s₁ ^+^ n).count s₂ = if s₁ = s₂ then n else 0 := by
+  induction' n with n ih
+  · simp_all only [Word.count, ite_self]
+  · simp_all only [Word.count, ↓reduceIte]
+    split_ifs with h
+    · subst h
+      simp_all only [↓reduceIte]
+      omega
+    · simp_all only [↓reduceIte]
 
-/- Use these commands to add items to the game's inventory. -/
-
-NewTactic rw rfl
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq
+Conclusion "Good!"

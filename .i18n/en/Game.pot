@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Jul  9 13:11:42 2025\n"
+"POT-Creation-Date: Wed Jul 16 22:46:27 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -250,6 +250,36 @@ msgstr ""
 msgid "Good!"
 msgstr ""
 
+#: Game.Levels.LeanBasics.L13_omega
+msgid "omega"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L13_omega
+msgid "# omega\n"
+"The tactic `omega` can solve integer and natural linear arithmetic problems."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L13_omega
+msgid "Use `omega` to close the goal immediately"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L13_omega
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_split_ifs
+msgid "split_ifs"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_split_ifs
+msgid "# omega\n"
+"The tactic `omega` can solve integer and natural linear arithmetic problems."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_split_ifs
+msgid "Good!"
+msgstr ""
+
 #: Game.Levels.LeanBasics
 msgid "Lean Basics"
 msgstr ""
@@ -282,6 +312,151 @@ msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
 msgid "This last message appears if the level is solved."
+msgstr ""
+
+#: Game.Levels.Lemmas.L02_cat_eps
+msgid "cat_eps"
+msgstr ""
+
+#: Game.Levels.Lemmas.L02_cat_eps
+msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgstr ""
+
+#: Game.Levels.Lemmas.L02_cat_eps
+msgid "Concatenating a word with ε yields the original word."
+msgstr ""
+
+#: Game.Levels.Lemmas.L02_cat_eps
+msgid "Concatenation of words: for two words w₁ and w₂, the concatenation w₁ and w₂ yields w₁w₂."
+msgstr ""
+
+#: Game.Levels.Lemmas.L02_cat_eps
+msgid "A word over an alphabet, i.e. a string of symbols from that alphabet."
+msgstr ""
+
+#: Game.Levels.Lemmas.L02_cat_eps
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L03_cat_assoc
+msgid "cat_assoc"
+msgstr ""
+
+#: Game.Levels.Lemmas.L03_cat_assoc
+msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgstr ""
+
+#: Game.Levels.Lemmas.L03_cat_assoc
+msgid "Concatenation of words is associative, e.g. (x ∘ y) ∘ z = x ∘ (y ∘ z)."
+msgstr ""
+
+#: Game.Levels.Lemmas.L03_cat_assoc
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_gap
+msgid "cat_assoc"
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_gap
+msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_gap
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "assoc_count"
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "for the concatenation of two words, counting the occurrences of a certain character in the entire word\n"
+"is the same as counting the occurrences in both subwords and adding them up."
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "Counts how often a character occurs in a word."
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count_zero
+msgid "cat_count_zero"
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count_zero
+msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count_zero
+msgid "If a symbol doesn't occur in the concatenation of two words, then it won't occur in any of the two words either."
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count_zero
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_len
+msgid "cat_len"
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_len
+msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_len
+msgid "To determine the length of the concatenation of two words, you can add the length of both words."
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_len
+msgid "The amount of symbols in a word."
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_len
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_pow_len
+msgid "pow_len"
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_pow_len
+msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_pow_len
+msgid "The length of cⁿ is n for any character c."
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_pow_len
+msgid "The power of a symbol: aⁿ = a...a repeated n times."
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_pow_len
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_count
+msgid "pow_count"
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_count
+msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_count
+msgid "A word of the form cⁿ will contain n instances of the character c, and none of any other character."
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_count
+msgid "Good!"
 msgstr ""
 
 #: Game.Levels.Lemmas
