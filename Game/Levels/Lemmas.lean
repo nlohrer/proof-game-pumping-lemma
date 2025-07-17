@@ -1,4 +1,4 @@
-import Game.Levels.Lemmas.L01_introduction
+import Game.Levels.Lemmas.L01_Introduction
 import Game.Levels.Lemmas.L02_cat_eps
 import Game.Levels.Lemmas.L03_cat_assoc
 import Game.Levels.Lemmas.L04_gap
