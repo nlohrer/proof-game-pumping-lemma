@@ -1,3 +1,4 @@
+import Game.Levels.Lemmas.L03_cat_assoc
 import Game.Metadata
 
 World "Lemmas"

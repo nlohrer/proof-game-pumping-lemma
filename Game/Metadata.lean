@@ -1,5 +1,5 @@
 import GameServer.Commands
-import Game.FormalLanguages.SetExperiment
+import Game.FormalLanguages.BasicDefinitions
 
 import Mathlib.Tactic.Common
 

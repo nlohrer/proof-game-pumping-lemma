@@ -1,5 +1,5 @@
-import Game.Metadata
 import Game.Levels.Lemmas.L05_cat_count
+import Game.Metadata
 
 World "Lemmas"
 Level 6

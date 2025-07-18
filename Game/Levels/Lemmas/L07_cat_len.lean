@@ -1,3 +1,4 @@
+import Game.Levels.Lemmas.L06_cat_count_zero
 import Game.Metadata
 
 World "Lemmas"
