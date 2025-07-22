@@ -2,6 +2,7 @@ import GameServer.Commands
 import Game.FormalLanguages.BasicDefinitions
 
 import Mathlib.Tactic.Common
+import Game.Tactics.Have
 
 /-! Use this file to add things that should be available in all levels.
 

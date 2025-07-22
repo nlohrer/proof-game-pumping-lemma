@@ -12,6 +12,8 @@ Sometimes, we want to construct sub-hypotheses of our own. We can do this with t
 
 Statement (h : x = 2) : x = 2 := by
   Hint "Use `exact {h}` to close the goal immediately"
+  have hnew : 1 = 1
+  · rfl
   exact h
 
 Conclusion "Good!"

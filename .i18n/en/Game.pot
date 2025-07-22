@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Fri Jul 18 14:04:14 2025\n"
+"POT-Creation-Date: Tue Jul 22 15:56:07 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -343,7 +343,7 @@ msgid "cat_assoc"
 msgstr ""
 
 #: Game.Levels.Lemmas.L03_cat_assoc
-msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgid "Let's prove another basic lemma: concatenation is associative."
 msgstr ""
 
 #: Game.Levels.Lemmas.L03_cat_assoc
@@ -351,7 +351,7 @@ msgid "Concatenation of words is associative, e.g. (x ∘ y) ∘ z = x ∘ (y �
 msgstr ""
 
 #: Game.Levels.Lemmas.L03_cat_assoc
-msgid "Good!"
+msgid "Good! Incidentally, we've just shown that strings together with concatenation form a monoid."
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_gap
@@ -371,7 +371,7 @@ msgid "assoc_count"
 msgstr ""
 
 #: Game.Levels.Lemmas.L05_cat_count
-msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgid "We've just introduced the `count` definition, which counts how many times a certain character occurs in a word. Let's show that we can get the count for a character in a word by summing up the counts in its subwords."
 msgstr ""
 
 #: Game.Levels.Lemmas.L05_cat_count
@@ -392,7 +392,7 @@ msgid "cat_count_zero"
 msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count_zero
-msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgid "We'll need a special case of the lemma we just showed later on: when a certain character does not occur in a word, it won't appear in any of its subwords either."
 msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count_zero
@@ -408,7 +408,7 @@ msgid "cat_len"
 msgstr ""
 
 #: Game.Levels.Lemmas.L07_cat_len
-msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgid "Our new definition `length` defines the length of a word. Let's show that the length of a word is equal to the sum of its subwords."
 msgstr ""
 
 #: Game.Levels.Lemmas.L07_cat_len
@@ -428,7 +428,7 @@ msgid "pow_len"
 msgstr ""
 
 #: Game.Levels.Lemmas.L08_pow_len
-msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgid "The `pow` definition allows us to create strings of the form aⁿ, such as a⁴ = aaaa. We want to show that aⁿ is n characters long."
 msgstr ""
 
 #: Game.Levels.Lemmas.L08_pow_len
@@ -448,7 +448,7 @@ msgid "pow_count"
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_count
-msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgid "For our last lemma, we will show that for a word of the form cⁿ, it will contain n instances of c, and none of any other character."
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_count
@@ -490,6 +490,143 @@ msgid "You should use `«{g}»` now."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L01_First
+msgid "This last message appears if the level is solved."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Proving the nonregularity of aⁿbⁿ"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We are finally ready to work through a proof that utilizes the pumping lemma!\n"
+"The proof on paper is as follows:\n"
+"-\n"
+"...\n"
+"-\n"
+"\n"
+"We will want to replicate the structure of the proof in Lean, but it will turn out\n"
+"that some of the steps are far more difficult to realize than on paper. Therefore,\n"
+"we will mostly guide you through each of the individual steps; you should therefore\n"
+"try to follow the instructions closely, as later steps might be contingent on earlier\n"
+"ones so that the proof state is in a fitting form."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Let's first `rw [pumping_property]` to recall the definition of the pumping\n"
+"property, then `push_neg` to push the negation all the way in."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We can now replicate the initial 'let n > 0' part of the proof with `intro n hpos`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "The word we want to use is z = aⁿbⁿ.\n"
+"Let's introduce it with `let z : Word := 'a' ^+^ «{n}» ∘ 'b' ^+^ «{n}»`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We will need to show that z is actually an element of the language anbn in\n"
+"a second, so let's introduce that as a new hypothesis: `have hzinanbn : z ∈ anbn`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "After rewriting with `anbn` and `Set.mem_setOf_eq`, we can just `use n`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "`use z`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "`constructor` will split the conjunction into separate proofs."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "`exact «{hzinanbn}»` closes the goal directly."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Since we're using an earlier Lean version for several reasons, we don't\n"
+"have access to the `set` tactic, which would have given us a hypothesis that\n"
+"`«{z}»` is indeed equal to aⁿbⁿ. However, we introduced `«{z}»` with the `let` tactic,\n"
+"so we will need to prove that hypothesis separately:\n"
+"\n"
+"`have heq : «{z}» = 'a' ^+^ n ∘ 'b' ^+^ n := rfl`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We once again use `constructor` to handle the conjunction."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We need to show that the length of z is indeed greater than n. You can\n"
+"`rw` step by step with some of the lemmas that we showed in the previous world,\n"
+"and then use the `omega` tactic once you arrive at a proof state of the form\n"
+"`n + n > n`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "The exact hypotheses for rewriting that you should use\n"
+"are `«{heq}»`, `Word.cat_len`, `Symbol.pow_len`, and `Symbol.pow_len` again."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We can finally get to the main part of the proof! First of all, we need\n"
+"to introduce all the conditions that we also introduce in the paper proof:\n"
+"\n"
+"`intro u v w hcons hlenlower hv`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Let's look at our hypotheses: ...\n"
+"\n"
+"We now need to provide a suitable `i`; in the paper proof we set `i := 2`,\n"
+"so let's `use 2`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "In our paper proof, we made an argument for why there are no b's in `«{v}»`. For our formalization, let's have this as a separate hypothesis:\n"
+"\n"
+"`have honlyas: «{v}».count 'b' = 0`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Let's simplify the entire proof state with\n"
+"`simp_all only [gt_iff_lt, «{z}», ↓Char.isValue]`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "The argument in our proof works to show that there are no b's in\n"
+"`uv`. Let's show that first: `have huv : (u ∘ v).count 'b' = 0`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We need to utilize the associativity that we proved earlier:\n"
+"\n"
+"`rw [← Word.cat_assoc]`\n"
+"\n"
+"Following that, use the tactic `symm at «{hcons}»`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "For this specific situation, the lemma `Word.cons_a` is already provided to us, so you can finish the subproof with\n"
+"\n"
+"`apply Word.cons_a «{n}» («{u}» ∘ «{v}») «{w}» ('b' ^+^ «{n}») «{hcons}» «{hlenlower}»`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We can now use the fresh hypothesis `«{huv}»`:\n"
+"\n"
+"`exact (@Word.cat_count_zero 'b' «{u}» «{v}» «{huv}»).right`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "For the next step of our proof, we showed that `«{v}»` contained at least\n"
+"one 'a'. This will unfortunately be much more involved to show!"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
 msgid "This last message appears if the level is solved."
 msgstr ""
 

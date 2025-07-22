@@ -211,15 +211,13 @@ lemma not_pump : ¬pumping_property anbn_lang := by
   let z : Word := ('a' ^+^ n) ∘ ('b' ^+^ n) -- we need to use a fitting word
   -- we'll need to show that the word is actually an element of anbn
   have hzinanbn : z ∈ anbn := by
-    simp_all only [gt_iff_lt]
-    rw [anbn]
-    simp only [Set.mem_setOf_eq]
+    rw [anbn, Set.mem_setOf_eq]
     use n
   use z
   -- simp only [gt_iff_lt, ge_iff_le]
   -- we now need to show every conjunct
   constructor
-  · exact hzinanbn -- maybe only prove this lemma now
+  · exact hzinanbn
   · -- we only need this 'have' because we don't have access to 'set' rather than let
     have heq : z = 'a' ^+^ n ∘ 'b' ^+^ n := rfl
     -- now we need to handle this inner conjunction
@@ -233,18 +231,18 @@ lemma not_pump : ¬pumping_property anbn_lang := by
       -- it's obvious that v doesn't contain any b's, but we have to show it!
       have honlyas : v.count 'b' = 0 := by
         clear hv
-        have hz : |z| = 2*n := by
-          rw [heq, Word.cat_len, Symbol.pow_len, Symbol.pow_len]
-          omega
+        -- this simp_all simplifies the proof state for us
         simp_all only [gt_iff_lt, z, ↓Char.isValue]
         have huv : (u ∘ v).count 'b' = 0 := by
           symm at hcons
           rw [← Word.cat_assoc] at hcons
+          -- might need to proof the cons_a lemma in the lemma section!
           apply Word.cons_a n (u ∘ v) w ('b' ^+^ n) hcons hlenlower
         exact (@Word.cat_count_zero 'b' u v huv).right
       -- this is almost as obvious, but much more involved to show!
       have hatleastonea : v.count 'a' > 0 := by
         have hzcharsinab := anbn_lang.word_constraint z hzinanbn
+        -- simp to remove the .Alphabet thing
         simp only [anbn_lang, ↓Char.isValue] at hzcharsinab
         -- since v is a subword of z, its characters will be a subset of z's
         have hsub : v.chars ⊆ z.chars := by
@@ -276,10 +274,14 @@ lemma not_pump : ¬pumping_property anbn_lang := by
             · simp_all only [Nat.add_eq_zero_iff, Nat.succ_ne_self, false_and]
             · simp_all only
       -- now we can proceed with the rest of the proof
+      -- mind that our main hypotheses right now are honlyas and hatleastonea,
+      -- and those reflect the steps in the proof that we worked through first
       intro hin
+      -- we can do the next rewrite with a separate lemma!
       simp only [Word.pow, Word.cat_eps, Set.mem_setOf_eq, anbn_lang] at hin
-      -- clearing a few unneeded hypotheses
+      -- another big rewrite
       simp_all only [gt_iff_lt, Word.cat_assoc, z, ↓Char.isValue]
+      -- clearing a few unneeded hypotheses
       clear hlenlower hzinanbn hv hpos z
       rcases hin with ⟨m, hm⟩
       have heven : (u ∘ v ∘ v ∘ w).count 'a' = (u ∘ v ∘ v ∘ w).count 'b' := by
