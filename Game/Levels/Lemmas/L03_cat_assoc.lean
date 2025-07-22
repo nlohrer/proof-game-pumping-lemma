@@ -6,7 +6,7 @@ Level 3
 
 Title "cat_assoc"
 
-Introduction "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+Introduction "Let's prove another basic lemma: concatenation is associative."
 
 namespace Regular
 
@@ -17,4 +17,4 @@ TheoremDoc Regular.cat_assoc as "cat_assoc" in "cat"
 Statement cat_assoc (x y z : Word) : (x ∘ y) ∘ z = x ∘ y ∘ z := by
   induction' x with s w ih <;> simp_all only [Word.cat]
 
-Conclusion "Good!"
+Conclusion "Good! Incidentally, we've just shown that strings together with concatenation form a monoid."

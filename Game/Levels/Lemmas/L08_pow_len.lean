@@ -6,7 +6,7 @@ Level 8
 
 Title "pow_len"
 
-Introduction "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+Introduction "The `pow` definition allows us to create strings of the form aⁿ, such as a⁴ = aaaa. We want to show that aⁿ is n characters long."
 
 namespace Regular
 TheoremTab "pow"

@@ -6,7 +6,7 @@ Level 7
 
 Title "cat_len"
 
-Introduction "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+Introduction "Our new definition `length` defines the length of a word. Let's show that the length of a word is equal to the sum of its subwords."
 
 namespace Regular
 /-- To determine the length of the concatenation of two words, you can add the length of both words. -/

@@ -6,7 +6,7 @@ Level 6
 
 Title "cat_count_zero"
 
-Introduction "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+Introduction "We'll need a special case of the lemma we just showed later on: when a certain character does not occur in a word, it won't appear in any of its subwords either."
 
 namespace Regular
 /-- If a symbol doesn't occur in the concatenation of two words, then it won't occur in any of the two words either. -/

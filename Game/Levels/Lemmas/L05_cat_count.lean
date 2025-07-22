@@ -6,7 +6,7 @@ Level 5
 
 Title "assoc_count"
 
-Introduction "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+Introduction "We've just introduced the `count` definition, which counts how many times a certain character occurs in a word. Let's show that we can get the count for a character in a word by summing up the counts in its subwords."
 
 namespace Regular
 /-- for the concatenation of two words, counting the occurrences of a certain character in the entire word
