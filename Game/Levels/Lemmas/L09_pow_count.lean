@@ -13,14 +13,18 @@ namespace Regular
 TheoremDoc Regular.pow_count as "pow_count" in "pow"
 
 Statement pow_count {s₁ s₂ : Char} (n : ℕ) :
-    (s₁ ^+^ n).count s₂ = if s₁ = s₂ then n else 0 := by
+    (s₁ ^ n).count s₂ = if s₁ = s₂ then n else 0 := by
+  Hint (hidden := true) "This is another induction: `induction' {n} with n ih`."
   induction' n with n ih
-  · simp_all only [Word.count, ite_self]
-  · simp_all only [Word.count, ↓reduceIte]
+  · Hint (hidden := true) "`simp [Word.count]`"
+    simp [Word.count]
+  · Hint (hidden := true) "`simp [Word.count]` to introduce the `if` statement in the goal."
+    simp [Word.count]
+    Hint (hidden := true) "`split_ifs with h`"
     split_ifs with h
-    · subst h
-      simp_all only [↓reduceIte]
+    · Hint (hidden := true) "`simp_all` followed by `omega` will close the goal."
+      simp_all
       omega
-    · simp_all only [↓reduceIte]
-
+    · Hint (hidden := true) "`simp_all` closes the goal."
+      simp_all
 Conclusion "Good!"

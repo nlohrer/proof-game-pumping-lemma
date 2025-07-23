@@ -11,7 +11,7 @@ whenever a hypothesis matches the goal precisely, we can use `exact` to close ou
 
 Statement (h : x = 2) : x = 2 := by
   Hint "Use `exact {h}` to close the goal immediately"
-  exact h
+  simp_all
 
 Conclusion "Good!"
 
@@ -20,4 +20,3 @@ Conclusion "Good!"
 NewTactic simp_all only
 OnlyTactic
   simp_all only
-  exact

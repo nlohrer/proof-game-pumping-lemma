@@ -7,6 +7,7 @@ import Game.Levels.Lemmas.L06_cat_count_zero
 import Game.Levels.Lemmas.L07_cat_len
 import Game.Levels.Lemmas.L08_pow_len
 import Game.Levels.Lemmas.L09_pow_count
+import Game.Levels.Lemmas.L10_cons_a
 
 World "Lemmas"
 Title "Lemmas"

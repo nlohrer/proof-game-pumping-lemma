@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Tue Jul 22 15:56:07 2025\n"
+"POT-Creation-Date: Wed Jul 23 19:35:29 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -335,6 +335,22 @@ msgid "A word over an alphabet, i.e. a string of symbols from that alphabet."
 msgstr ""
 
 #: Game.Levels.Lemmas.L02_cat_eps
+msgid "This proof calls for an induction! Try starting with `induction' w with s w ih`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L02_cat_eps
+msgid "This is essentially true by definition of `Word.cat`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L02_cat_eps
+msgid "`rw [Word.cat]`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L02_cat_eps
+msgid "`rw [Word.cat, ih]`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L02_cat_eps
 msgid "Good!"
 msgstr ""
 
@@ -348,6 +364,19 @@ msgstr ""
 
 #: Game.Levels.Lemmas.L03_cat_assoc
 msgid "Concatenation of words is associative, e.g. (x ∘ y) ∘ z = x ∘ (y ∘ z)."
+msgstr ""
+
+#: Game.Levels.Lemmas.L03_cat_assoc
+msgid "Once again, start with `inductino' «{x}» with s w ih`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L03_cat_assoc
+msgid "Either rewrite with `Word.cat` multiple times, or just\n"
+"use `simp [Word.cat]`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L03_cat_assoc
+msgid "Rewriting with `Word.cat` and then with `ih` works, or just use `simp_all [Word.cat]`."
 msgstr ""
 
 #: Game.Levels.Lemmas.L03_cat_assoc
@@ -384,6 +413,38 @@ msgid "Counts how often a character occurs in a word."
 msgstr ""
 
 #: Game.Levels.Lemmas.L05_cat_count
+msgid "Start with `induction' x with s' w ih`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "Utilize `Word.cat` and `Word.count`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "`simp [Word.cat, Word.count]`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "Remember you can use the tactic `split_ifs` to handle if statements."
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "`simp [Word.cat, Word.count]`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "`split_ifs with h`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "`omega` will solve this goal directly!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
+msgid "`exact «{ih}»` closes the goal immediately."
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cat_count
 msgid "Good!"
 msgstr ""
 
@@ -397,6 +458,30 @@ msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count_zero
 msgid "If a symbol doesn't occur in the concatenation of two words, then it won't occur in any of the two words either."
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count_zero
+msgid "Let's start out by introducing the antecedent: `intro hcatcount`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count_zero
+msgid "To split the conjunction, let's use the `constructor` tactic."
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count_zero
+msgid "Use the theorem `Nat.add_eq_zero`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count_zero
+msgid "simp_all [cat_count, Nat.add_eq_zero]"
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count_zero
+msgid "Use the theorem `Nat.add_eq_zero_iff`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count_zero
+msgid "simp_all [cat_count, Nat.add_eq_zero_iff]"
 msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count_zero
@@ -420,6 +505,26 @@ msgid "The amount of symbols in a word."
 msgstr ""
 
 #: Game.Levels.Lemmas.L07_cat_len
+msgid "This calls for yet another induction: `induction' x with s x ih`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_len
+msgid "`Nat.zero_add` should be useful at some point."
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_len
+msgid "`simp only [Word.cat, Word.length, Nat.zero_add]`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_len
+msgid "Use `Nat.add_assoc`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_len
+msgid "`simp_all [Word.length, Word.cat, «{ih}», Nat.add_assoc]`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_len
 msgid "Good!"
 msgstr ""
 
@@ -440,6 +545,23 @@ msgid "The power of a symbol: aⁿ = a...a repeated n times."
 msgstr ""
 
 #: Game.Levels.Lemmas.L08_pow_len
+msgid "This is yet another induction, this time over `«{n}»`:\n"
+"`induction' «{n}» with n ih`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_pow_len
+msgid "`rfl` closes the goal immediately."
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_pow_len
+msgid "The lemma `Nat.one_add` will be useful here."
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_pow_len
+msgid "`simp only [Word.length, «{ih}», Nat.one_add]`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_pow_len
 msgid "Good!"
 msgstr ""
 
@@ -456,6 +578,48 @@ msgid "A word of the form cⁿ will contain n instances of the character c, and 
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_count
+msgid "This is another induction: `induction' «{n}» with n ih`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_count
+msgid "`simp [Word.count]`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_count
+msgid "`simp [Word.count]` to introduce the `if` statement in the goal."
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_count
+msgid "`split_ifs with h`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_count
+msgid "`simp_all` followed by `omega` will close the goal."
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_count
+msgid "`simp_all` closes the goal."
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_count
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L10_cons_a
+msgid "cons_a"
+msgstr ""
+
+#: Game.Levels.Lemmas.L10_cons_a
+msgid "For the last level of this game, let's prove a much more complex statement!\n"
+"While it will be much more involved to prove than the other statements in this world,\n"
+"it will also be very useful in our non-regularity proof."
+msgstr ""
+
+#: Game.Levels.Lemmas.L10_cons_a
+msgid "A word of the form cⁿ will contain n instances of the character c, and none of any other character."
+msgstr ""
+
+#: Game.Levels.Lemmas.L10_cons_a
 msgid "Good!"
 msgstr ""
 
@@ -522,7 +686,7 @@ msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "The word we want to use is z = aⁿbⁿ.\n"
-"Let's introduce it with `let z : Word := 'a' ^+^ «{n}» ∘ 'b' ^+^ «{n}»`"
+"Let's introduce it with `set z : Word := ('a' ^ n) ∘ 'b' ^ n with hz`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -547,15 +711,6 @@ msgid "`exact «{hzinanbn}»` closes the goal directly."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "Since we're using an earlier Lean version for several reasons, we don't\n"
-"have access to the `set` tactic, which would have given us a hypothesis that\n"
-"`«{z}»` is indeed equal to aⁿbⁿ. However, we introduced `«{z}»` with the `let` tactic,\n"
-"so we will need to prove that hypothesis separately:\n"
-"\n"
-"`have heq : «{z}» = 'a' ^+^ n ∘ 'b' ^+^ n := rfl`"
-msgstr ""
-
-#: Game.Levels.NonregProofs.L02_Proof
 msgid "We once again use `constructor` to handle the conjunction."
 msgstr ""
 
@@ -568,7 +723,7 @@ msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "The exact hypotheses for rewriting that you should use\n"
-"are `«{heq}»`, `Word.cat_len`, `Symbol.pow_len`, and `Symbol.pow_len` again."
+"are `«{hz}»`, `cat_len`, `pow_len`, and `pow_len` again."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -588,7 +743,7 @@ msgstr ""
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "In our paper proof, we made an argument for why there are no b's in `«{v}»`. For our formalization, let's have this as a separate hypothesis:\n"
 "\n"
-"`have honlyas: «{v}».count 'b' = 0`"
+"`have honlyas : «{v}».count 'b' = 0`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -604,7 +759,7 @@ msgstr ""
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "We need to utilize the associativity that we proved earlier:\n"
 "\n"
-"`rw [← Word.cat_assoc]`\n"
+"`rw [← Word.cat_assoc] at hcons`\n"
 "\n"
 "Following that, use the tactic `symm at «{hcons}»`"
 msgstr ""
@@ -612,7 +767,7 @@ msgstr ""
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "For this specific situation, the lemma `Word.cons_a` is already provided to us, so you can finish the subproof with\n"
 "\n"
-"`apply Word.cons_a «{n}» («{u}» ∘ «{v}») «{w}» ('b' ^+^ «{n}») «{hcons}» «{hlenlower}»`"
+"`apply Word.cons_a «{n}» («{u}» ∘ «{v}») «{w}» ('b' ^ «{n}») «{hcons}» «{hlenlower}»`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof

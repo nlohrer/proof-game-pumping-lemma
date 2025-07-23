@@ -16,11 +16,15 @@ TheoremDoc Regular.cat_len as "cat_len" in "cat"
 DefinitionDoc Regular.Word.length as "length"
 NewDefinition Regular.Word.length
 
-lemma cat_len (x y : Word) :
+Statement cat_len (x y : Word) :
     |(x ∘ y)| = |x| + |y| := by
+  Hint (hidden := true) "This calls for yet another induction: `induction' x with s x ih`"
   induction' x with s x ih
-  · simp only [Word.cat, Word.length, Nat.zero_add]
-  · rw [Word.length, Nat.add_assoc, ← ih]
-    simp_all only [Word.length]
+  · Hint "`Nat.zero_add` should be useful at some point."
+    Hint (hidden := true) "`simp only [Word.cat, Word.length, Nat.zero_add]`"
+    simp only [Word.cat, Word.length, Nat.zero_add]
+  · Hint "Use `Nat.add_assoc`."
+    Hint (hidden := true) "`simp_all [Word.length, Word.cat, {ih}, Nat.add_assoc]`"
+    simp_all [Word.length, Word.cat, ih, Nat.add_assoc]
 
 Conclusion "Good!"

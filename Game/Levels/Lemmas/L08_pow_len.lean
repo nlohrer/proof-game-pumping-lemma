@@ -17,11 +17,14 @@ TheoremDoc Regular.pow_len as "pow_len" in "pow"
 DefinitionDoc Symbol.Pow as "Pow"
 NewDefinition Symbol.Pow
 
-Statement pow_len {s : Char} (n : ℕ) : |s ^+^ n| = n := by
+Statement pow_len {s : Char} (n : ℕ) : |s ^ n| = n := by
+  Hint "This is yet another induction, this time over `{n}`:
+  `induction' {n} with n ih`."
   induction' n with n ih
-  · rfl
-  · simp only [Word.length]
-    rw [ih]
-    exact Nat.one_add _
+  · Hint (hidden := true) "`rfl` closes the goal immediately."
+    rfl
+  · Hint "The lemma `Nat.one_add` will be useful here."
+    Hint (hidden := true) "`simp only [Word.length, {ih}, Nat.one_add]`"
+    simp only [Word.length, ih, Nat.one_add]
 
 Conclusion "Good!"
