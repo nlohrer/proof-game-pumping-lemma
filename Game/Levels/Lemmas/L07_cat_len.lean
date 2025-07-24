@@ -18,8 +18,8 @@ NewDefinition Regular.Word.length
 
 Statement cat_len (x y : Word) :
     |(x ∘ y)| = |x| + |y| := by
-  Hint (hidden := true) "This calls for yet another induction: `induction' x with s x ih`"
-  induction' x with s x ih
+  Hint (hidden := true) "This calls for yet another induction: `induction' x with _ x ih`"
+  induction' x with _ x ih
   · Hint "`Nat.zero_add` should be useful at some point."
     Hint (hidden := true) "`simp only [Word.cat, Word.length, Nat.zero_add]`"
     simp only [Word.cat, Word.length, Nat.zero_add]

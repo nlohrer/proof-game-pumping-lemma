@@ -6,13 +6,16 @@ Level 14
 Title "split_ifs"
 
 Introduction "
-# omega
-The tactic `omega` can solve integer and natural linear arithmetic problems."
+# split_ifs
+The tactic `split_ifs` allows us to handle `if` statements in our goal."
 
 Statement : if true then true else false := by
+  Hint "Use `split_ifs with h`."
   split_ifs with h
-  · rfl
-  · exact h rfl
+  · Hint "`rfl` closes the goal."
+    rfl
+  · Hint "Use `exact h rfl`."
+    exact h rfl
 Conclusion "Good!"
 
 /- Use these commands to add items to the game's inventory. -/

@@ -12,6 +12,7 @@ import Game.Levels.LeanBasics.L11_simp_only
 import Game.Levels.LeanBasics.L12_simp_all_only
 import Game.Levels.LeanBasics.L13_omega
 import Game.Levels.LeanBasics.L14_split_ifs
+import Game.Levels.LeanBasics.L15_use
 
 World "LeanBasics"
 Title "Lean Basics"

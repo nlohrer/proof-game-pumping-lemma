@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Jul 23 19:35:29 2025\n"
+"POT-Creation-Date: Thu Jul 24 19:18:38 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -272,11 +272,40 @@ msgid "split_ifs"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L14_split_ifs
-msgid "# omega\n"
-"The tactic `omega` can solve integer and natural linear arithmetic problems."
+msgid "# split_ifs\n"
+"The tactic `split_ifs` allows us to handle `if` statements in our goal."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L14_split_ifs
+msgid "Use `split_ifs with h`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_split_ifs
+msgid "`rfl` closes the goal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_split_ifs
+msgid "Use `exact h rfl`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_split_ifs
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_use
+msgid "use"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_use
+msgid "# use\n"
+"We can resolve existential quantors with the help of the `use` keyword."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_use
+msgid "We want to set n := 4: `use 4`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_use
 msgid "Good!"
 msgstr ""
 
@@ -505,7 +534,7 @@ msgid "The amount of symbols in a word."
 msgstr ""
 
 #: Game.Levels.Lemmas.L07_cat_len
-msgid "This calls for yet another induction: `induction' x with s x ih`"
+msgid "This calls for yet another induction: `induction' x with _ x ih`"
 msgstr ""
 
 #: Game.Levels.Lemmas.L07_cat_len
@@ -779,6 +808,191 @@ msgstr ""
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "For the next step of our proof, we showed that `«{v}»` contained at least\n"
 "one 'a'. This will unfortunately be much more involved to show!"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We have a lot of unnecessary hypotheses, so let's remove them:\n"
+"\n"
+"`clear «{hzinanbn}» «{hlenlower}» «{hcons}» «{hz}» «{u}» «{w}» «{z}» «{hpos}» «{n}» «{hzcharsinab}» «{hsub}»`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "The fact that v contains no a's should follow quite obviously from\n"
+"«{honlyas}» and «{hvchars}».\n"
+"\n"
+"We still need to do the rest of the work to show our statement. Let's pattern match\n"
+"on `«{v}»` with `rcases v with _ | ⟨s, w⟩`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "«{hv}» states that our word should have a length of at least 1, but\n"
+"the empty word `ε` has a length of 0, meaning that we get a contradiction\n"
+"in our hypotheses. As we can achieve any goal from a false hypothesis,\n"
+"this is exactly what we want!\n"
+"\n"
+"To reduce «{hv}» to false, just use `simp [Word.length] at «{hv}»`, which\n"
+"will also do some additional steps that end up closing the goal directly."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Let's use `simp_all [Word.length, Word.count]` to simplify our proof state."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "At this point, we don't specifically care about the fact that `«{w}».count 'a'`\n"
+"specifically describes how many a's there are in «{w}» - we just care about the fact that\n"
+"it is some arbitrary natural number. We can therefore make the proof state a bit more\n"
+"readible by generalizing it into some number `n`:\n"
+"\n"
+"`generalize «{w}».count 'a' = n at *`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We an now look at at the if statement in our goal: `split_ifs with hs`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "This inequality is obviously true for any «{n}», so let's solve it directly\n"
+"with `omega`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "According to `«{hvchars}»`, `«{s}»` is either 'a' or 'b', and `«{hs}»` states that\n"
+"`«{s}»` is not 'a' - therefore, `«{s}»` must be 'b'! Let's show this as a new hypothesis:\n"
+"\n"
+"`have hsb : «{s}» = 'b'`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Let's remove the unrequired elements: `clear «{honlyas}» «{n}»`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We want to mutate `«{hvchars}»` into a form where it essentially directly states\n"
+"that `«{s}»` is either 'a' or 'b', so that `simp_all` can take care of the rest.\n"
+"\n"
+"Start with `rw [Word.chars] at «{hvchars}»`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We can apply a preexisting theorem that shows how unions interact with subsets:\n"
+"\n"
+"`apply Set.union_subset_iff.mp at «{hvchars}»`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "From here on out, the proof state contains enough information that `simp_all`\n"
+"will close the goal."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "The new hypothesis `«{hsb}»` has added sufficient information to our proof state\n"
+"that another `simp_all` will close the goal now."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "We can now work through the main step of the proof. We want to show a negated\n"
+"statement. For a statement `φ`, its negation `¬φ` will actually be equivalent to\n"
+"`φ → False` in Lean, so our goal is actually an implication right now. We therefore want to\n"
+"proceed by introducing the antecedent: `intro hin`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Let's simplify the newly introduced hypothesis so it's in a form that's more useful to\n"
+"us: `simp [Word.pow, cat_eps] at «{hin}»`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "To make several of our hypotheses easier to read, let's proceed with another\n"
+"simplification: `simp_all [cat_assoc, «{z}»]`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "After this last `simp_all`, our proof state contains some hypotheses that our no longer\n"
+"necessary. Let's remove them with `clear «{hlenlower}» «{hzinanbn}» «{hv}» «{hpos}» «{z}»`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Our hypothesis `«{hin}»` states that `uvvw` is a word in the language `aⁿbⁿ`. Let's\n"
+"understand what this means exactly with `simp [anbn_lang, anbn] at «{hin}»`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Since `uvvw` is in `aⁿbⁿ`, there must be some `n` such that `uvvw = aⁿbⁿ`. Let's access\n"
+"this `n` with `rcases «{hin}» with ⟨m, hm⟩`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Our goal is to show some sort of contradiction now. The idea is that due to `«{hm}»`, the\n"
+"number of a's and b's in `uvvw` has to be equal. But according to `«{hcons}»`, `«{honlyas}»`,\n"
+"and `«{hatleastonea}»`, those counts have to be different!\n"
+"\n"
+"Let's show the first statement now:\n"
+"`have heven : («{u}» ∘ «{v}» ∘ «{v}» ∘ «{w}»).count 'a' = («{u}» ∘ «{v}» ∘ «{v}» ∘ «{w}»).count 'b'`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "This statement should follow quite directly from `«{hm}»`, but is a little convoluted\n"
+"to prove manually, so we want to employ `simp` once again.\n"
+"Let's open by rewriting with `«{hm}»`: `rw [«{hm}»]`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Remember that we stated the lemma `cat_count` to handle counts of concatenations,\n"
+"and further `pow_count` to state that #ₐ(aⁿ) = n. These two facts are obviously enough to\n"
+"show the goal right now, so let's just close it directly with\n"
+"`simp [cat_count, pow_count]`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "The more involved proof will be to use the previously proven hypotheses to show\n"
+"that the number of a's in `«{u}»«{v}»«{v}»«{w}»` differs from the number of b's.\n"
+"We first want to show that `«{u}»«{v}»«{w}»` indeed has the same amount of a's and b's.\n"
+"\n"
+"`have hcount : («{u}» ∘ «{v}» ∘ «{w}»).count 'a' = («{u}» ∘ «{v}» ∘ «{w}»).count 'b'`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "This is based on the fact that `«{u}»«{v}»«{w}» = aⁿbⁿ`, so let's substitute it back with\n"
+"`rw [← «{hcons}»]`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Our proof state is almost exactly the same as at the end of our previous hypothesis\n"
+"`heven`, so the lemmas `cat_count` and `pow_count` are essentially enough to solve the\n"
+"goal:"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Since both `«{u}»«{v}»«{w}»` and `«{u}»«{v}»«{v}»«{w}»` have the same count of a's and b's, «{v}» must\n"
+"have the same count as well:\n"
+"\n"
+"`have hveqcount : «{v}».count 'a' = «{v}».count 'b'`"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "The two hypotheses that the goal should intuitively follow from are `«{hcount}»` and\n"
+"`«{heven}»`, so let's transform them into sums with `simp [cat_count] at hcount heven`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "This is now essentially just a simple arithmetic problem, so let's close the goal\n"
+"with `omega`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "The previous hypotheses we showed were only steps to get to «{hveqcount}»; to have a\n"
+"clearer view of what we actually need, let's remove them again:\n"
+"`clear «{heven}» «{hcount}» «{hm}» «{m}» «{hcons}»`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "The contradiction we now receive boils down to the fact that according to `«{hveqcount}»`,\n"
+"`«{v}»` contains as many a's as b's, but according to `«{honlyas}»` and `«{hatleastonea}»`, that\n"
+"number should be different.\n"
+"\n"
+"At this point our hypotheses contain enough information that `simp_all` or `omega` will\n"
+"close the goal, but if you want you can try to go for a more manual approach."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof

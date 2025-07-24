@@ -114,52 +114,137 @@ Statement : ¬pumping_property anbn_lang := by
         -- since z's characters are 'a' and 'b'
         have hvchars : v.chars ⊆ {'a', 'b'} := subset_trans hsub hzcharsinab
         -- clearing a bunch of hypotheses that will only be a distraction otherwise
+        Hint "We have a lot of unnecessary hypotheses, so let's remove them:
+
+        `clear {hzinanbn} {hlenlower} {hcons} {hz} {u} {w} {z} {hpos} {n} {hzcharsinab} {hsub}`"
         clear hzinanbn hlenlower hcons hz u w z hpos n hzcharsinab hsub
+        Hint "The fact that v contains no a's should follow quite obviously from
+        {honlyas} and {hvchars}.
+
+        We still need to do the rest of the work to show our statement. Let's pattern match
+        on `{v}` with `rcases v with _ | ⟨s, w⟩`."
         -- from here on out we need a fairly lengthy induction
-        induction' v with s w ih
-        · simp_all only [Word.length, Nat.le_zero_eq, Nat.succ_ne_self]
-        · simp_all only [gt_iff_lt, Word.length, Nat.le_add_right, Word.count, ↓Char.isValue]
+        rcases v with _ | ⟨s, w⟩
+        · Hint "{hv} states that our word should have a length of at least 1, but
+          the empty word `ε` has a length of 0, meaning that we get a contradiction
+          in our hypotheses. As we can achieve any goal from a false hypothesis,
+          this is exactly what we want!
+
+          To reduce {hv} to false, just use `simp [Word.length] at {hv}`, which
+          will also do some additional steps that end up closing the goal directly."
+          simp [Word.length] at hv
+        · Hint "Let's use `simp_all [Word.length, Word.count]` to simplify our proof state."
+          simp_all [Word.length, Word.count]
+          Hint "At this point, we don't specifically care about the fact that `{w}.count 'a'`
+          specifically describes how many a's there are in {w} - we just care about the fact that
+          it is some arbitrary natural number. We can therefore make the proof state a bit more
+          readible by generalizing it into some number `n`:
+
+          `generalize {w}.count 'a' = n at *`"
           generalize w.count 'a' = n at *
+          Hint "We an now look at at the if statement in our goal: `split_ifs with hs`."
           split_ifs with hs
-          · omega
-          · have hsb : s = 'b' := by
-              -- once again clearing unnecessary hypotheses
-              clear ih honlyas n
+          · Hint "This inequality is obviously true for any {n}, so let's solve it directly
+            with `omega`."
+            omega
+          ·
+            Hint "According to `{hvchars}`, `{s}` is either 'a' or 'b', and `{hs}` states that
+            `{s}` is not 'a' - therefore, `{s}` must be 'b'! Let's show this as a new hypothesis:
+
+            `have hsb : {s} = 'b'`"
+            have hsb : s = 'b'
+            · Hint "Let's remove the unrequired elements: `clear {honlyas} {n}`."
+              clear honlyas n
+              Hint "We want to mutate `{hvchars}` into a form where it essentially directly states
+              that `{s}` is either 'a' or 'b', so that `simp_all` can take care of the rest.
+
+              Start with `rw [Word.chars] at {hvchars}`."
               rw [Word.chars] at hvchars
-              have hsab := (Set.union_subset_iff.mp hvchars).left
-              -- with the preparatory work done, simp_all can take care of the rest
-              simp_all only [Set.singleton_union, Set.singleton_subset_iff, Set.mem_insert_iff,
-                Set.mem_singleton_iff, false_or]
-            split_ifs at honlyas with h
-            · simp_all only [Nat.add_eq_zero_iff, Nat.succ_ne_self, false_and]
-            · simp_all only
+              Hint "We can apply a preexisting theorem that shows how unions interact with subsets:
+
+              `apply Set.union_subset_iff.mp at {hvchars}`"
+              apply Set.union_subset_iff.mp at hvchars
+              Hint "From here on out, the proof state contains enough information that `simp_all`
+              will close the goal."
+              simp_all
+            Hint "The new hypothesis `{hsb}` has added sufficient information to our proof state
+            that another `simp_all` will close the goal now."
+            simp_all
       -- now we can proceed with the rest of the proof
       -- mind that our main hypotheses right now are honlyas and hatleastonea,
       -- and those reflect the steps in the proof that we worked through first
+      Hint "We can now work through the main step of the proof. We want to show a negated
+      statement. For a statement `φ`, its negation `¬φ` will actually be equivalent to
+      `φ → False` in Lean, so our goal is actually an implication right now. We therefore want to
+      proceed by introducing the antecedent: `intro hin`."
       intro hin
-      -- we can do the next rewrite with a separate lemma!
-      simp only [Word.pow, cat_eps, Set.mem_setOf_eq, anbn_lang] at hin
+      Hint "Let's simplify the newly introduced hypothesis so it's in a form that's more useful to
+      us: `simp [Word.pow, cat_eps] at {hin}`."
+      simp [Word.pow, cat_eps] at hin
       -- another big rewrite
-      simp_all only [gt_iff_lt, cat_assoc, z, ↓Char.isValue]
-      -- clearing a few unneeded hypotheses
+      Hint "To make several of our hypotheses easier to read, let's proceed with another
+      simplification: `simp_all [cat_assoc, {z}]`."
+      simp_all [cat_assoc, z]
+      Hint "After this last `simp_all`, our proof state contains some hypotheses that our no longer
+      necessary. Let's remove them with `clear {hlenlower} {hzinanbn} {hv} {hpos} {z}`."
       clear hlenlower hzinanbn hv hpos z
+      Hint "Our hypothesis `{hin}` states that `uvvw` is a word in the language `aⁿbⁿ`. Let's
+      understand what this means exactly with `simp [anbn_lang, anbn] at {hin}`."
+      simp [anbn_lang, anbn] at hin
+      Hint "Since `uvvw` is in `aⁿbⁿ`, there must be some `n` such that `uvvw = aⁿbⁿ`. Let's access
+      this `n` with `rcases {hin} with ⟨m, hm⟩`."
       rcases hin with ⟨m, hm⟩
-      have heven : (u ∘ v ∘ v ∘ w).count 'a' = (u ∘ v ∘ v ∘ w).count 'b' := by
-        clear hatleastonea honlyas hcons
-        simp_all only [cat_count, pow_count, ite_true, ite_false, Nat.add_zero, Nat.zero_add, Char.reduceEq]
-      have huneven : (u ∘ v ∘ v ∘ w).count 'a' ≠ (u ∘ v ∘ v ∘ w).count 'b' := by
-        simp only [cat_count, ne_eq, ↓Char.isValue]
-        intro heq
-        have hcount : (u ∘ v ∘ w).count 'a' = (u ∘ v ∘ w).count 'b' := by
-          rw [← hcons]
-          clear hcons
-          simp_all only [Nat.zero_add, cat_count, pow_count, ite_true, ite_false,
-            Nat.add_zero, Nat.add_zero, Nat.zero_add, Char.reduceEq]
-        simp only [cat_count, ↓Char.isValue] at hcount
-        have hgoal : v.count 'a' = v.count 'b' := by
-          omega
-        simp_all only [lt_self_iff_false]
-      exact huneven heven
+      Hint "Our goal is to show some sort of contradiction now. The idea is that due to `{hm}`, the
+      number of a's and b's in `uvvw` has to be equal. But according to `{hcons}`, `{honlyas}`,
+      and `{hatleastonea}`, those counts have to be different!
+
+      Let's show the first statement now:
+      `have heven : ({u} ∘ {v} ∘ {v} ∘ {w}).count 'a' = ({u} ∘ {v} ∘ {v} ∘ {w}).count 'b'`"
+      have heven : (u ∘ v ∘ v ∘ w).count 'a' = (u ∘ v ∘ v ∘ w).count 'b'
+      · Hint "This statement should follow quite directly from `{hm}`, but is a little convoluted
+        to prove manually, so we want to employ `simp` once again.
+        Let's open by rewriting with `{hm}`: `rw [{hm}]`."
+        rw [hm]
+        Hint "Remember that we stated the lemma `cat_count` to handle counts of concatenations,
+        and further `pow_count` to state that #ₐ(aⁿ) = n. These two facts are obviously enough to
+        show the goal right now, so let's just close it directly with
+        `simp [cat_count, pow_count]`."
+        simp [cat_count, pow_count]
+      Hint "The more involved proof will be to use the previously proven hypotheses to show
+      that the number of a's in `{u}{v}{v}{w}` differs from the number of b's.
+      We first want to show that `{u}{v}{w}` indeed has the same amount of a's and b's.
+
+      `have hcount : ({u} ∘ {v} ∘ {w}).count 'a' = ({u} ∘ {v} ∘ {w}).count 'b'`"
+      have hcount : (u ∘ v ∘ w).count 'a' = (u ∘ v ∘ w).count 'b'
+      · Hint "This is based on the fact that `{u}{v}{w} = aⁿbⁿ`, so let's substitute it back with
+        `rw [← {hcons}]`."
+        rw [← hcons]
+        Hint "Our proof state is almost exactly the same as at the end of our previous hypothesis
+        `heven`, so the lemmas `cat_count` and `pow_count` are essentially enough to solve the
+        goal:"
+        simp [cat_count, pow_count]
+      Hint "Since both `{u}{v}{w}` and `{u}{v}{v}{w}` have the same count of a's and b's, {v} must
+      have the same count as well:
+
+      `have hveqcount : {v}.count 'a' = {v}.count 'b'`"
+      have hveqcount : v.count 'a' = v.count 'b'
+      · Hint "The two hypotheses that the goal should intuitively follow from are `{hcount}` and
+        `{heven}`, so let's transform them into sums with `simp [cat_count] at hcount heven`."
+        simp [cat_count] at hcount heven
+        Hint "This is now essentially just a simple arithmetic problem, so let's close the goal
+        with `omega`."
+        omega
+      Hint "The previous hypotheses we showed were only steps to get to {hveqcount}; to have a
+      clearer view of what we actually need, let's remove them again:
+      `clear {heven} {hcount} {hm} {m} {hcons}`."
+      clear heven hcount hm m hcons
+      Hint "The contradiction we now receive boils down to the fact that according to `{hveqcount}`,
+      `{v}` contains as many a's as b's, but according to `{honlyas}` and `{hatleastonea}`, that
+      number should be different.
+
+      At this point our hypotheses contain enough information that `simp_all` or `omega` will
+      close the goal, but if you want you can try to go for a more manual approach."
+      simp_all
 
 Conclusion "This last message appears if the level is solved."
 
