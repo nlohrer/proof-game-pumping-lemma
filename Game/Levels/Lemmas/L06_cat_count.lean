@@ -1,8 +1,8 @@
-import Game.Levels.Lemmas.L04_gap
+import Game.Levels.Lemmas.L05_cons_cat_cancel
 import Game.Metadata
 
 World "Lemmas"
-Level 5
+Level 6
 
 Title "assoc_count"
 

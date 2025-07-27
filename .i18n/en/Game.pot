@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Thu Jul 24 19:18:38 2025\n"
+"POT-Creation-Date: Sun Jul 27 18:06:50 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -61,11 +61,11 @@ msgid "Good!"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L03_Third
-msgid "Third Level"
+msgid "rw"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L03_Third
-msgid "# Introduction\n"
+msgid "# rw\n"
 "In this level, we'll be looking at..."
 msgstr ""
 
@@ -412,243 +412,386 @@ msgstr ""
 msgid "Good! Incidentally, we've just shown that strings together with concatenation form a monoid."
 msgstr ""
 
-#: Game.Levels.Lemmas.L04_gap
+#: Game.Levels.Lemmas.L04_cat_chars
 msgid "cat_assoc"
 msgstr ""
 
-#: Game.Levels.Lemmas.L04_gap
+#: Game.Levels.Lemmas.L04_cat_chars
 msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
 msgstr ""
 
-#: Game.Levels.Lemmas.L04_gap
+#: Game.Levels.Lemmas.L04_cat_chars
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L05_cons_cat_cancel
+msgid "cons_cat_cancel"
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cons_cat_cancel
+msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cons_cat_cancel
+msgid "Canceling"
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cons_cat_cancel
+msgid "Lean has automatically generated a lemma called `Word.cons.injEq`\n"
+"that contains the necessary information for this level, so `simp` will\n"
+"close the goal."
+msgstr ""
+
+#: Game.Levels.Lemmas.L05_cons_cat_cancel
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "assoc_count"
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "We've just introduced the `count` definition, which counts how many times a certain character occurs in a word. Let's show that we can get the count for a character in a word by summing up the counts in its subwords."
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "for the concatenation of two words, counting the occurrences of a certain character in the entire word\n"
 "is the same as counting the occurrences in both subwords and adding them up."
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "Counts how often a character occurs in a word."
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "Start with `induction' x with s' w ih`."
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "Utilize `Word.cat` and `Word.count`."
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "`simp [Word.cat, Word.count]`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "Remember you can use the tactic `split_ifs` to handle if statements."
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "`simp [Word.cat, Word.count]`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "`split_ifs with h`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "`omega` will solve this goal directly!"
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "`exact «{ih}»` closes the goal immediately."
 msgstr ""
 
-#: Game.Levels.Lemmas.L05_cat_count
+#: Game.Levels.Lemmas.L06_cat_count
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.Lemmas.L06_cat_count_zero
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "cat_count_zero"
 msgstr ""
 
-#: Game.Levels.Lemmas.L06_cat_count_zero
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "We'll need a special case of the lemma we just showed later on: when a certain character does not occur in a word, it won't appear in any of its subwords either."
 msgstr ""
 
-#: Game.Levels.Lemmas.L06_cat_count_zero
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "If a symbol doesn't occur in the concatenation of two words, then it won't occur in any of the two words either."
 msgstr ""
 
-#: Game.Levels.Lemmas.L06_cat_count_zero
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "Let's start out by introducing the antecedent: `intro hcatcount`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L06_cat_count_zero
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "To split the conjunction, let's use the `constructor` tactic."
 msgstr ""
 
-#: Game.Levels.Lemmas.L06_cat_count_zero
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "Use the theorem `Nat.add_eq_zero`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L06_cat_count_zero
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "simp_all [cat_count, Nat.add_eq_zero]"
 msgstr ""
 
-#: Game.Levels.Lemmas.L06_cat_count_zero
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "Use the theorem `Nat.add_eq_zero_iff`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L06_cat_count_zero
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "simp_all [cat_count, Nat.add_eq_zero_iff]"
 msgstr ""
 
-#: Game.Levels.Lemmas.L06_cat_count_zero
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.Lemmas.L07_cat_len
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "cat_len"
 msgstr ""
 
-#: Game.Levels.Lemmas.L07_cat_len
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "Our new definition `length` defines the length of a word. Let's show that the length of a word is equal to the sum of its subwords."
 msgstr ""
 
-#: Game.Levels.Lemmas.L07_cat_len
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "To determine the length of the concatenation of two words, you can add the length of both words."
 msgstr ""
 
-#: Game.Levels.Lemmas.L07_cat_len
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "The amount of symbols in a word."
 msgstr ""
 
-#: Game.Levels.Lemmas.L07_cat_len
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "This calls for yet another induction: `induction' x with _ x ih`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L07_cat_len
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "`Nat.zero_add` should be useful at some point."
 msgstr ""
 
-#: Game.Levels.Lemmas.L07_cat_len
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "`simp only [Word.cat, Word.length, Nat.zero_add]`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L07_cat_len
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "Use `Nat.add_assoc`."
 msgstr ""
 
-#: Game.Levels.Lemmas.L07_cat_len
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "`simp_all [Word.length, Word.cat, «{ih}», Nat.add_assoc]`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L07_cat_len
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.Lemmas.L08_pow_len
+#: Game.Levels.Lemmas.L09_pow_len
 msgid "pow_len"
 msgstr ""
 
-#: Game.Levels.Lemmas.L08_pow_len
+#: Game.Levels.Lemmas.L09_pow_len
 msgid "The `pow` definition allows us to create strings of the form aⁿ, such as a⁴ = aaaa. We want to show that aⁿ is n characters long."
 msgstr ""
 
-#: Game.Levels.Lemmas.L08_pow_len
+#: Game.Levels.Lemmas.L09_pow_len
 msgid "The length of cⁿ is n for any character c."
 msgstr ""
 
-#: Game.Levels.Lemmas.L08_pow_len
+#: Game.Levels.Lemmas.L09_pow_len
 msgid "The power of a symbol: aⁿ = a...a repeated n times."
 msgstr ""
 
-#: Game.Levels.Lemmas.L08_pow_len
+#: Game.Levels.Lemmas.L09_pow_len
 msgid "This is yet another induction, this time over `«{n}»`:\n"
 "`induction' «{n}» with n ih`."
 msgstr ""
 
-#: Game.Levels.Lemmas.L08_pow_len
+#: Game.Levels.Lemmas.L09_pow_len
 msgid "`rfl` closes the goal immediately."
 msgstr ""
 
-#: Game.Levels.Lemmas.L08_pow_len
+#: Game.Levels.Lemmas.L09_pow_len
 msgid "The lemma `Nat.one_add` will be useful here."
 msgstr ""
 
-#: Game.Levels.Lemmas.L08_pow_len
+#: Game.Levels.Lemmas.L09_pow_len
 msgid "`simp only [Word.length, «{ih}», Nat.one_add]`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L08_pow_len
+#: Game.Levels.Lemmas.L09_pow_len
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.Lemmas.L09_pow_count
+#: Game.Levels.Lemmas.L10_pow_count
 msgid "pow_count"
 msgstr ""
 
-#: Game.Levels.Lemmas.L09_pow_count
+#: Game.Levels.Lemmas.L10_pow_count
 msgid "For our last lemma, we will show that for a word of the form cⁿ, it will contain n instances of c, and none of any other character."
 msgstr ""
 
-#: Game.Levels.Lemmas.L09_pow_count
+#: Game.Levels.Lemmas.L10_pow_count
 msgid "A word of the form cⁿ will contain n instances of the character c, and none of any other character."
 msgstr ""
 
-#: Game.Levels.Lemmas.L09_pow_count
+#: Game.Levels.Lemmas.L10_pow_count
 msgid "This is another induction: `induction' «{n}» with n ih`."
 msgstr ""
 
-#: Game.Levels.Lemmas.L09_pow_count
+#: Game.Levels.Lemmas.L10_pow_count
 msgid "`simp [Word.count]`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L09_pow_count
+#: Game.Levels.Lemmas.L10_pow_count
 msgid "`simp [Word.count]` to introduce the `if` statement in the goal."
 msgstr ""
 
-#: Game.Levels.Lemmas.L09_pow_count
+#: Game.Levels.Lemmas.L10_pow_count
 msgid "`split_ifs with h`"
 msgstr ""
 
-#: Game.Levels.Lemmas.L09_pow_count
+#: Game.Levels.Lemmas.L10_pow_count
 msgid "`simp_all` followed by `omega` will close the goal."
 msgstr ""
 
-#: Game.Levels.Lemmas.L09_pow_count
+#: Game.Levels.Lemmas.L10_pow_count
 msgid "`simp_all` closes the goal."
 msgstr ""
 
-#: Game.Levels.Lemmas.L09_pow_count
+#: Game.Levels.Lemmas.L10_pow_count
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.Lemmas.L10_cons_a
-msgid "cons_a"
+#: Game.Levels.Lemmas.L11_pow_cons_count_eq
+msgid "pow_cons_count_eq"
 msgstr ""
 
-#: Game.Levels.Lemmas.L10_cons_a
+#: Game.Levels.Lemmas.L11_pow_cons_count_eq
+msgid "Let's prove a statement for a slightly more complex situation that\n"
+"may show up in a nonregularity proof:\n"
+"For `n > 0`, characters `c, d`, and words `x, y`, if\n"
+"`cx = dⁿy`, then `c` must be `d`!."
+msgstr ""
+
+#: Game.Levels.Lemmas.L11_pow_cons_count_eq
+msgid "A word of the form cⁿ will contain n instances of the character c, and none of any other character."
+msgstr ""
+
+#: Game.Levels.Lemmas.L11_pow_cons_count_eq
+msgid "We need to match on `«{n}»` here, so use `induction' «{n}» with n _`.\n"
+"Since we're just matching, we do not need to name the induction hypothesis."
+msgstr ""
+
+#: Game.Levels.Lemmas.L11_pow_cons_count_eq
+msgid "`«{hn}»` is obviously a contradiction, so `simp at «{hn}»` will close\n"
+"the goal immediately."
+msgstr ""
+
+#: Game.Levels.Lemmas.L11_pow_cons_count_eq
+msgid "This goal follows directly from `«{hcons}»`. Let's first\n"
+"`rw [Symbol.pow] at «{hcons}»` to unfold the definition."
+msgstr ""
+
+#: Game.Levels.Lemmas.L11_pow_cons_count_eq
+msgid "Our previous lemma `cons_cat_cancel` will help here:\n"
+"`apply cons_cat_cancel at «{hcons}»`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L11_pow_cons_count_eq
+msgid "We can now close the goal with `exact «{hcons}».left`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L11_pow_cons_count_eq
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "pow_cons_count_uneq"
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
 msgid "For the last level of this game, let's prove a much more complex statement!\n"
 "While it will be much more involved to prove than the other statements in this world,\n"
 "it will also be very useful in our non-regularity proof."
 msgstr ""
 
-#: Game.Levels.Lemmas.L10_cons_a
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
 msgid "A word of the form cⁿ will contain n instances of the character c, and none of any other character."
 msgstr ""
 
-#: Game.Levels.Lemmas.L10_cons_a
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "This is yet another proof by induction, so start with\n"
+"`induction' «{x}» with s x ih generalizing «{n}»`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "`rw [Word.count]` will solve this goal immediately."
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "Since we are in the `.cons` case now, we can do a bunch of rewrites\n"
+"now. Start out with `rw [Word.length] at «{hx}»`, as that will be useful\n"
+"later on."
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "We can now look at our goal: `rw [Word.count]`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "We now have an if-statement in our goal, with the guard `«{s}» = «{d}»`.\n"
+"From our previous lemma `pow_cons_count_eq`, and by looking at `«{hz}»` directly,\n"
+"it is already obvious that `«{s}» = «{c}»` has to hold, and since `«{c}» ≠ «{d}»`\n"
+"according to `«{huneq}»`, we must have `«{s}» ≠ «{d}»`, meaning that we should\n"
+"always land in the `else` case.\n"
+"\n"
+"We can now employ our previously proved lemma by pattern matching with its\n"
+"arguments:\n"
+"`have heq := pow_cons_count_eq «{s}» «{c}» «{n}» («{x}» ∘ «{y}») «{z}» «{hz}» (by omega)`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "To make use of `«{heq}»` and `«{huneq}»` to land in the `else` case,\n"
+"let's use `simp [«{heq}», «{huneq}»]`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "As we can see, we need to show that `«{x}»` does not contain any instances\n"
+"of the character `«{d}»`, which matches with our goal before the starting the induction.\n"
+"However, we now have the induction hypothesis at our disposal!\n"
+"\n"
+"From here on out, the easiest way forward is to match on `«{n}»`.\n"
+"Proceed with `induction' «{n}» with n _` - mind that we do not need the\n"
+"induction hypothesis, so this is essentially a different syntax for\n"
+"matching on `«{n}»`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "`simp at «{hx}»` closes the goal here, since it produces a contradiction."
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "if we use `«{n}»` for our induction hypothesis `«{ih}»`, we will need to show\n"
+"`«{x}» ∘ «{y}» = «{c}» ^ «{n}» ∘ «{z}»`. This follows directly from `«{hz}»`; to show this,\n"
+"we first need some rewrites: `rw [Symbol.pow, «{heq}»] at «{hz}»`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "We can now see that `«{hz}»` preciesely matches a previous lemma\n"
+"that we can `apply` to it."
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "`apply cons_cat_cancel at «{hz}»`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "To use our induction hypothesis `«{ih}»`, we also need to show\n"
+"`Word.length «{x}» ≤ «{n}»`; This follows quite obviously from `«{hx}»`, so\n"
+"we can just show this with\n"
+"\n"
+"`have hlen : Word.length «{x}» ≤ «{n}» := by omega`"
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
+msgid "Close the goal with `exact «{ih}» «{n}» «{hz}».right «{hlen}»`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L12_pow_cons_count_uneq
 msgid "Good!"
 msgstr ""
 
@@ -794,9 +937,11 @@ msgid "We need to utilize the associativity that we proved earlier:\n"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "For this specific situation, the lemma `Word.cons_a` is already provided to us, so you can finish the subproof with\n"
+msgid "For this specific situation, we have already proved the lemma `pow_cons_count_uneq`,\n"
+"so you can finish the subproof with\n"
 "\n"
-"`apply Word.cons_a «{n}» («{u}» ∘ «{v}») «{w}» ('b' ^ «{n}») «{hcons}» «{hlenlower}»`"
+"`apply pow_cons_count_uneq 'a' 'b'\n"
+"(ne_of_beq_false rfl) «{n}» («{u}» ∘ «{v}») «{w}» ('b' ^ «{n}») «{hcons}» «{hlenlower}»`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof

@@ -1,4 +1,4 @@
-import Game.Levels.Lemmas.L10_cons_a
+import Game.Levels.Lemmas.L12_pow_cons_count_uneq
 import Game.Metadata
 
 World "NonregProofs"
@@ -88,10 +88,12 @@ Statement : ¬pumping_property anbn_lang := by
           rw [← cat_assoc] at hcons
           symm at hcons
           -- might need to proof the cons_a lemma in the lemma section!
-          Hint "For this specific situation, the lemma `Word.cons_a` is already provided to us, so you can finish the subproof with
+          Hint "For this specific situation, we have already proved the lemma `pow_cons_count_uneq`,
+          so you can finish the subproof with
 
-          `apply Word.cons_a {n} ({u} ∘ {v}) {w} ('b' ^ {n}) {hcons} {hlenlower}`"
-          apply cons_a n (u ∘ v) w ('b' ^ n) hcons hlenlower
+          `apply pow_cons_count_uneq 'a' 'b'
+          (ne_of_beq_false rfl) {n} ({u} ∘ {v}) {w} ('b' ^ {n}) {hcons} {hlenlower}`"
+          apply pow_cons_count_uneq 'a' 'b' (ne_of_beq_false rfl) n (u ∘ v) w ('b' ^ n) hcons hlenlower
         Hint "We can now use the fresh hypothesis `{huv}`:
 
         `exact (@Word.cat_count_zero 'b' {u} {v} {huv}).right`"
@@ -100,8 +102,7 @@ Statement : ¬pumping_property anbn_lang := by
       Hint "For the next step of our proof, we showed that `{v}` contained at least
       one 'a'. This will unfortunately be much more involved to show!"
       have hatleastonea : v.count 'a' > 0
-      ·
-        have hzcharsinab := anbn_lang.word_constraint z hzinanbn
+      · have hzcharsinab := anbn_lang.word_constraint z hzinanbn
         -- simp to remove the .Alphabet thing
         simp only [anbn_lang, ↓Char.isValue] at hzcharsinab
         -- since v is a subword of z, its characters will be a subset of z's

@@ -3,10 +3,10 @@ import Game.Metadata
 World "LeanBasics"
 Level 3
 
-Title "Third Level"
+Title "rw"
 
 Introduction "
-# Introduction
+# rw
 In this level, we'll be looking at...
 "
 
@@ -24,4 +24,6 @@ Conclusion "This last message appears if the level is solved."
 
 /- Use these commands to add items to the game's inventory. -/
 
-NewTactic rw rfl
+NewTactic rw
+OnlyTactic
+  rw

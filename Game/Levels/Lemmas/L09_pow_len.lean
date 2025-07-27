@@ -1,8 +1,8 @@
-import Game.Levels.Lemmas.L07_cat_len
+import Game.Levels.Lemmas.L08_cat_len
 import Game.Metadata
 
 World "Lemmas"
-Level 8
+Level 9
 
 Title "pow_len"
 
