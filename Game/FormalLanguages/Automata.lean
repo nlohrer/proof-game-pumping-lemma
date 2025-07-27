@@ -95,9 +95,7 @@ lemma state_sub (dfa : DFA) (w : Word) : (stateSequence dfa w).toFinset ⊆ dfa.
 
 lemma nodup_subset_sub (A B : List U) (hsub : A ⊆ B) (hlen : A.length = B.length)
     (huniq : A.Nodup) : B ⊆ A := by
-  --intro ab hb
   generalize hn : List.length A = n at *
-  --rw [@List.mem_iff_get]
   induction' n with n ih generalizing A B
   · simp only [Nat.zero_eq] at hlen
     symm at hlen
@@ -131,29 +129,34 @@ lemma nodup_subset_sub (A B : List U) (hsub : A ⊆ B) (hlen : A.length = B.leng
               rw [List.mem_iff_get] at ha
               rcases ha with ⟨i, ha⟩
               specialize ih A (b :: B.removeNth i) _ huniq (by simp_all) (_)
-              · intro a' ha'
-                sorry
-/-                 clear ih hlen hn
-                specialize hsub ha'
+              · rw [← ha] at hanotinA
+                clear hab hB hbinA huniq hn hlen ab ih ha a
+                intro a ha
+                specialize hsub ha
                 rw [List.mem_cons] at *
                 rcases hsub with hab | haB
                 · left
                   exact hab
                 · right
-                  match B with
-                  | [] => simp_all only [List.not_mem_nil]
-                  | b' :: B =>
-                    induction' i using Fin.induction with i ih
-                    · simp_all only [List.mem_cons, List.get_cons_zero, List.removeNth]
-                      subst ha
-                      aesop
-                    · simp only [List.removeNth]
-                      rw [List.mem_cons] at *
-                      rcases haB with hab | haB
-                      · left
-                        exact hab
-                      · right
-                        aesop -/
+                  by_contra h
+                  have hai : a = List.get B i := by
+                    clear ha hanotinA A
+                    induction' B with b B ih
+                    · simp_all only [List.not_mem_nil]
+                    · induction' i using Fin.induction with i _
+                      · simp_all only [List.mem_cons, List.removeNth, List.get_cons_zero, or_false]
+                      · rw [Fin.succ] at h
+                        simp only at h
+                        rw [List.removeNth, List.mem_cons] at h
+                        simp_all only [List.mem_cons, List.length_cons, Fin.coe_castSucc,
+                        List.removeNth, Nat.add_eq, add_zero, List.get_cons_succ']
+                        push_neg at h
+                        obtain ⟨haneqb, hanelemBi⟩ := h
+                        rcases haB with hab | haB
+                        · exact (haneqb hab).elim
+                        · exact ih i haB hanelemBi
+                  rw [hai] at ha
+                  exact hanotinA ha
               · clear hn huniq hanotinA hsub hab hbinA A ha a ih
                 rw [List.length]
                 simp at hlen
@@ -174,15 +177,13 @@ lemma nodup_subset_sub (A B : List U) (hsub : A ⊆ B) (hlen : A.length = B.leng
                 induction' B with b B ih
                 · exact hB
                 · rw [List.mem_cons] at hB
-                  induction' i using Fin.induction with i ih'
+                  induction' i using Fin.induction with i _
                   · simp_all only [List.get_cons_zero, List.removeNth, false_or]
                   · rcases hB with hb | hB
                     · simp_all
                     · right
                       exact ih hB i h
-              clear hn hlen
-              specialize ih hab'
-              exact hab ih
+              exact hab (ih hab')
       · rw [List.mem_cons] at hab
         have hAsubB : A ⊆ B := by
           have hAsub : A ⊆ b :: B := by
@@ -206,48 +207,36 @@ lemma nodup_subset_sub (A B : List U) (hsub : A ⊆ B) (hlen : A.length = B.leng
           apply And.left at hsub
           rcases hsub with hab | haB
           · exact hab.symm
-          · by_contra hneq
-            obtain ⟨hanotinA, huniq⟩ := huniq
-            specialize ih haB
-            exact hanotinA ih
+          · specialize ih haB
+            exact (huniq.left ih).elim
         · right
           exact ih hB
     | [], [] => exact hsub
-  --rw [List.subset_def] at hsub
-/-   induction' A with a A ih generalizing B
-  · simp_all
-    symm at hlen
-    apply List.length_eq_zero.mp at hlen
-    rw [hlen] at hb
-    exact List.not_mem_nil b hb
-  · by_cases h : (a :: A)[0] = b
-    ·
-      use ⟨0, by exact Nat.zero_lt_succ (List.length A)⟩
-      simp only [List.length_cons, Fin.zero_eta, List.get_cons_zero]
-      simp only [List.getElem_eq_get, List.length_cons, Fin.zero_eta, List.get_cons_zero] at h
-      exact h
-    · simp only [List.getElem_eq_get, List.length_cons, Fin.zero_eta, List.get_cons_zero] at h
-      match B with
-      | [] => simp_all
-      | b' :: B =>
-        simp at hb
-        rcases hb with heq | huneq
-        · sorry
-        ·
-          specialize ih B -/
-
 
 @[simp]
 lemma nodup_subset_nodup [DecidableEq U] (A B : List U) (hsub : A ⊆ B) (hsize : A.length = B.length)
     (huniq : A.Nodup) : B.Nodup := by
   generalize hn : List.length A = n
-  have hno := nodup_subset_sub A B hsub hsize huniq
+  have hsubB := nodup_subset_sub A B hsub hsize huniq
+  rw [@List.nodup_iff_get?_ne_get?] at *
+  intro i j hih hhlen heq
+  have hiB := lt_trans hih hhlen
+  rw [List.get?_eq_get hiB, List.get?_eq_get hhlen, Option.some.injEq] at heq
+  have hiA := hsubB (List.get_mem B i hiB)
+  have hjA := hsubB (List.get_mem B j hhlen)
+  rw [@List.mem_iff_get] at hiA hjA
+  rcases hiA with ⟨i', hi'⟩
+  rcases hjA with ⟨j', hj'⟩
+  specialize huniq i' j'
+  sorry
+
+/-   specialize hsubB b
   induction' n with n ih generalizing A B
   · sorry
   · match A, B with
     | a :: A, b :: B =>
       sorry
-    | [], [] => simp_all
+    | [], [] => simp_all -/
 /-   by_contra h
   rw [List.nodup_iff_count_le_one] at h -/
 
