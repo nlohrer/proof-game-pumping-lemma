@@ -21,6 +21,19 @@ ones so that the proof state is in a fitting form.
 
 namespace Regular
 
+/-- Within the context of our proof, this lemma shows that the characters contained in v
+are either 'a' or 'b'. -/
+lemma v_subset_ab {z u v w : Word} (hzinanbn : z ∈ anbn) (hcons : z = u ∘ v ∘ w) :
+    v.chars ⊆ {'a', 'b'} := by
+  have hzcharsinab := anbn_lang.word_constraint z hzinanbn
+  have hsub : v.chars ⊆ z.chars := by
+    have hleft := cat_char_subset_left v w
+    have hright := cat_char_subset_right u (v ∘ w)
+    rw [hcons]
+    intro c hc
+    exact hright (hleft hc)
+  exact subset_trans hsub hzcharsinab
+
 Statement : ¬pumping_property anbn_lang := by
   Hint "Let's first `rw [pumping_property]` to recall the definition of the pumping
   property, then `push_neg` to push the negation all the way in."
@@ -102,23 +115,17 @@ Statement : ¬pumping_property anbn_lang := by
       Hint "For the next step of our proof, we showed that `{v}` contained at least
       one 'a'. This will unfortunately be much more involved to show!"
       have hatleastonea : v.count 'a' > 0
-      · have hzcharsinab := anbn_lang.word_constraint z hzinanbn
-        -- simp to remove the .Alphabet thing
-        simp only [anbn_lang, ↓Char.isValue] at hzcharsinab
-        -- since v is a subword of z, its characters will be a subset of z's
-        have hsub : v.chars ⊆ z.chars := by
-          have hleft := cat_char_subset_left v w
-          have hright := cat_char_subset_right u (v ∘ w)
-          rw [hcons]
-          intro c hc
-          exact hright (hleft hc)
-        -- since z's characters are 'a' and 'b'
-        have hvchars : v.chars ⊆ {'a', 'b'} := subset_trans hsub hzcharsinab
-        -- clearing a bunch of hypotheses that will only be a distraction otherwise
+      · Hint "Since `{v}` is a subword of `{z}`, and `{z} ∈ aⁿbⁿ`, it is obvious that the
+        characters contained in `{v}` have to either be `'a'` or `'b'`. Showing this is a slightly
+        involved proof since it involves some manual handling of sets - therefore, we have
+        already provided this hypothesis in the form of the lemma `v_subset_ab`:
+
+        `have hvchars := v_subset_ab {hzinanbn} {hcons}`"
+        have hvchars := v_subset_ab hzinanbn hcons
         Hint "We have a lot of unnecessary hypotheses, so let's remove them:
 
-        `clear {hzinanbn} {hlenlower} {hcons} {hz} {u} {w} {z} {hpos} {n} {hzcharsinab} {hsub}`"
-        clear hzinanbn hlenlower hcons hz u w z hpos n hzcharsinab hsub
+        `clear {hzinanbn} {hlenlower} {hcons} {hz} {u} {w} {z} {hpos} {n}`"
+        clear hzinanbn hlenlower hcons hz u w z hpos n
         Hint "The fact that v contains no a's should follow quite obviously from
         {honlyas} and {hvchars}.
 
@@ -171,7 +178,6 @@ Statement : ¬pumping_property anbn_lang := by
             Hint "The new hypothesis `{hsb}` has added sufficient information to our proof state
             that another `simp_all` will close the goal now."
             simp_all
-      -- now we can proceed with the rest of the proof
       -- mind that our main hypotheses right now are honlyas and hatleastonea,
       -- and those reflect the steps in the proof that we worked through first
       Hint "We can now work through the main step of the proof. We want to show a negated
@@ -248,8 +254,3 @@ Statement : ¬pumping_property anbn_lang := by
       simp_all
 
 Conclusion "This last message appears if the level is solved."
-
-/- Use these commands to add items to the game's inventory. -/
-
--- NewTheorem Nat.add_comm Nat.add_assoc
--- NewDefinition Nat Add Eq

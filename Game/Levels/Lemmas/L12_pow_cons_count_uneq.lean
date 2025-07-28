@@ -48,15 +48,11 @@ Statement pow_cons_count_uneq (c d : Char) (huneq : c ≠ d) (n : ℕ) (x y z : 
     However, we now have the induction hypothesis at our disposal!
 
     From here on out, the easiest way forward is to match on `{n}`.
-    Proceed with `induction' {n} with n _` - mind that we do not need the
-    induction hypothesis, so this is essentially a different syntax for
-    matching on `{n}`."
-    induction' n with n _
+    Proceed with `rcases {n} with _ | n`."
+    rcases n with _ | n
     · Hint "`simp at {hx}` closes the goal here, since it produces a contradiction."
       simp at hx
-    ·
-      clear n_ih
-      Hint "if we use `{n}` for our induction hypothesis `{ih}`, we will need to show
+    · Hint "if we use `{n}` for our induction hypothesis `{ih}`, we will need to show
       `{x} ∘ {y} = {c} ^ {n} ∘ {z}`. This follows directly from `{hz}`; to show this,
       we first need some rewrites: `rw [Symbol.pow, {heq}] at {hz}`"
       rw [Symbol.pow, heq] at hz

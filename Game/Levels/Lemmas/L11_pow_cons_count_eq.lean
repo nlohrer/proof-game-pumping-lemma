@@ -20,14 +20,13 @@ TheoremDoc Regular.pow_cons_count_eq as "pow_cons_count_eq" in "pow"
 Statement pow_cons_count_eq (c d : Char) (n : ℕ) (x y : Word) (hcons : .cons c x = (d ^ n) ∘ y)
     (hn : 0 < n) :
     c = d := by
-  Hint "We need to match on `{n}` here, so use `induction' {n} with n _`.
+  Hint "We need to match on `{n}` here, so use `rcases {n} with _ | n`.
   Since we're just matching, we do not need to name the induction hypothesis."
-  induction' n with n _
+  rcases n with _ | n
   · Hint "`{hn}` is obviously a contradiction, so `simp at {hn}` will close
     the goal immediately."
     simp at hn
-  · clear n_ih
-    Hint "This goal follows directly from `{hcons}`. Let's first
+  · Hint "This goal follows directly from `{hcons}`. Let's first
     `rw [Symbol.pow] at {hcons}` to unfold the definition."
     rw [Symbol.pow] at hcons
     Hint "Our previous lemma `cons_cat_cancel` will help here:
