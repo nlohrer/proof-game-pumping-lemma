@@ -13,7 +13,7 @@ In the middle bottom of the screen, you'll find the proof state, which includes
 both the goal of the proof, as well as all objects and assumptions that you may
 use to arrive at the proof.
 ## rfl
-The `rfl` tactic closes the goal with pure reflexivity.
+The `rfl` tactic closes the goal using reflexivity.
 "
 
 Statement : 2 = 2 := by

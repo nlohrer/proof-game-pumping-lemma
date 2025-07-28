@@ -3,7 +3,7 @@ import Game.Metadata
 World "LeanBasics"
 Level 9
 
-Title "exact"
+Title "induction"
 
 Introduction "
 # Induction
@@ -16,7 +16,8 @@ Statement (n : ℕ) : 0 ≤ n := by
   ·
     sorry
 
-Conclusion "Good!"
+Conclusion "Both the type `Word` as well as our definitions for it will be
+inductive, so we will make frequent use of induction'!"
 
 /- Use these commands to add items to the game's inventory. -/
 

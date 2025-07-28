@@ -14,11 +14,12 @@ distracting us, we can use the `clear` tactic to remove them."
 Statement (a b c d e f : ℕ) (h : x = 2) (hy : y = 3) (hz : z = 0)  : x = 2 := by
   Hint "Use `clear {a} {b} {c} {d} {e} {f} {hy} {hz} {y} {z}` to remove the unneeded hypotheses"
   clear a b c d e f hy hz y z
+  Hint (hidden := true) "Use `exact {h}` to close the goal."
   exact h
 
-Conclusion "Good!"
-
-/- Use these commands to add items to the game's inventory. -/
+Conclusion "Good! Clearing hypotheses can also be useful when you wish to use
+tactics involving automation such as `simp_all` - sometimes, such a tactic
+will work better when certain hypotheses are not available to it!"
 
 NewTactic
   clear

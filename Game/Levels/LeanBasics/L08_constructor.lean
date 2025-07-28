@@ -16,7 +16,8 @@ Statement (hx : x = 2) (hy : y = 3) : x = 2 ∧ y = 3 := by
   · exact hx
   · exact hy
 
-Conclusion "Good!"
+Conclusion "We will generally use `constructor` for conjunctions, but it works
+for any inductive type."
 
 /- Use these commands to add items to the game's inventory. -/
 

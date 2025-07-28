@@ -3,7 +3,7 @@ import Game.Metadata
 World "LeanBasics"
 Level 4
 
-Title "exact"
+Title "intro"
 
 Introduction "
 # intro
@@ -16,6 +16,7 @@ Statement : ∀ (A : Prop), A → A := by
   intro A
   Hint "Now, `intro ha` will introduce the antecedent into our given hypotheses."
   intro ha
+  Hint (hidden := true) "`exact {ha}` closes the goal."
   exact ha
 
 Conclusion "Good!"
