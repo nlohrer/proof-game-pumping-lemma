@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Jul 27 18:06:50 2025\n"
+"POT-Creation-Date: Mon Aug 11 20:14:00 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -32,7 +32,7 @@ msgid "# Introduction\n"
 "both the goal of the proof, as well as all objects and assumptions that you may\n"
 "use to arrive at the proof.\n"
 "## rfl\n"
-"The `rfl` tactic closes the goal with pure reflexivity."
+"The `rfl` tactic closes the goal using reflexivity."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L01_rfl
@@ -49,7 +49,7 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L02_exact
 msgid "# exact\n"
-"whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
+"Whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L02_exact
@@ -60,33 +60,40 @@ msgstr ""
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L03_Third
+#: Game.Levels.LeanBasics.L03_rw
 msgid "rw"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L03_Third
+#: Game.Levels.LeanBasics.L03_rw
 msgid "# rw\n"
-"In this level, we'll be looking at..."
+"The `rw` tactic allows for rewriting using certain theorems or hypotheses,\n"
+"both at the goal as well as at specific hypotheses."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L03_Third
-msgid "You can either abc start using"
+#: Game.Levels.LeanBasics.L03_rw
+msgid "As we can see, both `«{h}»` and `«{k}»` are currently stated a bit awkwardly. Start with `rw [«{g}»] at «{h}» «{k}»`."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L03_Third
-msgid "You should use `«{h}»` now."
+#: Game.Levels.LeanBasics.L03_rw
+msgid "The goal now follows from `«{h}»` and `«{k}»` quite directly.\n"
+"You can't use `exact` or `rfl` in this level, but `rw` will try to close out\n"
+"the goal anyway using reflexivity.\n"
+"`rw [← «{h}», «{k}»]` closes the goal immediately. Mind that we write\n"
+"`← «{h}»` since `rw` usually substitutes a term matching the left side of the equation with the one on the right side. The equality `«{h}»` is in the opposite direction of the rewrite we wish to apply, so we use `←` (which can\n"
+"be typed with `\\l`) to reverse it."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L03_Third
-msgid "You should use `«{g}»` now."
+#: Game.Levels.LeanBasics.L03_rw
+msgid "From here `rw [«{k}»]` closes the goal."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L03_Third
-msgid "This last message appears if the level is solved."
+#: Game.Levels.LeanBasics.L03_rw
+msgid "There are some more syntactic specifics when it comes to using `rw`,\n"
+"but we will not need them in the future.."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L04_intro
-msgid "exact"
+msgid "intro"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L04_intro
@@ -104,6 +111,10 @@ msgid "Now, `intro ha` will introduce the antecedent into our given hypotheses."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L04_intro
+msgid "`exact «{ha}»` closes the goal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L04_intro
 msgid "Good!"
 msgstr ""
 
@@ -117,7 +128,8 @@ msgid "# apply\n"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L05_apply
-msgid "Use `apply «{hAB}» at «{hA}»`."
+msgid "Use `apply «{hAB}» at «{hA}»`. Alternatively, use `apply «{hAB}»`\n"
+"so that the antecedent of the implication `«{hAB}»` becomes our new goal."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L05_apply
@@ -125,7 +137,13 @@ msgid "`exact «{hA}»` will close the goal now."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L05_apply
-msgid "Good!"
+msgid "`exact «{hA}»` will close the goal now."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L05_apply
+msgid "While we mostly use `rw` to make use of our available theorems and\n"
+"hypotheses, `apply` will sometimes be useful in cases where a simple `rw` does\n"
+"not fit what we want to achieve."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L06_have
@@ -162,7 +180,13 @@ msgid "Use `clear «{a}» «{b}» «{c}» «{d}» «{e}» «{f}» «{hy}» «{hz
 msgstr ""
 
 #: Game.Levels.LeanBasics.L07_clear
-msgid "Good!"
+msgid "Use `exact «{h}»` to close the goal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L07_clear
+msgid "Good! Clearing hypotheses can also be useful when you wish to use\n"
+"tactics involving automation such as `simp_all` - sometimes, such a tactic\n"
+"will work better when certain hypotheses are not available to it!"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L08_constructor
@@ -179,11 +203,12 @@ msgid "Use `constructor` to split the conjunction we want to prove into two sepa
 msgstr ""
 
 #: Game.Levels.LeanBasics.L08_constructor
-msgid "Good!"
+msgid "We will generally use `constructor` for conjunctions, but it works\n"
+"for any inductive type."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L09_induction
-msgid "exact"
+msgid "induction"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L09_induction
@@ -192,61 +217,62 @@ msgid "# Induction\n"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L09_induction
-msgid "Use `induction' «{n}» with n ih` to start a proof by induction"
+msgid "Use `induction' «{xs}» with x xs ih` to start a proof by induction"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L09_induction
-msgid "Good!"
+msgid "Both the type `Word` as well as our definitions for it will be\n"
+"inductive, so we will make frequent use of induction'!"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L10_match
-msgid "exact"
+#: Game.Levels.LeanBasics.L10_rcases
+msgid "rcases"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L10_match
-msgid "# match\n"
-"For some structures, we might just need to match the forms that they can appear in."
+#: Game.Levels.LeanBasics.L10_rcases
+msgid "# rcases\n"
+"For some structures, we might just need to match the forms that they can appear in rather than going for a full blown induction."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L10_match
+#: Game.Levels.LeanBasics.L10_rcases
 msgid "Use `exact «{h}»` to close the goal immediately"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L10_match
+#: Game.Levels.LeanBasics.L10_rcases
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L11_simp_only
-msgid "exact"
+#: Game.Levels.LeanBasics.L11_simp
+msgid "simp"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L11_simp_only
-msgid "# simp only\n"
+#: Game.Levels.LeanBasics.L11_simp
+msgid "# simp\n"
 "whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L11_simp_only
+#: Game.Levels.LeanBasics.L11_simp
 msgid "Use `exact «{h}»` to close the goal immediately"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L11_simp_only
+#: Game.Levels.LeanBasics.L11_simp
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L12_simp_all_only
-msgid "exact"
+#: Game.Levels.LeanBasics.L12_simp_all
+msgid "simp_all"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L12_simp_all_only
-msgid "# simp_all only\n"
+#: Game.Levels.LeanBasics.L12_simp_all
+msgid "# simp_all\n"
 "whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L12_simp_all_only
+#: Game.Levels.LeanBasics.L12_simp_all
 msgid "Use `exact «{h}»` to close the goal immediately"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L12_simp_all_only
+#: Game.Levels.LeanBasics.L12_simp_all
 msgid "Good!"
 msgstr ""
 
@@ -303,6 +329,10 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L15_use
 msgid "We want to set n := 4: `use 4`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_use
+msgid "`rw [«{hm}»]` or `omega` will solve this goal."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L15_use
@@ -413,11 +443,46 @@ msgid "Good! Incidentally, we've just shown that strings together with concatena
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
-msgid "cat_assoc"
+msgid "cat_chars"
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
-msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgid "The newly introduced definition `Word.chars w` produces a set\n"
+"containing all of the characters occuring in the word `w`.\n"
+"Let's show that for a concatenated word `xy`, its character set is equal\n"
+"to the union of the character sets of each subword."
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_cat_chars
+msgid "The set of characters in a word is the union of all sets of characters\n"
+"in its subwords."
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_cat_chars
+msgid "Start with induction' x with s w ih"
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_cat_chars
+msgid "You can either rewrite with fitting definitions and then `simp`,\n"
+"or directly give those definitions as arguments to `simp`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_cat_chars
+msgid "`simp [Word.cat, Word.chars]` closes the goal."
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_cat_chars
+msgid "You can go for similar rewrites here, though you will need the\n"
+"induction hypothesis «{ih}» as well. You might eventually find the theorem\n"
+"`Set.union_assoc` useful."
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_cat_chars
+msgid "Start with `rw [Word.chars, Word.cat, Word.chars, ih]`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_cat_chars
+msgid "`rw [Set.union_assoc]` closes the goal now."
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
@@ -672,7 +737,7 @@ msgid "A word of the form cⁿ will contain n instances of the character c, and 
 msgstr ""
 
 #: Game.Levels.Lemmas.L11_pow_cons_count_eq
-msgid "We need to match on `«{n}»` here, so use `induction' «{n}» with n _`.\n"
+msgid "We need to match on `«{n}»` here, so use `rcases «{n}» with _ | n`.\n"
 "Since we're just matching, we do not need to name the induction hypothesis."
 msgstr ""
 
@@ -723,7 +788,7 @@ msgid "`rw [Word.count]` will solve this goal immediately."
 msgstr ""
 
 #: Game.Levels.Lemmas.L12_pow_cons_count_uneq
-msgid "Since we are in the `.cons` case now, we can do a bunch of rewrites\n"
+msgid "Since we are in the `.cons` case, we can do a bunch of rewrites\n"
 "now. Start out with `rw [Word.length] at «{hx}»`, as that will be useful\n"
 "later on."
 msgstr ""
@@ -755,9 +820,7 @@ msgid "As we can see, we need to show that `«{x}»` does not contain any instan
 "However, we now have the induction hypothesis at our disposal!\n"
 "\n"
 "From here on out, the easiest way forward is to match on `«{n}»`.\n"
-"Proceed with `induction' «{n}» with n _` - mind that we do not need the\n"
-"induction hypothesis, so this is essentially a different syntax for\n"
-"matching on `«{n}»`."
+"Proceed with `rcases «{n}» with _ | n`."
 msgstr ""
 
 #: Game.Levels.Lemmas.L12_pow_cons_count_uneq
@@ -771,7 +834,7 @@ msgid "if we use `«{n}»` for our induction hypothesis `«{ih}»`, we will need
 msgstr ""
 
 #: Game.Levels.Lemmas.L12_pow_cons_count_uneq
-msgid "We can now see that `«{hz}»` preciesely matches a previous lemma\n"
+msgid "We can see that `«{hz}»` precisely matches a previous lemma\n"
 "that we can `apply` to it."
 msgstr ""
 
@@ -836,9 +899,24 @@ msgstr ""
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "We are finally ready to work through a proof that utilizes the pumping lemma!\n"
 "The proof on paper is as follows:\n"
-"-\n"
-"...\n"
-"-\n"
+"\n"
+"Let n > 0; we choose z = aⁿbⁿ ∈ anbn, clearly |z| = 2n > n.\n"
+"Let u, v, w be words over the alphabet \\{a, b} with z = uvw with |uv| ≤ n\n"
+"and |v| ≥ 1.\n"
+"We have to show that there is i ∈ ℕ such that uvⁱw ∉ aⁿbⁿ.\n"
+"Since |uv| ≤ n and the first n symbols of z are a's, we know that there are no b's\n"
+"in v.\n"
+"Since |v| ≥ 1, there must be at least one a in v.\n"
+"So `#a(v) ≠ #b(v)`.\n"
+"We show that uvvw ∉ aⁿbⁿ by contradiction, so let us assume uvvw ∈ aⁿbⁿ.\n"
+"This directly means #a(uvvw) = #b(uvvw); since the count of a symbol in a word\n"
+"is just the sum of its counts in all its subwords, we directly get the equality\n"
+"`#a(u) + #a(v) + #a(v) + #a(w) = #b(u) + #b(v) + #b(v) + #b(w)`.\n"
+"Since uvw = z ∈ aⁿbⁿ, we also have #a(uvw) = #b(uvw), leading to the equality\n"
+"`#a(u) + #a(v) + #a(w) = #b(u) + #b(v) + #b(w)`.\n"
+"Subtracting the latter equality from the former yields `#a(v) = #b(v)`.\n"
+"But that is a contradiction to `#a(v) ≠ #b(v)`.\n"
+"Therefore, aⁿbⁿ is not regular.\n"
 "\n"
 "We will want to replicate the structure of the proof in Lean, but it will turn out\n"
 "that some of the steps are far more difficult to realize than on paper. Therefore,\n"
@@ -862,15 +940,6 @@ msgid "The word we want to use is z = aⁿbⁿ.\n"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "We will need to show that z is actually an element of the language anbn in\n"
-"a second, so let's introduce that as a new hypothesis: `have hzinanbn : z ∈ anbn`."
-msgstr ""
-
-#: Game.Levels.NonregProofs.L02_Proof
-msgid "After rewriting with `anbn` and `Set.mem_setOf_eq`, we can just `use n`."
-msgstr ""
-
-#: Game.Levels.NonregProofs.L02_Proof
 msgid "`use z`"
 msgstr ""
 
@@ -879,7 +948,12 @@ msgid "`constructor` will split the conjunction into separate proofs."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "`exact «{hzinanbn}»` closes the goal directly."
+msgid "We need to show that the word we have chosen is actually contained\n"
+"in the language aⁿbⁿ. We can first unfold the definition with `simp [anbn_lang, anbn]`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "`use «{n}»` closes the goal immediately."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -888,7 +962,7 @@ msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "We need to show that the length of z is indeed greater than n. You can\n"
-"`rw` step by step with some of the lemmas that we showed in the previous world,\n"
+"`rw` or simp step by step with some of the lemmas that we showed in the previous world,\n"
 "and then use the `omega` tactic once you arrive at a proof state of the form\n"
 "`n + n > n`."
 msgstr ""
@@ -899,6 +973,10 @@ msgid "The exact hypotheses for rewriting that you should use\n"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
+msgid "`omega` closes the subgoal."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
 msgid "We can finally get to the main part of the proof! First of all, we need\n"
 "to introduce all the conditions that we also introduce in the paper proof:\n"
 "\n"
@@ -906,16 +984,24 @@ msgid "We can finally get to the main part of the proof! First of all, we need\n
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "Let's look at our hypotheses: ...\n"
+msgid "Let's look at our hypotheses:\n"
+"- `«{u}»`, `«{v}»`, and `«{w}»` are the newly introduced words\n"
+"- `hcons` states that `«{z}» = «{u}»«{v}»«{w}»`, so we have indeed split `«{z}»`\n"
+"into three subwords\n"
+"- `«{hlenlower}»` represents the assumption `|«{u}»«{v}»| ≤ n`\n"
+"- `«{hv}»` represents the other assumption `|«{v}»| ≥ 1`\n"
 "\n"
-"We now need to provide a suitable `i`; in the paper proof we set `i := 2`,\n"
+"These are all exactly the syme assumptions that we introduced at this point\n"
+"in our proof!\n"
+"\n"
+"We now need to provide a suitable `i`; in the paper proof we chose `i = 2`,\n"
 "so let's `use 2`."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "In our paper proof, we made an argument for why there are no b's in `«{v}»`. For our formalization, let's have this as a separate hypothesis:\n"
 "\n"
-"`have honlyas : «{v}».count 'b' = 0`"
+"`have hnobs : «{v}».count 'b' = 0`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -952,18 +1038,27 @@ msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "For the next step of our proof, we showed that `«{v}»` contained at least\n"
-"one 'a'. This will unfortunately be much more involved to show!"
+"one `'a'`. This will unfortunately be much more involved to show!"
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Since `«{v}»` is a subword of `«{z}»`, and `«{z}» ∈ aⁿbⁿ`, it is obvious that the\n"
+"characters contained in `«{v}»` have to either be `'a'` or `'b'`. Showing this is a slightly\n"
+"involved proof since it involves some manual handling of sets - therefore, we have\n"
+"already provided this hypothesis in the form of the lemma `v_subset_ab`:\n"
+"\n"
+"`have hvchars := v_subset_ab «{hz}» «{hcons}»`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "We have a lot of unnecessary hypotheses, so let's remove them:\n"
 "\n"
-"`clear «{hzinanbn}» «{hlenlower}» «{hcons}» «{hz}» «{u}» «{w}» «{z}» «{hpos}» «{n}» «{hzcharsinab}» «{hsub}»`"
+"`clear «{hlenlower}» «{hcons}» «{hz}» «{u}» «{w}» «{z}» «{hpos}» «{n}»`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "The fact that v contains no a's should follow quite obviously from\n"
-"«{honlyas}» and «{hvchars}».\n"
+"«{hnobs}» and «{hvchars}».\n"
 "\n"
 "We still need to do the rest of the work to show our statement. Let's pattern match\n"
 "on `«{v}»` with `rcases v with _ | ⟨s, w⟩`."
@@ -989,7 +1084,7 @@ msgid "At this point, we don't specifically care about the fact that `«{w}».co
 "it is some arbitrary natural number. We can therefore make the proof state a bit more\n"
 "readible by generalizing it into some number `n`:\n"
 "\n"
-"`generalize «{w}».count 'a' = n at *`"
+"`generalize «{w}».count 'a' = m at *`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1002,19 +1097,19 @@ msgid "This inequality is obviously true for any «{n}», so let's solve it dire
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "According to `«{hvchars}»`, `«{s}»` is either 'a' or 'b', and `«{hs}»` states that\n"
-"`«{s}»` is not 'a' - therefore, `«{s}»` must be 'b'! Let's show this as a new hypothesis:\n"
+msgid "According to `«{hvchars}»`, `«{s}»` is either `'a'` or `'b'`, and `«{hs}»` states that\n"
+"`«{s}»` is not `'a'` - therefore, `«{s}»` must be `'b'`! Let's show this as a new hypothesis:\n"
 "\n"
 "`have hsb : «{s}» = 'b'`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "Let's remove the unrequired elements: `clear «{honlyas}» «{n}»`."
+msgid "Let's remove the unrequired elements: `clear «{hnobs}» «{n}»`."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "We want to mutate `«{hvchars}»` into a form where it essentially directly states\n"
-"that `«{s}»` is either 'a' or 'b', so that `simp_all` can take care of the rest.\n"
+"that `«{s}»` is either `'a'` or `'b'`, so that `simp_all` can take care of the rest.\n"
 "\n"
 "Start with `rw [Word.chars] at «{hvchars}»`."
 msgstr ""
@@ -1031,8 +1126,11 @@ msgid "From here on out, the proof state contains enough information that `simp_
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "The new hypothesis `«{hsb}»` has added sufficient information to our proof state\n"
-"that another `simp_all` will close the goal now."
+msgid "With the new hypothesis `«{hsb}»` we land in the `if` case in `hnobs`, which\n"
+"will be the statement `1 + Word.count «{w}» 'b' = 0`.\n"
+"\n"
+"This statement is a contradiction, so `simp [«{hsb}»] at «{hnobs}»` will\n"
+"close the goal."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1054,7 +1152,7 @@ msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "After this last `simp_all`, our proof state contains some hypotheses that our no longer\n"
-"necessary. Let's remove them with `clear «{hlenlower}» «{hzinanbn}» «{hv}» «{hpos}» «{z}»`."
+"necessary. Let's remove them with `clear «{hlenlower}» «{hv}» «{hpos}» «{z}»`."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1069,7 +1167,7 @@ msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "Our goal is to show some sort of contradiction now. The idea is that due to `«{hm}»`, the\n"
-"number of a's and b's in `uvvw` has to be equal. But according to `«{hcons}»`, `«{honlyas}»`,\n"
+"number of a's and b's in `uvvw` has to be equal. But according to `«{hcons}»`, `«{hnobs}»`,\n"
 "and `«{hatleastonea}»`, those counts have to be different!\n"
 "\n"
 "Let's show the first statement now:\n"
@@ -1133,7 +1231,7 @@ msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "The contradiction we now receive boils down to the fact that according to `«{hveqcount}»`,\n"
-"`«{v}»` contains as many a's as b's, but according to `«{honlyas}»` and `«{hatleastonea}»`, that\n"
+"`«{v}»` contains as many a's as b's, but according to `«{hnobs}»` and `«{hatleastonea}»`, that\n"
 "number should be different.\n"
 "\n"
 "At this point our hypotheses contain enough information that `simp_all` or `omega` will\n"

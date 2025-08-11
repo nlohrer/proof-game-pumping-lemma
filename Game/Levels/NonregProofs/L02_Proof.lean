@@ -8,9 +8,24 @@ Title "Proving the nonregularity of aⁿbⁿ"
 
 Introduction "We are finally ready to work through a proof that utilizes the pumping lemma!
 The proof on paper is as follows:
--
-...
--
+
+Let n > 0; we choose z = aⁿbⁿ ∈ anbn, clearly |z| = 2n > n.
+Let u, v, w be words over the alphabet \\{a, b} with z = uvw with |uv| ≤ n
+and |v| ≥ 1.
+We have to show that there is i ∈ ℕ such that uvⁱw ∉ aⁿbⁿ.
+Since |uv| ≤ n and the first n symbols of z are a's, we know that there are no b's
+in v.
+Since |v| ≥ 1, there must be at least one a in v.
+So `#a(v) ≠ #b(v)`.
+We show that uvvw ∉ aⁿbⁿ by contradiction, so let us assume uvvw ∈ aⁿbⁿ.
+This directly means #a(uvvw) = #b(uvvw); since the count of a symbol in a word
+is just the sum of its counts in all its subwords, we directly get the equality
+`#a(u) + #a(v) + #a(v) + #a(w) = #b(u) + #b(v) + #b(v) + #b(w)`.
+Since uvw = z ∈ aⁿbⁿ, we also have #a(uvw) = #b(uvw), leading to the equality
+`#a(u) + #a(v) + #a(w) = #b(u) + #b(v) + #b(w)`.
+Subtracting the latter equality from the former yields `#a(v) = #b(v)`.
+But that is a contradiction to `#a(v) ≠ #b(v)`.
+Therefore, aⁿbⁿ is not regular.
 
 We will want to replicate the structure of the proof in Lean, but it will turn out
 that some of the steps are far more difficult to realize than on paper. Therefore,
@@ -23,8 +38,9 @@ namespace Regular
 
 /-- Within the context of our proof, this lemma shows that the characters contained in v
 are either 'a' or 'b'. -/
-lemma v_subset_ab {z u v w : Word} (hzinanbn : z ∈ anbn) (hcons : z = u ∘ v ∘ w) :
+lemma v_subset_ab {z u v w : Word} {n : ℕ} (hz : z = ('a' ^ n) ∘ 'b' ^ n) (hcons : z = u ∘ v ∘ w) :
     v.chars ⊆ {'a', 'b'} := by
+  have hzinanbn : z ∈ anbn := by use n
   have hzcharsinab := anbn_lang.word_constraint z hzinanbn
   have hsub : v.chars ⊆ z.chars := by
     have hleft := cat_char_subset_left v w
@@ -44,63 +60,61 @@ Statement : ¬pumping_property anbn_lang := by
   Hint "The word we want to use is z = aⁿbⁿ.
   Let's introduce it with `set z : Word := ('a' ^ n) ∘ 'b' ^ n with hz`"
   set z : Word := ('a' ^ n) ∘ 'b' ^ n with hz
-  Hint "We will need to show that z is actually an element of the language anbn in
-  a second, so let's introduce that as a new hypothesis: `have hzinanbn : z ∈ anbn`."
-  have hzinanbn : z ∈ anbn
-  · Hint "After rewriting with `anbn` and `Set.mem_setOf_eq`, we can just `use n`."
-    rw [anbn, Set.mem_setOf_eq]
-    use n
   Hint "`use z`"
   use z
   Hint "`constructor` will split the conjunction into separate proofs."
   constructor
-  · Hint "`exact {hzinanbn}` closes the goal directly."
-    exact hzinanbn
-  · -- we only need this 'have' because we don't have access to 'set' rather than let
-    Hint "We once again use `constructor` to handle the conjunction."
+  · Hint "We need to show that the word we have chosen is actually contained
+    in the language aⁿbⁿ. We can first unfold the definition with `simp [anbn_lang, anbn]`."
+    simp [anbn_lang, anbn]
+    Hint (hidden := true) "`use {n}` closes the goal immediately."
+    use n
+  · Hint "We once again use `constructor` to handle the conjunction."
     constructor
-    · -- showing that the length of z is actually greater than n - fairly trivial step
-      Hint "We need to show that the length of z is indeed greater than n. You can
-      `rw` step by step with some of the lemmas that we showed in the previous world,
+    · Hint "We need to show that the length of z is indeed greater than n. You can
+      `rw` or simp step by step with some of the lemmas that we showed in the previous world,
       and then use the `omega` tactic once you arrive at a proof state of the form
       `n + n > n`."
       Hint (hidden := true) "The exact hypotheses for rewriting that you should use
       are `{hz}`, `cat_len`, `pow_len`, and `pow_len` again."
       rw [hz, cat_len, pow_len, pow_len]
+      Hint (hidden := true) "`omega` closes the subgoal."
       omega
-    ·
-      Hint "We can finally get to the main part of the proof! First of all, we need
+    · Hint "We can finally get to the main part of the proof! First of all, we need
       to introduce all the conditions that we also introduce in the paper proof:
 
       `intro u v w hcons hlenlower hv`"
       intro u v w hcons hlenlower hv
-      Hint "Let's look at our hypotheses: ...
+      Hint "Let's look at our hypotheses:
+       - `{u}`, `{v}`, and `{w}` are the newly introduced words
+       - `hcons` states that `{z} = {u}{v}{w}`, so we have indeed split `{z}`
+       into three subwords
+       - `{hlenlower}` represents the assumption `|{u}{v}| ≤ n`
+       - `{hv}` represents the other assumption `|{v}| ≥ 1`
 
-      We now need to provide a suitable `i`; in the paper proof we set `i := 2`,
+      These are all exactly the syme assumptions that we introduced at this point
+      in our proof!
+
+      We now need to provide a suitable `i`; in the paper proof we chose `i = 2`,
       so let's `use 2`."
       use 2
-      -- it's obvious that v doesn't contain any b's, but we have to show it!
       Hint "In our paper proof, we made an argument for why there are no b's in `{v}`. For our formalization, let's have this as a separate hypothesis:
 
-      `have honlyas : {v}.count 'b' = 0`"
-      have honlyas : v.count 'b' = 0
-      ·
-        -- this simp_all simplifies the proof state for us
-        Hint "Let's simplify the entire proof state with
+      `have hnobs : {v}.count 'b' = 0`"
+      have hnobs : v.count 'b' = 0
+      · Hint "Let's simplify the entire proof state with
         `simp_all only [gt_iff_lt, {z}, ↓Char.isValue]`"
         simp_all only [gt_iff_lt, z, ↓Char.isValue]
         Hint "The argument in our proof works to show that there are no b's in
         `uv`. Let's show that first: `have huv : (u ∘ v).count 'b' = 0`."
         have huv : (u ∘ v).count 'b' = 0
-        ·
-          Hint "We need to utilize the associativity that we proved earlier:
+        · Hint "We need to utilize the associativity that we proved earlier:
 
           `rw [← Word.cat_assoc] at hcons`
 
           Following that, use the tactic `symm at {hcons}`"
           rw [← cat_assoc] at hcons
           symm at hcons
-          -- might need to proof the cons_a lemma in the lemma section!
           Hint "For this specific situation, we have already proved the lemma `pow_cons_count_uneq`,
           so you can finish the subproof with
 
@@ -111,27 +125,25 @@ Statement : ¬pumping_property anbn_lang := by
 
         `exact (@Word.cat_count_zero 'b' {u} {v} {huv}).right`"
         exact (@cat_count_zero 'b' u v huv).right
-      -- this is almost as obvious, but much more involved to show!
       Hint "For the next step of our proof, we showed that `{v}` contained at least
-      one 'a'. This will unfortunately be much more involved to show!"
+      one `'a'`. This will unfortunately be much more involved to show!"
       have hatleastonea : v.count 'a' > 0
       · Hint "Since `{v}` is a subword of `{z}`, and `{z} ∈ aⁿbⁿ`, it is obvious that the
         characters contained in `{v}` have to either be `'a'` or `'b'`. Showing this is a slightly
         involved proof since it involves some manual handling of sets - therefore, we have
         already provided this hypothesis in the form of the lemma `v_subset_ab`:
 
-        `have hvchars := v_subset_ab {hzinanbn} {hcons}`"
-        have hvchars := v_subset_ab hzinanbn hcons
+        `have hvchars := v_subset_ab {hz} {hcons}`"
+        have hvchars := v_subset_ab hz hcons
         Hint "We have a lot of unnecessary hypotheses, so let's remove them:
 
-        `clear {hzinanbn} {hlenlower} {hcons} {hz} {u} {w} {z} {hpos} {n}`"
-        clear hzinanbn hlenlower hcons hz u w z hpos n
+        `clear {hlenlower} {hcons} {hz} {u} {w} {z} {hpos} {n}`"
+        clear hlenlower hcons hz u w z hpos n
         Hint "The fact that v contains no a's should follow quite obviously from
-        {honlyas} and {hvchars}.
+        {hnobs} and {hvchars}.
 
         We still need to do the rest of the work to show our statement. Let's pattern match
         on `{v}` with `rcases v with _ | ⟨s, w⟩`."
-        -- from here on out we need a fairly lengthy induction
         rcases v with _ | ⟨s, w⟩
         · Hint "{hv} states that our word should have a length of at least 1, but
           the empty word `ε` has a length of 0, meaning that we get a contradiction
@@ -148,7 +160,7 @@ Statement : ¬pumping_property anbn_lang := by
           it is some arbitrary natural number. We can therefore make the proof state a bit more
           readible by generalizing it into some number `n`:
 
-          `generalize {w}.count 'a' = n at *`"
+          `generalize {w}.count 'a' = m at *`"
           generalize w.count 'a' = n at *
           Hint "We an now look at at the if statement in our goal: `split_ifs with hs`."
           split_ifs with hs
@@ -156,15 +168,15 @@ Statement : ¬pumping_property anbn_lang := by
             with `omega`."
             omega
           ·
-            Hint "According to `{hvchars}`, `{s}` is either 'a' or 'b', and `{hs}` states that
-            `{s}` is not 'a' - therefore, `{s}` must be 'b'! Let's show this as a new hypothesis:
+            Hint "According to `{hvchars}`, `{s}` is either `'a'` or `'b'`, and `{hs}` states that
+            `{s}` is not `'a'` - therefore, `{s}` must be `'b'`! Let's show this as a new hypothesis:
 
             `have hsb : {s} = 'b'`"
             have hsb : s = 'b'
-            · Hint "Let's remove the unrequired elements: `clear {honlyas} {n}`."
-              clear honlyas n
+            · Hint "Let's remove the unrequired elements: `clear {hnobs} {n}`."
+              clear hnobs n
               Hint "We want to mutate `{hvchars}` into a form where it essentially directly states
-              that `{s}` is either 'a' or 'b', so that `simp_all` can take care of the rest.
+              that `{s}` is either `'a'` or `'b'`, so that `simp_all` can take care of the rest.
 
               Start with `rw [Word.chars] at {hvchars}`."
               rw [Word.chars] at hvchars
@@ -175,10 +187,13 @@ Statement : ¬pumping_property anbn_lang := by
               Hint "From here on out, the proof state contains enough information that `simp_all`
               will close the goal."
               simp_all
-            Hint "The new hypothesis `{hsb}` has added sufficient information to our proof state
-            that another `simp_all` will close the goal now."
-            simp_all
-      -- mind that our main hypotheses right now are honlyas and hatleastonea,
+            Hint "With the new hypothesis `{hsb}` we land in the `if` case in `hnobs`, which
+            will be the statement `1 + Word.count {w} 'b' = 0`.
+
+            This statement is a contradiction, so `simp [{hsb}] at {hnobs}` will
+            close the goal."
+            simp [hsb] at hnobs
+      -- mind that our main hypotheses right now are hnobs and hatleastonea,
       -- and those reflect the steps in the proof that we worked through first
       Hint "We can now work through the main step of the proof. We want to show a negated
       statement. For a statement `φ`, its negation `¬φ` will actually be equivalent to
@@ -188,13 +203,12 @@ Statement : ¬pumping_property anbn_lang := by
       Hint "Let's simplify the newly introduced hypothesis so it's in a form that's more useful to
       us: `simp [Word.pow, cat_eps] at {hin}`."
       simp [Word.pow, cat_eps] at hin
-      -- another big rewrite
       Hint "To make several of our hypotheses easier to read, let's proceed with another
       simplification: `simp_all [cat_assoc, {z}]`."
       simp_all [cat_assoc, z]
       Hint "After this last `simp_all`, our proof state contains some hypotheses that our no longer
-      necessary. Let's remove them with `clear {hlenlower} {hzinanbn} {hv} {hpos} {z}`."
-      clear hlenlower hzinanbn hv hpos z
+      necessary. Let's remove them with `clear {hlenlower} {hv} {hpos} {z}`."
+      clear hlenlower hv hpos z
       Hint "Our hypothesis `{hin}` states that `uvvw` is a word in the language `aⁿbⁿ`. Let's
       understand what this means exactly with `simp [anbn_lang, anbn] at {hin}`."
       simp [anbn_lang, anbn] at hin
@@ -202,7 +216,7 @@ Statement : ¬pumping_property anbn_lang := by
       this `n` with `rcases {hin} with ⟨m, hm⟩`."
       rcases hin with ⟨m, hm⟩
       Hint "Our goal is to show some sort of contradiction now. The idea is that due to `{hm}`, the
-      number of a's and b's in `uvvw` has to be equal. But according to `{hcons}`, `{honlyas}`,
+      number of a's and b's in `uvvw` has to be equal. But according to `{hcons}`, `{hnobs}`,
       and `{hatleastonea}`, those counts have to be different!
 
       Let's show the first statement now:
@@ -246,7 +260,7 @@ Statement : ¬pumping_property anbn_lang := by
       `clear {heven} {hcount} {hm} {m} {hcons}`."
       clear heven hcount hm m hcons
       Hint "The contradiction we now receive boils down to the fact that according to `{hveqcount}`,
-      `{v}` contains as many a's as b's, but according to `{honlyas}` and `{hatleastonea}`, that
+      `{v}` contains as many a's as b's, but according to `{hnobs}` and `{hatleastonea}`, that
       number should be different.
 
       At this point our hypotheses contain enough information that `simp_all` or `omega` will
