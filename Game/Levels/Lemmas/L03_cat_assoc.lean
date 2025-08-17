@@ -15,7 +15,7 @@ TheoremDoc Regular.cat_assoc as "cat_assoc" in "cat"
 
 
 Statement cat_assoc (x y z : Word) : (x ∘ y) ∘ z = x ∘ y ∘ z := by
-  Hint (hidden := true) "Once again, start with `inductino' {x} with s w ih`."
+  Hint (hidden := true) "Once again, start with `induction' {x} with s w ih`."
   induction' x with s w ih
   · Hint (hidden := true) "Either rewrite with `Word.cat` multiple times, or just
     use `simp [Word.cat]`."
