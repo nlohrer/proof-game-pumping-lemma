@@ -7,15 +7,16 @@ Title "simp_all"
 
 Introduction "
 # simp_all
-whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
+`simp_all` is similar to `simp`, but applies simplification to the goal
+and all hypotheses several times until they can not get simplified further."
 
 Statement (h : x = 2) : x = 2 := by
-  Hint "Use `exact {h}` to close the goal immediately"
+  Hint "`simp_all` closes the goal immediately."
   simp_all
 
-Conclusion "Good!"
-
-/- Use these commands to add items to the game's inventory. -/
+Conclusion "As the name implies, `simp_all` can be useful not just to try
+and solve the goal directly, but also to simplify the proof state overall,
+which can make it easier to understand how one should proceed with the proof."
 
 NewTactic simp_all
 OnlyTactic

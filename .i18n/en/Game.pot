@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Mon Aug 11 20:14:00 2025\n"
+"POT-Creation-Date: Sun Aug 17 13:33:06 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -57,7 +57,7 @@ msgid "Use `exact «{h}»` to close the goal immediately."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L02_exact
-msgid "Good!"
+msgid "`exact` will often be useful to close out a (sub-)goal."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L03_rw
@@ -115,7 +115,8 @@ msgid "`exact «{ha}»` closes the goal."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L04_intro
-msgid "Good!"
+msgid "Using `intro x y...` will be equivalent to steps such as \"\n"
+"Let x be arbitrary...\", or \"Assume y...\" in a paper proof."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L05_apply
@@ -124,7 +125,10 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L05_apply
 msgid "# apply\n"
-"whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
+"Theorems will often have the form of an implication.\n"
+"Given a theorem of the form `h : A → B`, we can either `apply` it to a hypothesis\n"
+"of the form `ha : A` to turn it into `ha : B`,\n"
+"or apply it to the goal if it has the form `B`, turning it into `A`."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L05_apply
@@ -157,7 +161,35 @@ msgid "# have\n"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L06_have
-msgid "Use `exact «{h}»` to close the goal immediately"
+msgid "We could solve this directly with `apply`, but let's see what it looks\n"
+"like when we construct a new hypothesis.\n"
+"\n"
+"Looking at `«{hAB}»` and `«{hA}»`, it is obvious that `«{B}»` should follow.\n"
+"Introduce the new hypothesis with the following:\n"
+"\n"
+"`have hB : «{B}»`"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L06_have
+msgid "As we can see in the proof state window, we have introduced a new\n"
+"goal that we are working towards. Once we have solved our currently\n"
+"active goal, we will return back to our main goal, with the freshly\n"
+"proved hypothesis at our disposal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L06_have
+msgid "There are several ways of solving this,\n"
+"but `exact «{hAB}» «{hA}»` will solve the goal directly."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L06_have
+msgid "As we can see in our proof state, the new hypothesis `hB` is now\n"
+"available to us. Let's use it to close out the goal!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L06_have
+msgid "Among other possibilities, `exact «{hBC}» «{hB}»` will\n"
+"close the goal."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L06_have
@@ -195,7 +227,8 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L08_constructor
 msgid "# Induction\n"
-"To work through certain structures, the `constructor` can be useful."
+"To work through certain inductive structures, the `constructor` can be useful.\n"
+"We will exclusively use it as a way to handle conjunctions appearing in the goal."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L08_constructor
@@ -208,7 +241,7 @@ msgid "We will generally use `constructor` for conjunctions, but it works\n"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L09_induction
-msgid "induction"
+msgid "induction'"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L09_induction
@@ -217,7 +250,7 @@ msgid "# Induction\n"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L09_induction
-msgid "Use `induction' «{xs}» with x xs ih` to start a proof by induction"
+msgid "Use `induction' «{n}» with n ih` to start a proof by induction"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L09_induction
@@ -231,11 +264,32 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
 msgid "# rcases\n"
-"For some structures, we might just need to match the forms that they can appear in rather than going for a full blown induction."
+"For some structures, we might just need to match the forms that they can appear in rather than going for a full blown induction.\n"
+"\n"
+"In this level, we will be using the tactics `left` and `right` to deal\n"
+"with the disjunction in our goal. Since further disjunction will not\n"
+"appear hereafter, we will tell you when to use these tactics here directly\n"
+"without fully introducing them."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
-msgid "Use `exact «{h}»` to close the goal immediately"
+msgid "Start with `rcases «{n}» with _ | n`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L10_rcases
+msgid "This is the left case, so use `left`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L10_rcases
+msgid "`rfl` closes the goal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L10_rcases
+msgid "Now we are in the right case, so use `right`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L10_rcases
+msgid "obviously «{n}» is the number we are looking for, so `use «{n}»`."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
@@ -248,15 +302,24 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L11_simp
 msgid "# simp\n"
-"whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
+"Using the more elementary tactics `rw`, `apply`, and `exact` to work through proofs\n"
+"will quickly become tedious for more involved proofs.\n"
+"Lean offers a number of automation tactics that will take care of different steps\n"
+"on their own.\n"
+"\n"
+"In this level, we introduce the `simp` tactic, which simplifies the goal\n"
+"or a hypothesis, and can take on a number of lemmas as arguments that\n"
+"it will then try to employ."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L11_simp
-msgid "Use `exact «{h}»` to close the goal immediately"
+msgid "Use `simp «{h}»` to close the goal immediately"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L11_simp
-msgid "Good!"
+msgid "The exact behavior of `simp` can be a little unpredictable if you're\n"
+"not used to working with it, but it is very useful to skip over a great number of\n"
+"simple, but manual steps."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L12_simp_all
@@ -265,15 +328,18 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L12_simp_all
 msgid "# simp_all\n"
-"whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
+"`simp_all` is similar to `simp`, but applies simplification to the goal\n"
+"and all hypotheses several times until they can not get simplified further."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L12_simp_all
-msgid "Use `exact «{h}»` to close the goal immediately"
+msgid "`simp_all` closes the goal immediately."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L12_simp_all
-msgid "Good!"
+msgid "As the name implies, `simp_all` can be useful not just to try\n"
+"and solve the goal directly, but also to simplify the proof state overall,\n"
+"which can make it easier to understand how one should proceed with the proof."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L13_omega
@@ -324,7 +390,7 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L15_use
 msgid "# use\n"
-"We can resolve existential quantors with the help of the `use` keyword."
+"We can resolve existential quantifiers with the help of the `use` keyword."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L15_use
@@ -348,29 +414,89 @@ msgid "This introductory part serves as a refresher for Lean."
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
-msgid "First Lemma"
+msgid "Introduction: Words"
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
-msgid "This text is shown as first message when the level is played.\n"
-"You can insert hints in the proof below. They will appear in this side panel\n"
-"depending on the proof a user provides."
+msgid "# Words\n"
+"Formal languages consist of words over some alphabet Σ.\n"
+"They are essentially strings consisting of character in the alphabet.\n"
+"For instance, for an alphabet `Σ = \\{a, b, c}`, `abc`, `aabba`, and `c`\n"
+"will be words over that alphabet.\n"
+"The empty word `ε` is also considered a word.\n"
+"\n"
+"From this, our definition of a word in Lean arises:\n"
+"```\n"
+"inductive Word where\n"
+"  | ε\n"
+"  | cons (s : Char) (w : Word)\n"
+"```\n"
+"\n"
+"This is an inductive definition: a word is either the empty word ε, or\n"
+"some character together with the rest of the word.\n"
+"For example, the word `c` would look like this:\n"
+"\n"
+"`Word.cons `c` Word.ε`\n"
+"\n"
+"and the word `abc` would look like this:\n"
+"`Word.cons 'a' (Word.cons 'b' (Word.cons ('c' Word.ε)))`\n"
+"\n"
+"# Concatenation\n"
+"We can directly introduce the definition for concatenation of words:\n"
+"For words `x` and `y`, the concatenation `xy` just consists of the characters\n"
+"of both words directly pasted in succession.\n"
+"For example, if `x = ab` and `y = cbc`, then `xy = abcbc`.\n"
+"\n"
+"In Lean, our definition looks like this:\n"
+"```\n"
+"def Word.cat (x y : Word) : Word :=\n"
+"  match x with\n"
+" | .ε => y\n"
+" | .cons s x => .cons s (x.cat y)\n"
+"```\n"
+"We also introduce the notation `x ∘ y` in Lean to signify the concatenation `xy`.\n"
+"\n"
+"To show how the definition for `Word.cat` is reasonable, let's show that\n"
+"the concatenation `ab ∘ c` indeed yields the word `abc`."
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
-msgid "You can lemma either start using `«{h}»` or `«{g}»`."
+msgid "Concatenating a word with ε yields the original word."
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
-msgid "You should use `«{h}»` now."
+msgid "A word over an alphabet, i.e. a string of symbols from that alphabet.\n"
+"\n"
+"```\n"
+"inductive Word where\n"
+"  | ε\n"
+"  | cons (s : Char) (w : Word)\n"
+"```"
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
-msgid "You should use `«{g}»` now."
+msgid "Concatenation of words: for two words w₁ and w₂, the concatenation w₁ and w₂ yields w₁w₂.\n"
+"\n"
+"```\n"
+"def Word.cat (x y : Word) : Word :=\n"
+"  match x with\n"
+" | .ε => y\n"
+" | .cons s x => .cons s (x.cat y)\n"
+"```"
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
-msgid "This last message appears if the level is solved."
+msgid "Solving this goal is merely a matter of rewriting with `Word.cat`\n"
+"several times, so `rw [Word.cat, Word.cat, Word.cat]` or `simp [Word.cat]`\n"
+"will solve the goal.\n"
+"\n"
+"If you want, you can also just apply the rewrites separately and observe\n"
+"how each rewrite step adheres to the inductive definition of `Word.cat`."
+msgstr ""
+
+#: Game.Levels.Lemmas.L01_Introduction
+msgid "Since it is an integral part of the pumping lemma, concatenation\n"
+"will feature heavily in the upcoming levels."
 msgstr ""
 
 #: Game.Levels.Lemmas.L02_cat_eps
@@ -379,18 +505,6 @@ msgstr ""
 
 #: Game.Levels.Lemmas.L02_cat_eps
 msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
-msgstr ""
-
-#: Game.Levels.Lemmas.L02_cat_eps
-msgid "Concatenating a word with ε yields the original word."
-msgstr ""
-
-#: Game.Levels.Lemmas.L02_cat_eps
-msgid "Concatenation of words: for two words w₁ and w₂, the concatenation w₁ and w₂ yields w₁w₂."
-msgstr ""
-
-#: Game.Levels.Lemmas.L02_cat_eps
-msgid "A word over an alphabet, i.e. a string of symbols from that alphabet."
 msgstr ""
 
 #: Game.Levels.Lemmas.L02_cat_eps
@@ -426,7 +540,7 @@ msgid "Concatenation of words is associative, e.g. (x ∘ y) ∘ z = x ∘ (y �
 msgstr ""
 
 #: Game.Levels.Lemmas.L03_cat_assoc
-msgid "Once again, start with `inductino' «{x}» with s w ih`."
+msgid "Once again, start with `induction' «{x}» with s w ih`."
 msgstr ""
 
 #: Game.Levels.Lemmas.L03_cat_assoc

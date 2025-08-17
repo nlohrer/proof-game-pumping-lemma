@@ -7,7 +7,11 @@ Title "apply"
 
 Introduction "
 # apply
-whenever a hypothesis matches the goal precisely, we can use `exact` to close out the goal."
+Theorems will often have the form of an implication.
+Given a theorem of the form `h : A → B`, we can either `apply` it to a hypothesis
+of the form `ha : A` to turn it into `ha : B`,
+or apply it to the goal if it has the form `B`, turning it into `A`.
+"
 
 Statement (A B : Prop) (hA : A) (hAB : A → B) : B := by
   Hint "Use `apply {hAB} at {hA}`. Alternatively, use `apply {hAB}`

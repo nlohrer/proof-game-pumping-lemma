@@ -18,10 +18,7 @@ Statement : if true then true else false := by
     exact h rfl
 Conclusion "Good!"
 
-/- Use these commands to add items to the game's inventory. -/
-
 NewTactic split_ifs
 OnlyTactic
   split_ifs
-  rfl
   exact

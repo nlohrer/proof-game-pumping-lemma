@@ -13,7 +13,7 @@ Statement (h : x = 2) : x = 2 := by
   Hint "Use `exact {h}` to close the goal immediately."
   exact h
 
-Conclusion "Good!"
+Conclusion "`exact` will often be useful to close out a (sub-)goal."
 
 NewTactic exact
 OnlyTactic exact

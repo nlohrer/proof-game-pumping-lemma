@@ -19,7 +19,8 @@ Statement : ∀ (A : Prop), A → A := by
   Hint (hidden := true) "`exact {ha}` closes the goal."
   exact ha
 
-Conclusion "Good!"
+Conclusion "Using `intro x y...` will be equivalent to steps such as \"
+Let x be arbitrary...\", or \"Assume y...\" in a paper proof."
 
 NewTactic intro
 OnlyTactic

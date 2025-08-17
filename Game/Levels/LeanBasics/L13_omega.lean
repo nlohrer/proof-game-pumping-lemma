@@ -15,9 +15,6 @@ Statement (x y : ℕ) (hx : x ≠ 0) : (x + y) * 2 - 8 = 2 * x + y * 2 - 2 * 2 -
 
 Conclusion "Good!"
 
-/- Use these commands to add items to the game's inventory. -/
-
 NewTactic omega
 OnlyTactic
   omega
-  exact

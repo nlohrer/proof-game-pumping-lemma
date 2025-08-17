@@ -7,7 +7,8 @@ Title "exact"
 
 Introduction "
 # Induction
-To work through certain structures, the `constructor` can be useful.
+To work through certain inductive structures, the `constructor` can be useful.
+We will exclusively use it as a way to handle conjunctions appearing in the goal.
 "
 
 Statement (hx : x = 2) (hy : y = 3) : x = 2 ∧ y = 3 := by
@@ -18,8 +19,6 @@ Statement (hx : x = 2) (hy : y = 3) : x = 2 ∧ y = 3 := by
 
 Conclusion "We will generally use `constructor` for conjunctions, but it works
 for any inductive type."
-
-/- Use these commands to add items to the game's inventory. -/
 
 NewTactic constructor
 OnlyTactic
