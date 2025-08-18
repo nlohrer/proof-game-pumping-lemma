@@ -35,5 +35,7 @@ HiddenNewTactic
   use
 OnlyTactic
   rfl
+  apply
+  use
   rcases
   exact

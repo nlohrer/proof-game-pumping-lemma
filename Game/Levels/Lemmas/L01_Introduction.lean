@@ -24,7 +24,7 @@ This is an inductive definition: a word is either the empty word ε, or
 some character together with the rest of the word.
 For example, the word `c` would look like this:
 
-`Word.cons `c` Word.ε`
+`Word.cons 'c' Word.ε`
 
 and the word `abc` would look like this:
 `Word.cons 'a' (Word.cons 'b' (Word.cons ('c' Word.ε)))`
@@ -53,13 +53,14 @@ TheoremTab "cat"
 /-- Concatenating a word with ε yields the original word. -/
 TheoremDoc Regular.cat_eps as "cat_eps" in "cat"
 
-/-- A word over an alphabet, i.e. a string of symbols from that alphabet.
-
+/--
 ```
 inductive Word where
   | ε
   | cons (s : Char) (w : Word)
 ```
+
+A word over an alphabet, i.e. a string of symbols from that alphabet.
 -/
 DefinitionDoc Word as "Word"
 

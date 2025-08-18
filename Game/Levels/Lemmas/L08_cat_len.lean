@@ -6,13 +6,30 @@ Level 8
 
 Title "cat_len"
 
-Introduction "Our new definition `length` defines the length of a word. Let's show that the length of a word is equal to the sum of its subwords."
+Introduction "Our new definition `length` defines the length of a word:
+
+```
+def Word.length : (w : Word) → ℕ
+ | .ε => 0
+ | .cons _ w => 1 + w.length
+```
+
+Let's show that the length of a word is equal to the sum of its subwords."
 
 namespace Regular
-/-- To determine the length of the concatenation of two words, you can add the length of both words. -/
+/--
+To determine the length of the concatenation of two words, you can add the length of both words. -/
 TheoremDoc Regular.cat_len as "cat_len" in "cat"
 
-/-- The amount of symbols in a word. -/
+/--
+```
+def Word.length : (w : Word) → ℕ
+ | .ε => 0
+ | .cons _ w => 1 + w.length
+```
+
+The length of a word, i.e. the amount of symbols in it.
+-/
 DefinitionDoc Regular.Word.length as "length"
 NewDefinition Regular.Word.length
 

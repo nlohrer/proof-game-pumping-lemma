@@ -7,12 +7,31 @@ Level 4
 Title "cat_chars"
 
 Introduction "The newly introduced definition `Word.chars w` produces a set
-containing all of the characters occuring in the word `w`.
+containing all of the characters occuring in the word `w`:
+
+```
+def Word.chars : (w : Word) → Set Char
+  | ε => ∅
+  | cons s w => {s} ∪ w.chars
+```
+
 Let's show that for a concatenated word `xy`, its character set is equal
 to the union of the character sets of each subword.
 "
 
 namespace Regular
+/--
+```
+def Word.chars : (w : Word) → Set Char
+  | ε => ∅
+  | cons s w => {s} ∪ w.chars
+```
+
+The set of all characters occuring in a particular word.
+-/
+DefinitionDoc Regular.Word.chars as "Word.chars"
+
+NewDefinition Regular.Word.chars
 
 /-- The set of characters in a word is the union of all sets of characters
 in its subwords. -/

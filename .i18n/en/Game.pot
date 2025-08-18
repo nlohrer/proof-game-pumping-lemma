@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Aug 17 13:33:06 2025\n"
+"POT-Creation-Date: Mon Aug 18 15:04:11 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -254,6 +254,16 @@ msgid "Use `induction' «{n}» with n ih` to start a proof by induction"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L09_induction
+msgid "`simp` will close the goal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L09_induction
+msgid "We now have our induction hypothesis `ih` at our disposal.\n"
+"We can just rely on `omega` to close out our goal rather than going for any\n"
+"convoluted rewriting."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L09_induction
 msgid "Both the type `Word` as well as our definitions for it will be\n"
 "inductive, so we will make frequent use of induction'!"
 msgstr ""
@@ -264,32 +274,33 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
 msgid "# rcases\n"
-"For some structures, we might just need to match the forms that they can appear in rather than going for a full blown induction.\n"
-"\n"
-"In this level, we will be using the tactics `left` and `right` to deal\n"
-"with the disjunction in our goal. Since further disjunction will not\n"
-"appear hereafter, we will tell you when to use these tactics here directly\n"
-"without fully introducing them."
+"For some structures, we might just need to match the forms that they can appear in rather than going for a full blown induction."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
-msgid "Start with `rcases «{n}» with _ | n`."
+msgid "`n` is a natural number, meaning that it is either 0, or the successor\n"
+"of some other natural number `m`. To match on those cases, start with\n"
+"`rcases «{n}» with _ | m`."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
-msgid "This is the left case, so use `left`."
+msgid "We are in the case `n = 0`.\n"
+"`«{hpos}»` is an obvious contradiction.\n"
+"To utilize that fact, we can `apply False.elim` to change our goal to `False`."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
-msgid "`rfl` closes the goal."
+msgid "Since a negation of the form `¬A` is treated like an implication\n"
+"`A → False` in Lean, we can `apply «{hpos}»`."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
-msgid "Now we are in the right case, so use `right`."
+msgid "`rfl` closes the goal"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
-msgid "obviously «{n}» is the number we are looking for, so `use «{n}»`."
+msgid "We are in the case `n = succ «{m}»` for some natural number «{m}».\n"
+"Obviously «{m}» is the number we are looking for, so `use «{m}»`."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
@@ -436,7 +447,7 @@ msgid "# Words\n"
 "some character together with the rest of the word.\n"
 "For example, the word `c` would look like this:\n"
 "\n"
-"`Word.cons `c` Word.ε`\n"
+"`Word.cons 'c' Word.ε`\n"
 "\n"
 "and the word `abc` would look like this:\n"
 "`Word.cons 'a' (Word.cons 'b' (Word.cons ('c' Word.ε)))`\n"
@@ -465,13 +476,13 @@ msgid "Concatenating a word with ε yields the original word."
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
-msgid "A word over an alphabet, i.e. a string of symbols from that alphabet.\n"
-"\n"
-"```\n"
+msgid "```\n"
 "inductive Word where\n"
 "  | ε\n"
 "  | cons (s : Char) (w : Word)\n"
-"```"
+"```\n"
+"\n"
+"A word over an alphabet, i.e. a string of symbols from that alphabet."
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
@@ -562,9 +573,26 @@ msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
 msgid "The newly introduced definition `Word.chars w` produces a set\n"
-"containing all of the characters occuring in the word `w`.\n"
+"containing all of the characters occuring in the word `w`:\n"
+"\n"
+"```\n"
+"def Word.chars : (w : Word) → Set Char\n"
+"  | ε => ∅\n"
+"  | cons s w => {s} ∪ w.chars\n"
+"```\n"
+"\n"
 "Let's show that for a concatenated word `xy`, its character set is equal\n"
 "to the union of the character sets of each subword."
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_cat_chars
+msgid "```\n"
+"def Word.chars : (w : Word) → Set Char\n"
+"  | ε => ∅\n"
+"  | cons s w => {s} ∪ w.chars\n"
+"```\n"
+"\n"
+"The set of all characters occuring in a particular word."
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
@@ -630,7 +658,15 @@ msgid "assoc_count"
 msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count
-msgid "We've just introduced the `count` definition, which counts how many times a certain character occurs in a word. Let's show that we can get the count for a character in a word by summing up the counts in its subwords."
+msgid "We've just introduced the `count` definition, which counts how many times a certain character occurs in a word:\n"
+"\n"
+"```\n"
+"def Word.count (w : Word) (s' : Char) : ℕ := match w with\n"
+"  | .ε => 0\n"
+"  | .cons s w => if (s = s') then 1 + w.count s' else w.count s'\n"
+"```\n"
+"\n"
+"Let's show that we can get the count for a character in a word by summing up the counts in its subwords."
 msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count
@@ -639,7 +675,14 @@ msgid "for the concatenation of two words, counting the occurrences of a certain
 msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count
-msgid "Counts how often a character occurs in a word."
+msgid "```\n"
+"def Word.count (w : Word) (s' : Char) : ℕ := match w with\n"
+"  | .ε => 0\n"
+"  | .cons s w => if (s = s') then 1 + w.count s' else w.count s'\n"
+"```\n"
+"\n"
+"`w.count s` shows `#ₛ(w)`, i.e. the amount of times that the character\n"
+"`s` occurs in the word `w`."
 msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count
@@ -723,7 +766,15 @@ msgid "cat_len"
 msgstr ""
 
 #: Game.Levels.Lemmas.L08_cat_len
-msgid "Our new definition `length` defines the length of a word. Let's show that the length of a word is equal to the sum of its subwords."
+msgid "Our new definition `length` defines the length of a word:\n"
+"\n"
+"```\n"
+"def Word.length : (w : Word) → ℕ\n"
+" | .ε => 0\n"
+" | .cons _ w => 1 + w.length\n"
+"```\n"
+"\n"
+"Let's show that the length of a word is equal to the sum of its subwords."
 msgstr ""
 
 #: Game.Levels.Lemmas.L08_cat_len
@@ -731,7 +782,13 @@ msgid "To determine the length of the concatenation of two words, you can add th
 msgstr ""
 
 #: Game.Levels.Lemmas.L08_cat_len
-msgid "The amount of symbols in a word."
+msgid "```\n"
+"def Word.length : (w : Word) → ℕ\n"
+" | .ε => 0\n"
+" | .cons _ w => 1 + w.length\n"
+"```\n"
+"\n"
+"The length of a word, i.e. the amount of symbols in it."
 msgstr ""
 
 #: Game.Levels.Lemmas.L08_cat_len
@@ -763,7 +820,16 @@ msgid "pow_len"
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_len
-msgid "The `pow` definition allows us to create strings of the form aⁿ, such as a⁴ = aaaa. We want to show that aⁿ is n characters long."
+msgid "The `pow` definition allows us to create strings of the form aⁿ, such as a⁴ = aaaa:\n"
+"\n"
+"```\n"
+"def Symbol.pow (a : Char) (n : ℕ) : Word :=\n"
+"  match n with\n"
+"  | 0 => .ε\n"
+"  | .succ n => .cons a (Symbol.pow a n)\n"
+"```\n"
+"\n"
+"We want to show that aⁿ is n characters long."
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_len
@@ -771,7 +837,14 @@ msgid "The length of cⁿ is n for any character c."
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_len
-msgid "The power of a symbol: aⁿ = a...a repeated n times."
+msgid "```\n"
+"def Symbol.pow (a : Char) (n : ℕ) : Word :=\n"
+"  match n with\n"
+"  | 0 => .ε\n"
+"  | .succ n => .cons a (Symbol.pow a n)\n"
+"```\n"
+"\n"
+"The power of a symbol: aⁿ = a...a repeated n times."
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_len

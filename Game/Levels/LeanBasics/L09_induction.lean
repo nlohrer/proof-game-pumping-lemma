@@ -26,3 +26,5 @@ NewTactic induction'
 OnlyTactic
   induction'
   exact
+  simp
+  omega

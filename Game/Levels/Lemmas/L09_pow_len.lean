@@ -6,14 +6,31 @@ Level 9
 
 Title "pow_len"
 
-Introduction "The `pow` definition allows us to create strings of the form aⁿ, such as a⁴ = aaaa. We want to show that aⁿ is n characters long."
+Introduction "The `pow` definition allows us to create strings of the form aⁿ, such as a⁴ = aaaa:
+
+```
+def Symbol.pow (a : Char) (n : ℕ) : Word :=
+  match n with
+  | 0 => .ε
+  | .succ n => .cons a (Symbol.pow a n)
+```
+
+We want to show that aⁿ is n characters long."
 
 namespace Regular
 TheoremTab "pow"
 /-- The length of cⁿ is n for any character c. -/
 TheoremDoc Regular.pow_len as "pow_len" in "pow"
 
-/-- The power of a symbol: aⁿ = a...a repeated n times. -/
+/--
+```
+def Symbol.pow (a : Char) (n : ℕ) : Word :=
+  match n with
+  | 0 => .ε
+  | .succ n => .cons a (Symbol.pow a n)
+```
+
+The power of a symbol: aⁿ = a...a repeated n times. -/
 DefinitionDoc Symbol.Pow as "Pow"
 NewDefinition Symbol.Pow
 
