@@ -9,7 +9,7 @@ Introduction "
 # omega
 The tactic `omega` can solve integer and natural linear arithmetic problems."
 
-Statement (x y : ℕ) (hx : x ≠ 0) : (x + y) * 2 - 8 = 2 * x + y * 2 - 2 * 2 - 4 := by
+Statement (x y : ℕ) : (x + y) * 2 - 8 = 2 * x + y * 2 - 2 * 2 - 4 := by
   Hint "Use `omega` to close the goal immediately"
   omega
 
