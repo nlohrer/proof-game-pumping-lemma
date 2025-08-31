@@ -33,6 +33,10 @@ The length of a word, i.e. the amount of symbols in it.
 DefinitionDoc Regular.Word.length as "length"
 NewDefinition Regular.Word.length
 
+TheoremDoc Nat.zero_add as "Nat.zero_add" in "Minor Lemmas"
+TheoremDoc Nat.add_assoc as "Nat.add_assoc" in "Minor Lemmas"
+NewTheorem Nat.zero_add Nat.add_assoc
+
 Statement cat_len (x y : Word) :
     |(x ∘ y)| = |x| + |y| := by
   Hint (hidden := true) "This calls for yet another induction: `induction' x with _ x ih`"

@@ -10,6 +10,9 @@ Introduction "
 For some structures, we might just need to match the forms that they can appear in rather than going for a full blown induction.
 "
 
+TheoremDoc False.elim as "False.elim" in "Minor Lemmas"
+NewTheorem False.elim
+
 Statement (n : ℕ) (hpos : n ≠ 0) : ∃ k, n = k + 1 := by
   Hint "`n` is a natural number, meaning that it is either 0, or the successor
   of some other natural number `m`. To match on those cases, start with
@@ -31,7 +34,7 @@ Statement (n : ℕ) (hpos : n ≠ 0) : ∃ k, n = k + 1 := by
 Conclusion "Good!"
 
 NewTactic rcases
-HiddenNewTactic
+NewHiddenTactic
   use
 OnlyTactic
   rfl

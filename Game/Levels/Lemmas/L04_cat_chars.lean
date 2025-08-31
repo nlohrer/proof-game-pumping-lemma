@@ -31,6 +31,10 @@ The set of all characters occuring in a particular word.
 -/
 DefinitionDoc Regular.Word.chars as "Word.chars"
 
+TheoremTab "Minor Lemmas"
+TheoremDoc Set.union_assoc as "Set.union_assoc" in "Minor Lemmas"
+NewTheorem Set.union_assoc
+
 NewDefinition Regular.Word.chars
 
 /-- The set of characters in a word is the union of all sets of characters
@@ -45,8 +49,8 @@ Statement cat_chars (x y : Word) : (x ∘ y).chars = x.chars ∪ y.chars := by
     Hint (hidden := true) "`simp [Word.cat, Word.chars]` closes the goal."
     simp [Word.cat, Word.chars]
   · Hint "You can go for similar rewrites here, though you will need the
-    induction hypothesis {ih} as well. You might eventually find the theorem
-    `Set.union_assoc` useful."
+    induction hypothesis {ih} as well. You might find the theorem
+    `Set.union_assoc` useful eventually."
     Hint (hidden := true) "Start with `rw [Word.chars, Word.cat, Word.chars, ih]`."
     rw [Word.chars, Word.cat, Word.chars, ih]
     Hint (hidden := true) "`rw [Set.union_assoc]` closes the goal now."

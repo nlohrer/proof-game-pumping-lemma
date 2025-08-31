@@ -15,8 +15,9 @@ import Game.Levels.LeanBasics.L14_split_ifs
 import Game.Levels.LeanBasics.L15_use
 
 World "LeanBasics"
-Title "Lean Basics"
+Title "Basic Tactics"
 
 Introduction "
-This introductory part serves as a refresher for Lean.
+This introductory part serves to introduce the tactics we are
+going to need for the rest of this game.
 "

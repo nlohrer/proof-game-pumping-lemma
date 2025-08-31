@@ -22,6 +22,9 @@ TheoremTab "pow"
 /-- The length of cⁿ is n for any character c. -/
 TheoremDoc Regular.pow_len as "pow_len" in "pow"
 
+TheoremDoc Nat.one_add as "Nat.one_add" in "Minor Lemmas"
+NewTheorem Nat.one_add
+
 /--
 ```
 def Symbol.pow (a : Char) (n : ℕ) : Word :=
@@ -31,8 +34,9 @@ def Symbol.pow (a : Char) (n : ℕ) : Word :=
 ```
 
 The power of a symbol: aⁿ = a...a repeated n times. -/
-DefinitionDoc Symbol.Pow as "Pow"
-NewDefinition Symbol.Pow
+DefinitionDoc Regular.Symbol.pow as "Symbol.Pow"
+DefinitionDoc Regular.Word.pow as "Word.pow"
+NewDefinition Regular.Symbol.pow Regular.Word.pow
 
 Statement pow_len {s : Char} (n : ℕ) : |s ^ n| = n := by
   Hint "This is yet another induction, this time over `{n}`:

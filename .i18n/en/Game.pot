@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Mon Aug 18 15:04:11 2025\n"
+"POT-Creation-Date: Sun Aug 31 16:53:44 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -27,10 +27,12 @@ msgstr ""
 #: Game.Levels.LeanBasics.L01_rfl
 msgid "# Introduction\n"
 "Let's look at some of the very basics of Lean.\n"
+"\n"
 "## Proof state\n"
 "In the middle bottom of the screen, you'll find the proof state, which includes\n"
 "both the goal of the proof, as well as all objects and assumptions that you may\n"
 "use to arrive at the proof.\n"
+"\n"
 "## rfl\n"
 "The `rfl` tactic closes the goal using reflexivity."
 msgstr ""
@@ -278,6 +280,10 @@ msgid "# rcases\n"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L10_rcases
+msgid ""
+msgstr ""
+
+#: Game.Levels.LeanBasics.L10_rcases
 msgid "`n` is a natural number, meaning that it is either 0, or the successor\n"
 "of some other natural number `m`. To match on those cases, start with\n"
 "`rcases «{n}» with _ | m`."
@@ -324,7 +330,7 @@ msgid "# simp\n"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L11_simp
-msgid "Use `simp «{h}»` to close the goal immediately"
+msgid "Use `simp [«{h}»]` to close the goal immediately"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L11_simp
@@ -417,11 +423,12 @@ msgid "Good!"
 msgstr ""
 
 #: Game.Levels.LeanBasics
-msgid "Lean Basics"
+msgid "Basic Tactics"
 msgstr ""
 
 #: Game.Levels.LeanBasics
-msgid "This introductory part serves as a refresher for Lean."
+msgid "This introductory part serves to introduce the tactics we are\n"
+"going to need for the rest of this game."
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
@@ -596,6 +603,10 @@ msgid "```\n"
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
+msgid ""
+msgstr ""
+
+#: Game.Levels.Lemmas.L04_cat_chars
 msgid "The set of characters in a word is the union of all sets of characters\n"
 "in its subwords."
 msgstr ""
@@ -615,8 +626,8 @@ msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
 msgid "You can go for similar rewrites here, though you will need the\n"
-"induction hypothesis «{ih}» as well. You might eventually find the theorem\n"
-"`Set.union_assoc` useful."
+"induction hypothesis «{ih}» as well. You might find the theorem\n"
+"`Set.union_assoc` useful eventually."
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
@@ -734,6 +745,14 @@ msgid "If a symbol doesn't occur in the concatenation of two words, then it won'
 msgstr ""
 
 #: Game.Levels.Lemmas.L07_cat_count_zero
+msgid ""
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_count_zero
+msgid ""
+msgstr ""
+
+#: Game.Levels.Lemmas.L07_cat_count_zero
 msgid "Let's start out by introducing the antecedent: `intro hcatcount`"
 msgstr ""
 
@@ -792,6 +811,14 @@ msgid "```\n"
 msgstr ""
 
 #: Game.Levels.Lemmas.L08_cat_len
+msgid ""
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_cat_len
+msgid ""
+msgstr ""
+
+#: Game.Levels.Lemmas.L08_cat_len
 msgid "This calls for yet another induction: `induction' x with _ x ih`"
 msgstr ""
 
@@ -837,6 +864,10 @@ msgid "The length of cⁿ is n for any character c."
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_len
+msgid ""
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_len
 msgid "```\n"
 "def Symbol.pow (a : Char) (n : ℕ) : Word :=\n"
 "  match n with\n"
@@ -845,6 +876,10 @@ msgid "```\n"
 "```\n"
 "\n"
 "The power of a symbol: aⁿ = a...a repeated n times."
+msgstr ""
+
+#: Game.Levels.Lemmas.L09_pow_len
+msgid ""
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_len
@@ -1050,29 +1085,101 @@ msgid "Lemmas"
 msgstr ""
 
 #: Game.Levels.Lemmas
-msgid "Some lemmas that will be useful later on."
+msgid "This world is where we introduce the way we formalized the concepts from formal languages that we will require\n"
+"later on.\n"
+"\n"
+"In addition, we will prove a number of lemmas that will be handy for the nonregularity\n"
+"proof we are working towards."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L01_First
-msgid "First Proof"
+msgid "Languages"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L01_First
-msgid "This text is shown as first message when the level is played.\n"
-"You can insert hints in the proof below. They will appear in this side panel\n"
-"depending on the proof a user provides."
+msgid "# Introduction\n"
+"In this level, we introduce a number of definitions.\n"
+"\n"
+"## Languages\n"
+"So far, we have been working with individual words made up of arbitrary characters.\n"
+"We now look at sets of words over a restricted set of characters, which we call *languages*.\n"
+"The new `Language` definition in your inventory shows how we defined languages for our purposes:\n"
+"```\n"
+"structure Language where\n"
+"  Alphabet : Set Char\n"
+"  Words : Set Word\n"
+"  word_constraint : ∀ word ∈ Words, word.chars ⊆ Alphabet\n"
+"```\n"
+"One example for a language would be `aⁿbⁿ`, which is the following set over the alphabet `\\{a,b}`:\n"
+"`{w | ∃ n : ℕ, w = ('a' ^ n) ∘ ('b' ^ n)}`\n"
+"\n"
+"## Regular languages and the pumping lemma\n"
+"Our goal in the next level will be to show that `aⁿbⁿ` is not regular.\n"
+"Regular languages encompass those that can be expressed as DFAs.\n"
+"Every regular language satisfies the pumping pumping property, which informally states that each word `z` in that language can be\n"
+"split into subwords `u`, `v`, `w`, with `z = uvw`, such that `uvⁱw` will still be contained in the language\n"
+"for any `i ∈ ℕ`.\n"
+"There are some additional aspects to the pumping property, which are all captured in our definition:\n"
+"```\n"
+"def pumping_property (L : Language) :=\n"
+"  ∃ (n : ℕ),\n"
+"  n > 0 ∧\n"
+"  ∀ z ∈ L.Words,\n"
+"  (hlen : z.length > n) →\n"
+"    ∃ (u v w : Word),\n"
+"      z = u ∘ v ∘ w ∧\n"
+"      |u ∘ v| ≤ n ∧\n"
+"      |v| ≥ 1 ∧\n"
+"      ∀ (i : ℕ), u ∘ v ^ i ∘ w ∈ L.Words\n"
+"```"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L01_First
-msgid "You can first nonreg either start using `«{h}»` or `«{g}»`."
+msgid "```\n"
+"structure Language where\n"
+"  Alphabet : Set Char\n"
+"  Words : Set Word\n"
+"  word_constraint : ∀ word ∈ Words, word.chars ⊆ Alphabet\n"
+"```\n"
+"\n"
+"A language is a set of words over an alphabet."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L01_First
-msgid "You should use `«{h}»` now."
+msgid "```\n"
+"def anbn : Set Word := {w | ∃ n : ℕ, w = ('a' ^ n) ∘ ('b' ^ n)}\n"
+"```\n"
+"\n"
+"The language over the alphabet \\{'a', 'b'} consisting of the set of words of the form aⁿbⁿ."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L01_First
-msgid "You should use `«{g}»` now."
+msgid "```\n"
+"def pumping_property (L : Language) :=\n"
+"  ∃ (n : ℕ),\n"
+"  n > 0 ∧\n"
+"  ∀ z ∈ L.Words,\n"
+"  (hlen : z.length > n) →\n"
+"    ∃ (u v w : Word),\n"
+"      z = u ∘ v ∘ w ∧\n"
+"      |u ∘ v| ≤ n ∧\n"
+"      |v| ≥ 1 ∧\n"
+"      ∀ (i : ℕ), u ∘ v ^ i ∘ w ∈ L.Words\n"
+"```\n"
+"\n"
+"The pumping property for regular languages states that each sufficiently long\n"
+"word `z` in a regular language may be split as `z = uvw` with certain restrictions\n"
+"such that `uvⁱw` will still be in the language for any `i ∈ ℕ`."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L01_First
+msgid "Start with `simp [anbn]`.\n"
+"You could also try `rw [anbn]` to replace the definition, but `simp` is nice\n"
+"to take care of the `∈` relation in any case."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L01_First
+msgid "`use 2` closes the goal."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L01_First
@@ -1438,27 +1545,35 @@ msgid "The proofs themselves"
 msgstr ""
 
 #: Game
-msgid "Pumping Lemma Game"
+msgid "Proof Game for the Pumping Lemma"
 msgstr ""
 
 #: Game
-msgid "This text appears on the starting page where one selects the world/level to play.\n"
-"You can use markdown."
-msgstr ""
-
-#: Game
-msgid "Here you can put additional information about the game. It is accessible\n"
-"from the starting through the drop-down menu.\n"
+msgid "# A Proof Game for the Pumping Lemma\n"
 "\n"
-"For example: Game version, Credits, Link to Github and Zulip, etc.\n"
+"Welcome to the proof game for the pumping lemma!\n"
+"This game aims to teach you the basics of working through\n"
+"nonregularity proofs for regular languages using the pumping lemma.\n"
 "\n"
-"Use markdown."
+"Due to the somewhat complex nature of such proofs we assume some base familiarity with Lean.\n"
+"Nonetheless, since we give optional hints for every single step required to go\n"
+"through all the levels, this game might still be of some use to you even if you\n"
+"have not worked with Lean before.\n"
+"\n"
+"The first world offers a refresher on the tactics we are going to need for this game."
 msgstr ""
 
 #: Game
-msgid "Game Template"
+msgid "This game is part of my Bachelor's thesis at LMU Munich.\n"
+"\n"
+"The [original code can be found on github](https://github.com/nlohrer/proof-game-pumping-lemma)"
 msgstr ""
 
 #: Game
-msgid "You should use this game as a template for your own game and add your own levels."
+msgid "A proof game for the pumping lemma."
+msgstr ""
+
+#: Game
+msgid "In this game you learn how to work through nonregularity proofs for regular languages\n"
+"in Lean by applying the pumping lemma."
 msgstr ""

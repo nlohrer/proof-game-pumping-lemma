@@ -18,7 +18,7 @@ it will then try to employ.
 "
 
 Statement (h : x = 2) : x = 2 := by
-  Hint "Use `simp {h}` to close the goal immediately"
+  Hint "Use `simp [{h}]` to close the goal immediately"
   simp [h]
 
 Conclusion "The exact behavior of `simp` can be a little unpredictable if you're

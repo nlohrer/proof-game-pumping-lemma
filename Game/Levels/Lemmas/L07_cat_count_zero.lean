@@ -12,6 +12,10 @@ namespace Regular
 /-- If a symbol doesn't occur in the concatenation of two words, then it won't occur in any of the two words either. -/
 TheoremDoc Regular.cat_count_zero as "cat_count_zero" in "cat"
 
+TheoremDoc Nat.add_eq_zero as "Nat.add_eq_zero" in "Minor Lemmas"
+TheoremDoc Nat.add_eq_zero_iff as "Nat.add_eq_zero_iff" in "Minor Lemmas"
+NewTheorem Nat.add_eq_zero Nat.add_eq_zero_iff
+
 Statement cat_count_zero {s : Char} (x y : Word) :
     (x ∘ y).count s = 0 → x.count s = 0 ∧ y.count s = 0 := by
   Hint "Let's start out by introducing the antecedent: `intro hcatcount`"

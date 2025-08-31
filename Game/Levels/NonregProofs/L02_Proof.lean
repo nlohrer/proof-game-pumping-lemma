@@ -1,4 +1,4 @@
-import Game.Levels.Lemmas.L12_pow_cons_count_uneq
+import Game.Levels.NonregProofs.L01_First
 import Game.Metadata
 
 World "NonregProofs"
@@ -268,3 +268,5 @@ Statement : ¬pumping_property anbn_lang := by
       simp_all
 
 Conclusion "This last message appears if the level is solved."
+
+NewHiddenTactic symm set generalize push_neg
