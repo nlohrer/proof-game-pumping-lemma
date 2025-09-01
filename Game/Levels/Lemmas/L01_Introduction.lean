@@ -8,8 +8,8 @@ Title "Introduction: Words"
 Introduction "
 # Words
 Formal languages consist of words over some alphabet Σ.
-They are essentially strings consisting of character in the alphabet.
-For instance, for an alphabet `Σ = \\{a, b, c}`, `abc`, `aabba`, and `c`
+They are essentially strings consisting of characters in the alphabet.
+For instance, for an alphabet `Σ = {a, b, c}`, `abc`, `aabba`, and `c`
 will be words over that alphabet.
 The empty word `ε` is also considered a word.
 
@@ -62,7 +62,7 @@ inductive Word where
 
 A word over an alphabet, i.e. a string of symbols from that alphabet.
 -/
-DefinitionDoc Word as "Word"
+DefinitionDoc Regular.Word as "Word"
 
 /-- Concatenation of words: for two words w₁ and w₂, the concatenation w₁ and w₂ yields w₁w₂.
 
@@ -75,7 +75,7 @@ def Word.cat (x y : Word) : Word :=
 -/
 DefinitionDoc Regular.Word.cat as "Word.cat"
 
-NewDefinition Word Regular.Word.cat
+NewDefinition Regular.Word Regular.Word.cat
 
 Statement : (Word.cons 'a' (Word.cons 'b' .ε)) ∘ (Word.cons 'c' .ε) = Word.cons 'a' (Word.cons 'b' (Word.cons 'c' .ε)) := by
   Hint "Solving this goal is merely a matter of rewriting with `Word.cat`

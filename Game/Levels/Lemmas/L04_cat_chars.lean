@@ -50,7 +50,7 @@ Statement cat_chars (x y : Word) : (x ∘ y).chars = x.chars ∪ y.chars := by
     simp [Word.cat, Word.chars]
   · Hint "You can go for similar rewrites here, though you will need the
     induction hypothesis {ih} as well. You might find the theorem
-    `Set.union_assoc` useful eventually."
+    `Set.union_assoc` useful at some point."
     Hint (hidden := true) "Start with `rw [Word.chars, Word.cat, Word.chars, ih]`."
     rw [Word.chars, Word.cat, Word.chars, ih]
     Hint (hidden := true) "`rw [Set.union_assoc]` closes the goal now."

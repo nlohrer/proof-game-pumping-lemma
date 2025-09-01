@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "LeanBasics"
-Level 9
+Level 14
 
 Title "induction'"
 

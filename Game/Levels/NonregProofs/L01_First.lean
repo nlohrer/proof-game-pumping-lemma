@@ -100,4 +100,4 @@ Statement :
   Hint (hidden := true) "`use 2` closes the goal."
   use 2
 
-Conclusion "This last message appears if the level is solved."
+Conclusion "With these new definitions, we can finally try our hand at a nonregularity proof!"

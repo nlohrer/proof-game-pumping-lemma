@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "LeanBasics"
-Level 14
+Level 12
 
 Title "split_ifs"
 
@@ -21,4 +21,5 @@ Conclusion "Good!"
 NewTactic split_ifs
 OnlyTactic
   split_ifs
+  rfl
   exact

@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Sun Aug 31 16:53:44 2025\n"
+"POT-Creation-Date: Mon Sep  1 22:35:12 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -91,7 +91,7 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L03_rw
 msgid "There are some more syntactic specifics when it comes to using `rw`,\n"
-"but we will not need them in the future.."
+"but we will not need them in the future."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L04_intro
@@ -238,86 +238,23 @@ msgid "Use `constructor` to split the conjunction we want to prove into two sepa
 msgstr ""
 
 #: Game.Levels.LeanBasics.L08_constructor
+msgid "`exact hx`"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L08_constructor
+msgid "`exact hy`"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L08_constructor
 msgid "We will generally use `constructor` for conjunctions, but it works\n"
 "for any inductive type."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L09_induction
-msgid "induction'"
-msgstr ""
-
-#: Game.Levels.LeanBasics.L09_induction
-msgid "# Induction\n"
-"We utilize several inductive structures that we can handle with the `induction'` tactic."
-msgstr ""
-
-#: Game.Levels.LeanBasics.L09_induction
-msgid "Use `induction' «{n}» with n ih` to start a proof by induction"
-msgstr ""
-
-#: Game.Levels.LeanBasics.L09_induction
-msgid "`simp` will close the goal."
-msgstr ""
-
-#: Game.Levels.LeanBasics.L09_induction
-msgid "We now have our induction hypothesis `ih` at our disposal.\n"
-"We can just rely on `omega` to close out our goal rather than going for any\n"
-"convoluted rewriting."
-msgstr ""
-
-#: Game.Levels.LeanBasics.L09_induction
-msgid "Both the type `Word` as well as our definitions for it will be\n"
-"inductive, so we will make frequent use of induction'!"
-msgstr ""
-
-#: Game.Levels.LeanBasics.L10_rcases
-msgid "rcases"
-msgstr ""
-
-#: Game.Levels.LeanBasics.L10_rcases
-msgid "# rcases\n"
-"For some structures, we might just need to match the forms that they can appear in rather than going for a full blown induction."
-msgstr ""
-
-#: Game.Levels.LeanBasics.L10_rcases
-msgid ""
-msgstr ""
-
-#: Game.Levels.LeanBasics.L10_rcases
-msgid "`n` is a natural number, meaning that it is either 0, or the successor\n"
-"of some other natural number `m`. To match on those cases, start with\n"
-"`rcases «{n}» with _ | m`."
-msgstr ""
-
-#: Game.Levels.LeanBasics.L10_rcases
-msgid "We are in the case `n = 0`.\n"
-"`«{hpos}»` is an obvious contradiction.\n"
-"To utilize that fact, we can `apply False.elim` to change our goal to `False`."
-msgstr ""
-
-#: Game.Levels.LeanBasics.L10_rcases
-msgid "Since a negation of the form `¬A` is treated like an implication\n"
-"`A → False` in Lean, we can `apply «{hpos}»`."
-msgstr ""
-
-#: Game.Levels.LeanBasics.L10_rcases
-msgid "`rfl` closes the goal"
-msgstr ""
-
-#: Game.Levels.LeanBasics.L10_rcases
-msgid "We are in the case `n = succ «{m}»` for some natural number «{m}».\n"
-"Obviously «{m}» is the number we are looking for, so `use «{m}»`."
-msgstr ""
-
-#: Game.Levels.LeanBasics.L10_rcases
-msgid "Good!"
-msgstr ""
-
-#: Game.Levels.LeanBasics.L11_simp
+#: Game.Levels.LeanBasics.L09_simp
 msgid "simp"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L11_simp
+#: Game.Levels.LeanBasics.L09_simp
 msgid "# simp\n"
 "Using the more elementary tactics `rw`, `apply`, and `exact` to work through proofs\n"
 "will quickly become tedious for more involved proofs.\n"
@@ -329,96 +266,167 @@ msgid "# simp\n"
 "it will then try to employ."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L11_simp
+#: Game.Levels.LeanBasics.L09_simp
 msgid "Use `simp [«{h}»]` to close the goal immediately"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L11_simp
+#: Game.Levels.LeanBasics.L09_simp
 msgid "The exact behavior of `simp` can be a little unpredictable if you're\n"
 "not used to working with it, but it is very useful to skip over a great number of\n"
 "simple, but manual steps."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L12_simp_all
+#: Game.Levels.LeanBasics.L10_simp_all
 msgid "simp_all"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L12_simp_all
+#: Game.Levels.LeanBasics.L10_simp_all
 msgid "# simp_all\n"
 "`simp_all` is similar to `simp`, but applies simplification to the goal\n"
 "and all hypotheses several times until they can not get simplified further."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L12_simp_all
+#: Game.Levels.LeanBasics.L10_simp_all
 msgid "`simp_all` closes the goal immediately."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L12_simp_all
+#: Game.Levels.LeanBasics.L10_simp_all
 msgid "As the name implies, `simp_all` can be useful not just to try\n"
 "and solve the goal directly, but also to simplify the proof state overall,\n"
 "which can make it easier to understand how one should proceed with the proof."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L13_omega
+#: Game.Levels.LeanBasics.L11_omega
 msgid "omega"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L13_omega
+#: Game.Levels.LeanBasics.L11_omega
 msgid "# omega\n"
 "The tactic `omega` can solve integer and natural linear arithmetic problems."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L13_omega
+#: Game.Levels.LeanBasics.L11_omega
 msgid "Use `omega` to close the goal immediately"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L13_omega
+#: Game.Levels.LeanBasics.L11_omega
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L14_split_ifs
+#: Game.Levels.LeanBasics.L12_split_ifs
 msgid "split_ifs"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L14_split_ifs
+#: Game.Levels.LeanBasics.L12_split_ifs
 msgid "# split_ifs\n"
 "The tactic `split_ifs` allows us to handle `if` statements in our goal."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L14_split_ifs
+#: Game.Levels.LeanBasics.L12_split_ifs
 msgid "Use `split_ifs with h`."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L14_split_ifs
+#: Game.Levels.LeanBasics.L12_split_ifs
 msgid "`rfl` closes the goal."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L14_split_ifs
+#: Game.Levels.LeanBasics.L12_split_ifs
 msgid "Use `exact h rfl`."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L14_split_ifs
+#: Game.Levels.LeanBasics.L12_split_ifs
 msgid "Good!"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L15_use
+#: Game.Levels.LeanBasics.L13_use
 msgid "use"
 msgstr ""
 
-#: Game.Levels.LeanBasics.L15_use
+#: Game.Levels.LeanBasics.L13_use
 msgid "# use\n"
 "We can resolve existential quantifiers with the help of the `use` keyword."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L15_use
+#: Game.Levels.LeanBasics.L13_use
 msgid "We want to set n := 4: `use 4`."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L15_use
+#: Game.Levels.LeanBasics.L13_use
 msgid "`rw [«{hm}»]` or `omega` will solve this goal."
 msgstr ""
 
-#: Game.Levels.LeanBasics.L15_use
+#: Game.Levels.LeanBasics.L13_use
+msgid "Good!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_induction
+msgid "induction'"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_induction
+msgid "# Induction\n"
+"We utilize several inductive structures that we can handle with the `induction'` tactic."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_induction
+msgid "Use `induction' «{n}» with n ih` to start a proof by induction"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_induction
+msgid "`simp` will close the goal."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_induction
+msgid "We now have our induction hypothesis `ih` at our disposal.\n"
+"We can just rely on `omega` to close out our goal rather than going for any\n"
+"convoluted rewriting."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L14_induction
+msgid "Both the type `Word` as well as our definitions for it will be\n"
+"inductive, so we will make frequent use of induction'!"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_rcases
+msgid "rcases"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_rcases
+msgid "# rcases\n"
+"For some structures, we might just need to match the forms that they can appear in rather than going for a full blown induction."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_rcases
+msgid ""
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_rcases
+msgid "`n` is a natural number, meaning that it is either 0, or the successor\n"
+"of some other natural number `m`. To match on those cases, start with\n"
+"`rcases «{n}» with _ | m`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_rcases
+msgid "We are in the case `n = 0`.\n"
+"`«{hpos}»` is an obvious contradiction.\n"
+"To utilize that fact, we can `apply False.elim` to change our goal to `False`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_rcases
+msgid "Since a negation of the form `¬A` is treated like an implication\n"
+"`A → False` in Lean, we can `apply «{hpos}»`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_rcases
+msgid "`rfl` closes the goal"
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_rcases
+msgid "We are in the case `n = succ «{m}»` for some natural number «{m}».\n"
+"Obviously «{m}» is the number we are looking for, so `use «{m}»`."
+msgstr ""
+
+#: Game.Levels.LeanBasics.L15_rcases
 msgid "Good!"
 msgstr ""
 
@@ -438,8 +446,8 @@ msgstr ""
 #: Game.Levels.Lemmas.L01_Introduction
 msgid "# Words\n"
 "Formal languages consist of words over some alphabet Σ.\n"
-"They are essentially strings consisting of character in the alphabet.\n"
-"For instance, for an alphabet `Σ = \\{a, b, c}`, `abc`, `aabba`, and `c`\n"
+"They are essentially strings consisting of characters in the alphabet.\n"
+"For instance, for an alphabet `Σ = {a, b, c}`, `abc`, `aabba`, and `c`\n"
 "will be words over that alphabet.\n"
 "The empty word `ε` is also considered a word.\n"
 "\n"
@@ -534,11 +542,11 @@ msgid "This is essentially true by definition of `Word.cat`."
 msgstr ""
 
 #: Game.Levels.Lemmas.L02_cat_eps
-msgid "`rw [Word.cat]`."
+msgid "`rw [Word.cat]`"
 msgstr ""
 
 #: Game.Levels.Lemmas.L02_cat_eps
-msgid "`rw [Word.cat, ih]`."
+msgid "`rw [Word.cat, ih]`"
 msgstr ""
 
 #: Game.Levels.Lemmas.L02_cat_eps
@@ -627,7 +635,7 @@ msgstr ""
 #: Game.Levels.Lemmas.L04_cat_chars
 msgid "You can go for similar rewrites here, though you will need the\n"
 "induction hypothesis «{ih}» as well. You might find the theorem\n"
-"`Set.union_assoc` useful eventually."
+"`Set.union_assoc` useful at some point."
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
@@ -647,7 +655,10 @@ msgid "cons_cat_cancel"
 msgstr ""
 
 #: Game.Levels.Lemmas.L05_cons_cat_cancel
-msgid "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+msgid "For characters `c, d` and words `x, y`, the equality `cx = dy` should result\n"
+"in the equalities `c = d` and `x = y`.\n"
+"Arriving at either equality is essentially equivalent to canceling the other side of the\n"
+"original equation."
 msgstr ""
 
 #: Game.Levels.Lemmas.L05_cons_cat_cancel
@@ -1183,7 +1194,7 @@ msgid "`use 2` closes the goal."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L01_First
-msgid "This last message appears if the level is solved."
+msgid "With these new definitions, we can finally try our hand at a nonregularity proof!"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1220,8 +1231,21 @@ msgid "We are finally ready to work through a proof that utilizes the pumping le
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
+msgid ""
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "Within the context of our proof, this lemma shows that the characters contained in v\n"
+"are either 'a' or 'b'."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
 msgid "Let's first `rw [pumping_property]` to recall the definition of the pumping\n"
 "property, then `push_neg` to push the negation all the way in."
+msgstr ""
+
+#: Game.Levels.NonregProofs.L02_Proof
+msgid "`push_neg`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1230,7 +1254,8 @@ msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "The word we want to use is z = aⁿbⁿ.\n"
-"Let's introduce it with `set z : Word := ('a' ^ n) ∘ 'b' ^ n with hz`"
+"Let's introduce it with `set z : Word := ('a' ^ n) ∘ 'b' ^ n with hz`.\n"
+"Afterwards, we can use it for our proof with `use z`."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1238,7 +1263,7 @@ msgid "`use z`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "`constructor` will split the conjunction into separate proofs."
+msgid "`constructor` will split the conjunction into separate goals."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1263,7 +1288,10 @@ msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "The exact hypotheses for rewriting that you should use\n"
-"are `«{hz}»`, `cat_len`, `pow_len`, and `pow_len` again."
+"are `«{hz}»`, `cat_len`, `pow_len`, and `pow_len` again.\n"
+"\n"
+"Apart from rewriting, you can also just `simp [«{hz}», cat_len, pow_len]`, and\n"
+"`omega` afterwards."
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1285,7 +1313,7 @@ msgid "Let's look at our hypotheses:\n"
 "- `«{hlenlower}»` represents the assumption `|«{u}»«{v}»| ≤ n`\n"
 "- `«{hv}»` represents the other assumption `|«{v}»| ≥ 1`\n"
 "\n"
-"These are all exactly the syme assumptions that we introduced at this point\n"
+"These are all exactly the same assumptions that we introduced at this point\n"
 "in our proof!\n"
 "\n"
 "We now need to provide a suitable `i`; in the paper proof we chose `i = 2`,\n"
@@ -1300,7 +1328,7 @@ msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "Let's simplify the entire proof state with\n"
-"`simp_all only [gt_iff_lt, «{z}», ↓Char.isValue]`"
+"`simp_all [«{z}»]`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1311,7 +1339,7 @@ msgstr ""
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "We need to utilize the associativity that we proved earlier:\n"
 "\n"
-"`rw [← Word.cat_assoc] at hcons`\n"
+"`rw [← cat_assoc] at hcons`\n"
 "\n"
 "Following that, use the tactic `symm at «{hcons}»`"
 msgstr ""
@@ -1327,12 +1355,14 @@ msgstr ""
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "We can now use the fresh hypothesis `«{huv}»`:\n"
 "\n"
-"`exact (@Word.cat_count_zero 'b' «{u}» «{v}» «{huv}»).right`"
+"`exact (@cat_count_zero 'b' «{u}» «{v}» «{huv}»).right`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "For the next step of our proof, we showed that `«{v}»` contained at least\n"
-"one `'a'`. This will unfortunately be much more involved to show!"
+"one `'a'`. This will unfortunately be much more involved to show!\n"
+"\n"
+"`have hatleastonea : «{v}».count 'a' > 0`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1497,7 +1527,9 @@ msgstr ""
 #: Game.Levels.NonregProofs.L02_Proof
 msgid "Our proof state is almost exactly the same as at the end of our previous hypothesis\n"
 "`heven`, so the lemmas `cat_count` and `pow_count` are essentially enough to solve the\n"
-"goal:"
+"goal:\n"
+"\n"
+"`simp [cat_count, pow_count]`"
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
@@ -1513,7 +1545,9 @@ msgid "The two hypotheses that the goal should intuitively follow from are `«{h
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "This is now essentially just a simple arithmetic problem, so let's close the goal\n"
+msgid "Our goal follows from subtracting the equality `«{hcount}»` from the other\n"
+"equality `«{heven}»`, which is also what we do in our paper proof at this point.\n"
+"Since this is a simple arithmetic problem, we can close the goal\n"
 "with `omega`."
 msgstr ""
 
@@ -1533,7 +1567,7 @@ msgid "The contradiction we now receive boils down to the fact that according to
 msgstr ""
 
 #: Game.Levels.NonregProofs.L02_Proof
-msgid "This last message appears if the level is solved."
+msgid "You just went through an entire nonregularity proof!"
 msgstr ""
 
 #: Game.Levels.NonregProofs

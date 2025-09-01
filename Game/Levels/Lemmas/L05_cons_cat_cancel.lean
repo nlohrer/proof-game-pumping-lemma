@@ -6,7 +6,11 @@ Level 5
 
 Title "cons_cat_cancel"
 
-Introduction "Let's prove a simple lemma: concatenating any word with the empty word should yield the word itself."
+Introduction "For characters `c, d` and words `x, y`, the equality `cx = dy` should result
+in the equalities `c = d` and `x = y`.
+Arriving at either equality is essentially equivalent to canceling the other side of the
+original equation.
+"
 
 namespace Regular
 

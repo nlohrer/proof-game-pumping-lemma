@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "LeanBasics"
-Level 13
+Level 11
 
 Title "omega"
 

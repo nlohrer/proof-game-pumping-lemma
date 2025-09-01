@@ -28,7 +28,7 @@ Statement (a b c : ℕ) (h : b = a + 1 - 1) (k : b = c + 1 - 1)
   rw [← h, k]
 
 Conclusion "There are some more syntactic specifics when it comes to using `rw`,
-but we will not need them in the future.."
+but we will not need them in the future."
 
 NewTactic rw
 OnlyTactic

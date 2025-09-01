@@ -46,6 +46,6 @@ Statement pow_len {s : Char} (n : ℕ) : |s ^ n| = n := by
     rfl
   · Hint "The lemma `Nat.one_add` will be useful here."
     Hint (hidden := true) "`simp only [Word.length, {ih}, Nat.one_add]`"
-    simp only [Word.length, ih, Nat.one_add]
+    simp [Word.length, ih, Nat.one_add]
 
 Conclusion "Good!"

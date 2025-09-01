@@ -14,9 +14,9 @@ Statement cat_eps (w : Word) : w.cat .ε = w := by
   Hint "This proof calls for an induction! Try starting with `induction' w with s w ih`."
   induction' w with s w ih
   · Hint "This is essentially true by definition of `Word.cat`."
-    Hint (hidden := true) "`rw [Word.cat]`."
+    Hint (hidden := true) "`rw [Word.cat]`"
     rw [Word.cat]
-  · Hint (hidden := true) "`rw [Word.cat, ih]`."
+  · Hint (hidden := true) "`rw [Word.cat, ih]`"
     rw [Word.cat, ih]
 
 Conclusion "Good!"

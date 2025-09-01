@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "LeanBasics"
-Level 12
+Level 10
 
 Title "simp_all"
 

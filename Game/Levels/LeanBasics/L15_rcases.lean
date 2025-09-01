@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "LeanBasics"
-Level 10
+Level 15
 
 Title "rcases"
 
@@ -34,8 +34,6 @@ Statement (n : ℕ) (hpos : n ≠ 0) : ∃ k, n = k + 1 := by
 Conclusion "Good!"
 
 NewTactic rcases
-NewHiddenTactic
-  use
 OnlyTactic
   rfl
   apply

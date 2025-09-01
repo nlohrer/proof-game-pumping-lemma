@@ -1,7 +1,7 @@
 import Game.Metadata
 
 World "LeanBasics"
-Level 15
+Level 13
 
 Title "use"
 
@@ -19,3 +19,5 @@ Conclusion "Good!"
 NewTactic use
 OnlyTactic
   use
+  rw
+  omega
