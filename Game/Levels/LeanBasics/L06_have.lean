@@ -11,7 +11,7 @@ Sometimes, we want to construct sub-hypotheses of our own. We can do this with t
 `have` tactic."
 
 Statement (A B C : Prop) (hA : A) (hAB : A → B) (hBC : B → C) : C := by
-  Hint "We could solve this directly with `apply`, but let's see what it looks
+  Hint (strict := true) "We could solve this directly with `apply`, but let's see what it looks
   like when we construct a new hypothesis.
 
   Looking at `{hAB}` and `{hA}`, it is obvious that `{B}` should follow.

@@ -14,6 +14,9 @@ def Word.length : (w : Word) → ℕ
  | .cons _ w => 1 + w.length
 ```
 
+The empty word `ε` has a length of 0, while for the inductive case `Word.cons s w`
+we do not care about the symbol `s`, always incrementing the length of `w` by 1.
+
 Let's show that the length of a word is equal to the sum of its subwords."
 
 namespace Regular
@@ -33,7 +36,14 @@ The length of a word, i.e. the amount of symbols in it.
 DefinitionDoc Regular.Word.length as "length"
 NewDefinition Regular.Word.length
 
+/--
+Adding zero to a natural number results in the original number.
+-/
 TheoremDoc Nat.zero_add as "Nat.zero_add" in "Minor Lemmas"
+
+/--
+Addition of natural numbers is associative.
+-/
 TheoremDoc Nat.add_assoc as "Nat.add_assoc" in "Minor Lemmas"
 NewTheorem Nat.zero_add Nat.add_assoc
 

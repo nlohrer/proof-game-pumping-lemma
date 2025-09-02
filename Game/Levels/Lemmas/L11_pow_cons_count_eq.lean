@@ -9,7 +9,7 @@ Level 11
 Title "pow_cons_count_eq"
 
 Introduction "Let's prove a statement for a slightly more complex situation that
-may show up in a nonregularity proof:
+may show up in a non-regularity proof:
 For `n > 0`, characters `c, d`, and words `x, y`, if
 `cx = dⁿy`, then `c` must be `d`!."
 

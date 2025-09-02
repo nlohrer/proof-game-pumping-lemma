@@ -23,7 +23,6 @@ inductive Word where
 This is an inductive definition: a word is either the empty word ε, or
 some character together with the rest of the word.
 For example, the word `c` would look like this:
-
 `Word.cons 'c' Word.ε`
 
 and the word `abc` would look like this:

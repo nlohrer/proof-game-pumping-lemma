@@ -1,10 +1,10 @@
-import Game.Levels.NonregProofs.L01_First
+import Game.Levels.NonregProof.L01_First
 import Game.Metadata
 
-World "NonregProofs"
+World "NonregProof"
 Level 2
 
-Title "Proving the nonregularity of aⁿbⁿ"
+Title "Proving the Non-regularity of aⁿbⁿ"
 
 Introduction "We are finally ready to work through a proof that utilizes the pumping lemma!
 The proof on paper is as follows:
@@ -50,6 +50,9 @@ lemma v_subset_ab {z u v w : Word} {n : ℕ} (hz : z = ('a' ^ n) ∘ 'b' ^ n) (h
     exact hright (hleft hc)
   exact subset_trans hsub hzcharsinab
 
+/--
+We use this basic lemma for the simple statement `'a' ≠ 'b'`.
+-/
 TheoremDoc ne_of_beq_false as "ne_of_beq_false" in "Minor Lemmas"
 
 /-- Within the context of our proof, this lemma shows that the characters contained in v
@@ -118,7 +121,7 @@ Statement : ¬pumping_property anbn_lang := by
       · Hint (strict := true) "Let's simplify the entire proof state with
         `simp_all [{z}]`"
         simp_all [z]
-        Hint "The argument in our proof works to show that there are no b's in
+        Hint (strict := true) "The argument in our proof works to show that there are no b's in
         `uv`. Let's show that first: `have huv : (u ∘ v).count 'b' = 0`."
         have huv : (u ∘ v).count 'b' = 0
         · Hint "We need to utilize the associativity that we proved earlier:
@@ -286,6 +289,6 @@ Statement : ¬pumping_property anbn_lang := by
       close the goal, but if you want you can try to go for a more manual approach."
       simp_all
 
-Conclusion "You just went through an entire nonregularity proof!"
+Conclusion "You just went through an entire non-regularity proof!"
 
 NewHiddenTactic symm set generalize push_neg

@@ -12,9 +12,12 @@ namespace Regular
 /-- If a symbol doesn't occur in the concatenation of two words, then it won't occur in any of the two words either. -/
 TheoremDoc Regular.cat_count_zero as "cat_count_zero" in "cat"
 
-TheoremDoc Nat.add_eq_zero as "Nat.add_eq_zero" in "Minor Lemmas"
+/--
+If the sum of two natural numbers is zero, then both of them have to be
+equal to zero.
+-/
 TheoremDoc Nat.add_eq_zero_iff as "Nat.add_eq_zero_iff" in "Minor Lemmas"
-NewTheorem Nat.add_eq_zero Nat.add_eq_zero_iff
+NewTheorem Nat.add_eq_zero_iff
 
 Statement cat_count_zero {s : Char} (x y : Word) :
     (x ∘ y).count s = 0 → x.count s = 0 ∧ y.count s = 0 := by
@@ -22,10 +25,10 @@ Statement cat_count_zero {s : Char} (x y : Word) :
   intro hcatcount
   Hint "To split the conjunction, let's use the `constructor` tactic."
   constructor
-  · Hint "Use the theorem `Nat.add_eq_zero`"
-    Hint (hidden := true) "simp_all [cat_count, Nat.add_eq_zero]"
-    simp_all [cat_count, Nat.add_eq_zero]
   · Hint "Use the theorem `Nat.add_eq_zero_iff`"
+    Hint (hidden := true) "simp_all [cat_count, Nat.add_eq_zero_iff]"
+    simp_all [cat_count, Nat.add_eq_zero_iff]
+  · Hint "Once again, use the theorem `Nat.add_eq_zero_iff`"
     Hint (hidden := true) "simp_all [cat_count, Nat.add_eq_zero_iff]"
     simp_all [cat_count, Nat.add_eq_zero_iff]
 

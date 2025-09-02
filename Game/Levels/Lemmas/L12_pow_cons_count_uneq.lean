@@ -30,7 +30,7 @@ Statement pow_cons_count_uneq (c d : Char) (huneq : c ≠ d) (n : ℕ) (x y z : 
     rw [Word.length] at hx
     Hint "We can now look at our goal: `rw [Word.count]`."
     rw [Word.count]
-    Hint "We now have an if-statement in our goal, with the guard `{s} = {d}`.
+    Hint (hidden := true) "We now have an if-statement in our goal, with the guard `{s} = {d}`.
     From our previous lemma `pow_cons_count_eq`, and by looking at `{hz}` directly,
     it is already obvious that `{s} = {c}` has to hold, and since `{c} ≠ {d}`
     according to `{huneq}`, we must have `{s} ≠ {d}`, meaning that we should
@@ -60,7 +60,7 @@ Statement pow_cons_count_uneq (c d : Char) (huneq : c ≠ d) (n : ℕ) (x y z : 
       that we can `apply` to it."
       Hint (hidden := true) "`apply cons_cat_cancel at {hz}`"
       apply cons_cat_cancel at hz
-      Hint "To use our induction hypothesis `{ih}`, we also need to show
+      Hint (strict := true) "To use our induction hypothesis `{ih}`, we also need to show
       `Word.length {x} ≤ {n}`; This follows quite obviously from `{hx}`, so
       we can just show this with
 

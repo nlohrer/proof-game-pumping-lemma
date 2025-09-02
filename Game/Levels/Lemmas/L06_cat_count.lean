@@ -6,13 +6,19 @@ Level 6
 
 Title "assoc_count"
 
-Introduction "We've just introduced the `count` definition, which counts how many times a certain character occurs in a word:
+Introduction "We've just introduced the `count` definition, which counts how many times a certain character occurs in a word.
+`Word.count w s` is equivalent to the notation `#ₛ(w)` that we will later see in
+the non-regularity proof on paper.
 
 ```
 def Word.count (w : Word) (s' : Char) : ℕ := match w with
   | .ε => 0
   | .cons s w => if (s = s') then 1 + w.count s' else w.count s'
 ```
+
+As we can see, the empty word `ε` always contains zero instances of `s'`.
+For a word of the form `Word.cons s w`, we count how many times `s'` occurs in `w`,
+and then further increment that count by 1 if `s` also matches with `s'`.
 
 Let's show that we can get the count for a character in a word by summing up the counts in its subwords."
 

@@ -12,9 +12,9 @@ lot of hypotheses that are not necessary to achieve the current goal. To keep th
 distracting us, we can use the `clear` tactic to remove them."
 
 Statement (a b c d e f : ℕ) (h : x = 2) (hy : y = 3) (hz : z = 0)  : x = 2 := by
-  Hint "Use `clear {a} {b} {c} {d} {e} {f} {hy} {hz} {y} {z}` to remove the unneeded hypotheses"
+  Hint (strict := true) "Use `clear {a} {b} {c} {d} {e} {f} {hy} {hz} {y} {z}` to remove the unneeded hypotheses"
   clear a b c d e f hy hz y z
-  Hint (hidden := true) "Use `exact {h}` to close the goal."
+  Hint (strict := true) (hidden := true) "Use `exact {h}` to close the goal."
   exact h
 
 Conclusion "Good! Clearing hypotheses can also be useful when you wish to use

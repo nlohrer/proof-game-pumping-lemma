@@ -1,10 +1,10 @@
 import Game.Levels.Lemmas.L12_pow_cons_count_uneq
 import Game.Metadata
 
-World "NonregProofs"
+World "NonregProof"
 Level 1
 
-Title "Languages"
+Title "Languages and the Pumping Lemma"
 
 Introduction "
 # Introduction
@@ -100,4 +100,4 @@ Statement :
   Hint (hidden := true) "`use 2` closes the goal."
   use 2
 
-Conclusion "With these new definitions, we can finally try our hand at a nonregularity proof!"
+Conclusion "With these new definitions, we can finally try our hand at a non-regularity proof!"

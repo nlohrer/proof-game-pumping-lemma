@@ -18,6 +18,6 @@ Introduction "
 This world is where we introduce the way we formalized the concepts from formal languages that we will require
 later on.
 
-In addition, we will prove a number of lemmas that will be handy for the nonregularity
+In addition, we will prove a number of lemmas that will be handy for the non-regularity
 proof we are working towards.
 "

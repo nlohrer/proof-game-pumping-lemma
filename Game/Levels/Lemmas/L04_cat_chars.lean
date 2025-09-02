@@ -15,6 +15,11 @@ def Word.chars : (w : Word) → Set Char
   | cons s w => {s} ∪ w.chars
 ```
 
+As we can see from the definition, the empty word `ε` contains no symbols at all.
+Meanwhile, for a word of the form `Word.cons s w`, we determine the characters contained in `w`,
+and add add `s` that set.
+
+
 Let's show that for a concatenated word `xy`, its character set is equal
 to the union of the character sets of each subword.
 "
@@ -32,6 +37,9 @@ The set of all characters occuring in a particular word.
 DefinitionDoc Regular.Word.chars as "Word.chars"
 
 TheoremTab "Minor Lemmas"
+/--
+Forming the union over three sets is associative.
+-/
 TheoremDoc Set.union_assoc as "Set.union_assoc" in "Minor Lemmas"
 NewTheorem Set.union_assoc
 
