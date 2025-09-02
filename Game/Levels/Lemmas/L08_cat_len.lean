@@ -16,6 +16,7 @@ def Word.length : (w : Word) → ℕ
 
 The empty word `ε` has a length of 0, while for the inductive case `Word.cons s w`
 we do not care about the symbol `s`, always incrementing the length of `w` by 1.
+We also introduce the notation `|w|` for `Word.length w`.
 
 Let's show that the length of a word is equal to the sum of its subwords."
 
@@ -51,7 +52,8 @@ Statement cat_len (x y : Word) :
     |(x ∘ y)| = |x| + |y| := by
   Hint (hidden := true) "This calls for yet another induction: `induction' x with _ x ih`"
   induction' x with _ x ih
-  · Hint "`Nat.zero_add` should be useful at some point."
+  · Hint "`Nat.zero_add`, which has been added to your inventory, should be useful
+    at some point."
     Hint (hidden := true) "`simp only [Word.cat, Word.length, Nat.zero_add]`"
     simp only [Word.cat, Word.length, Nat.zero_add]
   · Hint "Use `Nat.add_assoc`."

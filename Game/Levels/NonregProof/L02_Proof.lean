@@ -91,7 +91,7 @@ Statement : ¬pumping_property anbn_lang := by
       Hint (hidden := true) "The exact hypotheses for rewriting that you should use
       are `{hz}`, `cat_len`, `pow_len`, and `pow_len` again.
 
-      Apart from rewriting, you can also just `simp [{hz}, cat_len, pow_len]`, and
+      As an alternative to rewriting, you can also just `simp [{hz}, cat_len, pow_len]`, and
       `omega` afterwards."
       rw [hz, cat_len, pow_len, pow_len]
       Hint (hidden := true) "`omega` closes the subgoal."
@@ -227,7 +227,7 @@ Statement : ¬pumping_property anbn_lang := by
       Hint (strict := true) "After this last `simp_all`, our proof state contains some hypotheses that our no longer
       necessary. Let's remove them with `clear {hlenlower} {hv} {hpos} {z}`."
       clear hlenlower hv hpos z
-      Hint "Our hypothesis `{hin}` states that `uvvw` is a word in the language `aⁿbⁿ`. Let's
+      Hint (strict := true) "Our hypothesis `{hin}` states that `uvvw` is a word in the language `aⁿbⁿ`. Let's
       understand what this means exactly with `simp [anbn_lang, anbn] at {hin}`."
       simp [anbn_lang, anbn] at hin
       Hint "Since `uvvw` is in `aⁿbⁿ`, there must be some `n` such that `uvvw = aⁿbⁿ`. Let's access
@@ -290,5 +290,10 @@ Statement : ¬pumping_property anbn_lang := by
       simp_all
 
 Conclusion "You just went through an entire non-regularity proof!"
+
+/--
+`set` is hidden anyway, so this docstring is just a placeholder
+-/
+TacticDoc set
 
 NewHiddenTactic symm set generalize push_neg

@@ -4,7 +4,7 @@ import Game.Metadata
 World "Lemmas"
 Level 6
 
-Title "assoc_count"
+Title "cat_count"
 
 Introduction "We've just introduced the `count` definition, which counts how many times a certain character occurs in a word.
 `Word.count w s` is equivalent to the notation `#ₛ(w)` that we will later see in
@@ -44,7 +44,7 @@ NewDefinition Regular.Word.count
 
 Statement cat_count {s : Char} (x y : Word) :
     (x ∘ y).count s = x.count s + y.count s := by
-  Hint (hidden := true) "Start with `induction' x with s' w ih`."
+  Hint (strict := true) (hidden := true) "Start with `induction' x with s' w ih`."
   induction' x with s' w ih
   · Hint (hidden := true) "Utilize `Word.cat` and `Word.count`."
     Hint (hidden := true) "`simp [Word.cat, Word.count]`"
@@ -59,4 +59,4 @@ Statement cat_count {s : Char} (x y : Word) :
     · Hint (hidden := true) "`exact {ih}` closes the goal immediately."
       exact ih
 
-Conclusion "Good!"
+Conclusion "Good! We will rely on this lemma quite frequently in the non-regularity proof."

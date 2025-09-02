@@ -8,7 +8,7 @@ Title "Introduction: Words"
 Introduction "
 # Words
 Formal languages consist of words over some alphabet Σ.
-They are essentially strings consisting of characters in the alphabet.
+They are essentially strings consisting of symbols (or characters) in the alphabet.
 For instance, for an alphabet `Σ = {a, b, c}`, `abc`, `aabba`, and `c`
 will be words over that alphabet.
 The empty word `ε` is also considered a word.
@@ -20,17 +20,16 @@ inductive Word where
   | cons (s : Char) (w : Word)
 ```
 
-This is an inductive definition: a word is either the empty word ε, or
-some character together with the rest of the word.
-For example, the word `c` would look like this:
+This is an inductive definition: a word is either the empty word `ε`, or
+some symbol together with the rest of the word.
+For example, the word `c` would look like
 `Word.cons 'c' Word.ε`
-
-and the word `abc` would look like this:
+and the word `abc` would look like
 `Word.cons 'a' (Word.cons 'b' (Word.cons ('c' Word.ε)))`
 
 # Concatenation
 We can directly introduce the definition for concatenation of words:
-For words `x` and `y`, the concatenation `xy` just consists of the characters
+For words `x` and `y`, the concatenation `xy` just consists of the symbols
 of both words directly pasted in succession.
 For example, if `x = ab` and `y = cbc`, then `xy = abcbc`.
 

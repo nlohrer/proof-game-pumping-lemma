@@ -17,7 +17,7 @@ def Word.chars : (w : Word) → Set Char
 
 As we can see from the definition, the empty word `ε` contains no symbols at all.
 Meanwhile, for a word of the form `Word.cons s w`, we determine the characters contained in `w`,
-and add add `s` that set.
+and add `s` that set.
 
 
 Let's show that for a concatenated word `xy`, its character set is equal
@@ -58,7 +58,8 @@ Statement cat_chars (x y : Word) : (x ∘ y).chars = x.chars ∪ y.chars := by
     simp [Word.cat, Word.chars]
   · Hint "You can go for similar rewrites here, though you will need the
     induction hypothesis {ih} as well. You might find the theorem
-    `Set.union_assoc` useful at some point."
+    `Set.union_assoc` useful at some point, which has been added to the `Minor Lemmas`
+    tab in your inventory on the right."
     Hint (hidden := true) "Start with `rw [Word.chars, Word.cat, Word.chars, ih]`."
     rw [Word.chars, Word.cat, Word.chars, ih]
     Hint (hidden := true) "`rw [Set.union_assoc]` closes the goal now."

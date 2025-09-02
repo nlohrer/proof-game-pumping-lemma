@@ -17,6 +17,7 @@ def Symbol.pow (a : Char) (n : ℕ) : Word :=
 
 This inductive definition matches on `n`: if `n` is zero, `Symbol.pow` will result the empty word `ε`.
 If it has the form `n + 1`, then it will result in `Word.cons a aⁿ`.
+We also introduce the notation `a ^ n` for `Symbol.pow a n`.
 
 We want to show that aⁿ is n characters long."
 
@@ -60,7 +61,7 @@ Statement pow_len {s : Char} (n : ℕ) : |s ^ n| = n := by
   induction' n with n ih
   · Hint (hidden := true) "`rfl` closes the goal immediately."
     rfl
-  · Hint "The lemma `Nat.one_add` will be useful here."
+  · Hint "The lemma `Nat.one_add` in your inventory will be useful here."
     Hint (hidden := true) "`simp only [Word.length, {ih}, Nat.one_add]`"
     simp [Word.length, ih, Nat.one_add]
 

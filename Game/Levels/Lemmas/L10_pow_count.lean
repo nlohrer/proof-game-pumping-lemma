@@ -6,7 +6,7 @@ Level 10
 
 Title "pow_count"
 
-Introduction "For our last lemma, we will show that for a word of the form cⁿ, it will contain n instances of c, and none of any other character."
+Introduction "We will now show that for a word of the form cⁿ, it will contain n instances of c, and none of any other character."
 
 namespace Regular
 /-- A word of the form cⁿ will contain n instances of the character c, and none of any other character. -/

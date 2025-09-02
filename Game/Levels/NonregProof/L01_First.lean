@@ -63,6 +63,16 @@ DefinitionDoc Regular.Language as "Language"
 def anbn : Set Word := {w | ∃ n : ℕ, w = ('a' ^ n) ∘ ('b' ^ n)}
 ```
 
+The set aⁿbⁿ, which is differentiated from the corresponding language by the fact
+that it is not explicitly defined over a restricted alphabet.
+-/
+DefinitionDoc Regular.anbn as "aⁿbⁿ (Set)"
+
+/--
+```
+def anbn : Set Word := {w | ∃ n : ℕ, w = ('a' ^ n) ∘ ('b' ^ n)}
+```
+
 The language over the alphabet \{'a', 'b'} consisting of the set of words of the form aⁿbⁿ.
 -/
 DefinitionDoc Regular.anbn_lang as "aⁿbⁿ"

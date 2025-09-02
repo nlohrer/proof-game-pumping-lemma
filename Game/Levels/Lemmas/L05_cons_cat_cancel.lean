@@ -24,4 +24,5 @@ Statement cons_cat_cancel (c d : Char) (x y : Word) :
   close the goal."
   simp
 
-Conclusion "Good!"
+Conclusion "Good! We do not strictly need this lemma, but it is good to be aware
+of that property."

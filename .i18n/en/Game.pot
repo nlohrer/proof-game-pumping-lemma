@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Tue Sep  2 22:56:56 2025\n"
+"POT-Creation-Date: Tue Sep  2 23:45:22 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -387,6 +387,10 @@ msgid "Both the type `Word` as well as our definitions for it will be\n"
 "inductive, so we will make frequent use of induction'!"
 msgstr ""
 
+#: Game.Levels.LeanBasics.L14_induction
+msgid "Assuming `x` is a variable in the local context with an inductive type, `induction' x` applies induction on `x` to the main goal, producing one goal for each constructor of the inductive type, in which the target is replaced by a general instance of that constructor and an inductive hypothesis is added for each recursive argument to the constructor. If the type of an element in the local context depends on `x`, that element is reverted and reintroduced afterward, so that the inductive hypothesis incorporates that hypothesis as well."
+msgstr ""
+
 #: Game.Levels.LeanBasics.L15_rcases
 msgid "rcases"
 msgstr ""
@@ -446,7 +450,7 @@ msgstr ""
 #: Game.Levels.Lemmas.L01_Introduction
 msgid "# Words\n"
 "Formal languages consist of words over some alphabet Σ.\n"
-"They are essentially strings consisting of characters in the alphabet.\n"
+"They are essentially strings consisting of symbols (or characters) in the alphabet.\n"
 "For instance, for an alphabet `Σ = {a, b, c}`, `abc`, `aabba`, and `c`\n"
 "will be words over that alphabet.\n"
 "The empty word `ε` is also considered a word.\n"
@@ -458,17 +462,16 @@ msgid "# Words\n"
 "  | cons (s : Char) (w : Word)\n"
 "```\n"
 "\n"
-"This is an inductive definition: a word is either the empty word ε, or\n"
-"some character together with the rest of the word.\n"
-"For example, the word `c` would look like this:\n"
+"This is an inductive definition: a word is either the empty word `ε`, or\n"
+"some symbol together with the rest of the word.\n"
+"For example, the word `c` would look like\n"
 "`Word.cons 'c' Word.ε`\n"
-"\n"
-"and the word `abc` would look like this:\n"
+"and the word `abc` would look like\n"
 "`Word.cons 'a' (Word.cons 'b' (Word.cons ('c' Word.ε)))`\n"
 "\n"
 "# Concatenation\n"
 "We can directly introduce the definition for concatenation of words:\n"
-"For words `x` and `y`, the concatenation `xy` just consists of the characters\n"
+"For words `x` and `y`, the concatenation `xy` just consists of the symbols\n"
 "of both words directly pasted in succession.\n"
 "For example, if `x = ab` and `y = cbc`, then `xy = abcbc`.\n"
 "\n"
@@ -611,7 +614,7 @@ msgid "The newly introduced definition `Word.chars w` produces a set\n"
 "\n"
 "As we can see from the definition, the empty word `ε` contains no symbols at all.\n"
 "Meanwhile, for a word of the form `Word.cons s w`, we determine the characters contained in `w`,\n"
-"and add add `s` that set.\n"
+"and add `s` that set.\n"
 "\n"
 "\n"
 "Let's show that for a concatenated word `xy`, its character set is equal\n"
@@ -653,7 +656,8 @@ msgstr ""
 #: Game.Levels.Lemmas.L04_cat_chars
 msgid "You can go for similar rewrites here, though you will need the\n"
 "induction hypothesis «{ih}» as well. You might find the theorem\n"
-"`Set.union_assoc` useful at some point."
+"`Set.union_assoc` useful at some point, which has been added to the `Minor Lemmas`\n"
+"tab in your inventory on the right."
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
@@ -690,11 +694,12 @@ msgid "Lean has automatically generated a lemma called `Word.cons.injEq`\n"
 msgstr ""
 
 #: Game.Levels.Lemmas.L05_cons_cat_cancel
-msgid "Good!"
+msgid "Good! We do not strictly need this lemma, but it is good to be aware\n"
+"of that property."
 msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count
-msgid "assoc_count"
+msgid "cat_count"
 msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count
@@ -764,7 +769,7 @@ msgid "`exact «{ih}»` closes the goal immediately."
 msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count
-msgid "Good!"
+msgid "Good! We will rely on this lemma quite frequently in the non-regularity proof."
 msgstr ""
 
 #: Game.Levels.Lemmas.L07_cat_count_zero
@@ -793,7 +798,8 @@ msgid "To split the conjunction, let's use the `constructor` tactic."
 msgstr ""
 
 #: Game.Levels.Lemmas.L07_cat_count_zero
-msgid "Use the theorem `Nat.add_eq_zero_iff`"
+msgid "Use the theorem `Nat.add_eq_zero_iff`, which has been added to your\n"
+"inventory."
 msgstr ""
 
 #: Game.Levels.Lemmas.L07_cat_count_zero
@@ -827,6 +833,7 @@ msgid "Our new definition `length` defines the length of a word:\n"
 "\n"
 "The empty word `ε` has a length of 0, while for the inductive case `Word.cons s w`\n"
 "we do not care about the symbol `s`, always incrementing the length of `w` by 1.\n"
+"We also introduce the notation `|w|` for `Word.length w`.\n"
 "\n"
 "Let's show that the length of a word is equal to the sum of its subwords."
 msgstr ""
@@ -858,7 +865,8 @@ msgid "This calls for yet another induction: `induction' x with _ x ih`"
 msgstr ""
 
 #: Game.Levels.Lemmas.L08_cat_len
-msgid "`Nat.zero_add` should be useful at some point."
+msgid "`Nat.zero_add`, which has been added to your inventory, should be useful\n"
+"at some point."
 msgstr ""
 
 #: Game.Levels.Lemmas.L08_cat_len
@@ -893,6 +901,7 @@ msgid "The `pow` definition allows us to create strings of the form aⁿ, such a
 "\n"
 "This inductive definition matches on `n`: if `n` is zero, `Symbol.pow` will result the empty word `ε`.\n"
 "If it has the form `n + 1`, then it will result in `Word.cons a aⁿ`.\n"
+"We also introduce the notation `a ^ n` for `Symbol.pow a n`.\n"
 "\n"
 "We want to show that aⁿ is n characters long."
 msgstr ""
@@ -937,7 +946,7 @@ msgid "`rfl` closes the goal immediately."
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_len
-msgid "The lemma `Nat.one_add` will be useful here."
+msgid "The lemma `Nat.one_add` in your inventory will be useful here."
 msgstr ""
 
 #: Game.Levels.Lemmas.L09_pow_len
@@ -953,7 +962,7 @@ msgid "pow_count"
 msgstr ""
 
 #: Game.Levels.Lemmas.L10_pow_count
-msgid "For our last lemma, we will show that for a word of the form cⁿ, it will contain n instances of c, and none of any other character."
+msgid "We will now show that for a word of the form cⁿ, it will contain n instances of c, and none of any other character."
 msgstr ""
 
 #: Game.Levels.Lemmas.L10_pow_count
@@ -996,7 +1005,7 @@ msgstr ""
 msgid "Let's prove a statement for a slightly more complex situation that\n"
 "may show up in a non-regularity proof:\n"
 "For `n > 0`, characters `c, d`, and words `x, y`, if\n"
-"`cx = dⁿy`, then `c` must be `d`!."
+"`cx = dⁿy`, then `c` must be `d`!"
 msgstr ""
 
 #: Game.Levels.Lemmas.L11_pow_cons_count_eq
@@ -1004,8 +1013,7 @@ msgid "A word of the form cⁿ will contain n instances of the character c, and 
 msgstr ""
 
 #: Game.Levels.Lemmas.L11_pow_cons_count_eq
-msgid "We need to match on `«{n}»` here, so use `rcases «{n}» with _ | n`.\n"
-"Since we're just matching, we do not need to name the induction hypothesis."
+msgid "We need to match on `«{n}»` here, so use `rcases «{n}» with _ | n`."
 msgstr ""
 
 #: Game.Levels.Lemmas.L11_pow_cons_count_eq
@@ -1122,7 +1130,8 @@ msgid "Close the goal with `exact «{ih}» «{n}» «{hz}».right «{hlen}»`."
 msgstr ""
 
 #: Game.Levels.Lemmas.L12_pow_cons_count_uneq
-msgid "Good!"
+msgid "Very good! You are now prepared to tackle the non-regularity proof in the final\n"
+"world."
 msgstr ""
 
 #: Game.Levels.Lemmas
@@ -1188,6 +1197,15 @@ msgid "```\n"
 "```\n"
 "\n"
 "A language is a set of words over an alphabet."
+msgstr ""
+
+#: Game.Levels.NonregProof.L01_First
+msgid "```\n"
+"def anbn : Set Word := {w | ∃ n : ℕ, w = ('a' ^ n) ∘ ('b' ^ n)}\n"
+"```\n"
+"\n"
+"The set aⁿbⁿ, which is differentiated from the corresponding language by the fact\n"
+"that it is not explicitly defined over a restricted alphabet."
 msgstr ""
 
 #: Game.Levels.NonregProof.L01_First
@@ -1324,7 +1342,7 @@ msgstr ""
 msgid "The exact hypotheses for rewriting that you should use\n"
 "are `«{hz}»`, `cat_len`, `pow_len`, and `pow_len` again.\n"
 "\n"
-"Apart from rewriting, you can also just `simp [«{hz}», cat_len, pow_len]`, and\n"
+"As an alternative to rewriting, you can also just `simp [«{hz}», cat_len, pow_len]`, and\n"
 "`omega` afterwards."
 msgstr ""
 
@@ -1602,6 +1620,10 @@ msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
 msgid "You just went through an entire non-regularity proof!"
+msgstr ""
+
+#: Game.Levels.NonregProof.L02_Proof
+msgid "`set` is hidden anyway, so this docstring is just a placeholder"
 msgstr ""
 
 #: Game.Levels.NonregProof

@@ -25,7 +25,8 @@ Statement cat_count_zero {s : Char} (x y : Word) :
   intro hcatcount
   Hint "To split the conjunction, let's use the `constructor` tactic."
   constructor
-  · Hint "Use the theorem `Nat.add_eq_zero_iff`"
+  · Hint "Use the theorem `Nat.add_eq_zero_iff`, which has been added to your
+    inventory."
     Hint (hidden := true) "simp_all [cat_count, Nat.add_eq_zero_iff]"
     simp_all [cat_count, Nat.add_eq_zero_iff]
   · Hint "Once again, use the theorem `Nat.add_eq_zero_iff`"

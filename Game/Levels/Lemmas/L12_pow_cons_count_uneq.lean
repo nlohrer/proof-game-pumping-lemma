@@ -30,7 +30,7 @@ Statement pow_cons_count_uneq (c d : Char) (huneq : c ≠ d) (n : ℕ) (x y z : 
     rw [Word.length] at hx
     Hint "We can now look at our goal: `rw [Word.count]`."
     rw [Word.count]
-    Hint (hidden := true) "We now have an if-statement in our goal, with the guard `{s} = {d}`.
+    Hint (strict := true) "We now have an if-statement in our goal, with the guard `{s} = {d}`.
     From our previous lemma `pow_cons_count_eq`, and by looking at `{hz}` directly,
     it is already obvious that `{s} = {c}` has to hold, and since `{c} ≠ {d}`
     according to `{huneq}`, we must have `{s} ≠ {d}`, meaning that we should
@@ -76,4 +76,6 @@ lemma cat_char_subset_left (x y : Word) :
 lemma cat_char_subset_right (x y : Word) :
     y.chars ⊆ (x ∘ y).chars := by
   simp only [Word.cat_chars, Set.subset_union_right]
-Conclusion "Good!"
+
+Conclusion "Very good! You are now prepared to tackle the non-regularity proof in the final
+world."
