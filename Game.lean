@@ -5,7 +5,6 @@ import Game.Levels.NonregProof
 Dependency LeanBasics → Lemmas
 Dependency Lemmas → NonregProof
 
--- Here's what we'll put on the title screen
 Title "Proof Game for the Pumping Lemma"
 Introduction
 "

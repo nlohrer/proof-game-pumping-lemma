@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Tue Sep  2 23:45:22 2025\n"
+"POT-Creation-Date: Wed Sep  3 16:11:59 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -704,7 +704,7 @@ msgstr ""
 
 #: Game.Levels.Lemmas.L06_cat_count
 msgid "We've just introduced the `count` definition, which counts how many times a certain character occurs in a word.\n"
-"`Word.count w s` is equivalent to the notation `#ₛ(w)` that we will later see in\n"
+"`Word.count w s` is equivalent to the notation `#s(w)` that we will later see in\n"
 "the non-regularity proof on paper.\n"
 "\n"
 "```\n"
@@ -732,7 +732,7 @@ msgid "```\n"
 "  | .cons s w => if (s = s') then 1 + w.count s' else w.count s'\n"
 "```\n"
 "\n"
-"`w.count s` shows `#ₛ(w)`, i.e. the amount of times that the character\n"
+"`w.count s` shows `#s(w)`, i.e. the amount of times that the character\n"
 "`s` occurs in the word `w`."
 msgstr ""
 
@@ -1261,18 +1261,18 @@ msgid "We are finally ready to work through a proof that utilizes the pumping le
 "Let u, v, w be words over the alphabet \\{a, b} with z = uvw with |uv| ≤ n\n"
 "and |v| ≥ 1.\n"
 "We have to show that there is i ∈ ℕ such that uvⁱw ∉ aⁿbⁿ.\n"
-"Since |uv| ≤ n and the first n symbols of z are a's, we know that there are no b's\n"
-"in v.\n"
-"Since |v| ≥ 1, there must be at least one a in v.\n"
+"Since |uv| ≤ n and the first n symbols of z are `'a'`s, we know that `#b(v) = 0`.\n"
+"Since |v| ≥ 1, there must be at least one a in v, so `#a(v) ≥ 1`.\n"
 "So `#a(v) ≠ #b(v)`.\n"
+"\n"
 "We show that uvvw ∉ aⁿbⁿ by contradiction, so let us assume uvvw ∈ aⁿbⁿ.\n"
-"This directly means #a(uvvw) = #b(uvvw); since the count of a symbol in a word\n"
-"is just the sum of its counts in all its subwords, we directly get the equality\n"
+"From this `#a(uvvw) = #b(uvvw)` follows directly; since the count of a symbol in a word\n"
+"is just the sum of its counts in all its subwords, we thus get the equality\n"
 "`#a(u) + #a(v) + #a(v) + #a(w) = #b(u) + #b(v) + #b(v) + #b(w)`.\n"
-"Since uvw = z ∈ aⁿbⁿ, we also have #a(uvw) = #b(uvw), leading to the equality\n"
+"Since uvw = z ∈ aⁿbⁿ, we also have `#a(uvw) = #b(uvw)`, leading to the equality\n"
 "`#a(u) + #a(v) + #a(w) = #b(u) + #b(v) + #b(w)`.\n"
 "Subtracting the latter equality from the former yields `#a(v) = #b(v)`.\n"
-"But that is a contradiction to `#a(v) ≠ #b(v)`.\n"
+"But that is a contradiction with `#a(v) ≠ #b(v)`.\n"
 "Therefore, aⁿbⁿ is not regular.\n"
 "\n"
 "We will want to replicate the structure of the proof in Lean, but it will turn out\n"
@@ -1373,7 +1373,8 @@ msgid "Let's look at our hypotheses:\n"
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "In our paper proof, we made an argument for why there are no b's in `«{v}»`. For our formalization, let's have this as a separate hypothesis:\n"
+msgid "In our paper proof, we made an argument for why there are no `'b'`s in\n"
+"`«{v}»`. For our formalization, let's have this as a separate hypothesis:\n"
 "\n"
 "`have hnobs : «{v}».count 'b' = 0`"
 msgstr ""
@@ -1384,8 +1385,8 @@ msgid "Let's simplify the entire proof state with\n"
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "The argument in our proof works to show that there are no b's in\n"
-"`uv`. Let's show that first: `have huv : (u ∘ v).count 'b' = 0`."
+msgid "The argument in our proof implicitly works by showing that there are\n"
+"no `'b'`s in `uv`. Let's show that first: `have huv : (u ∘ v).count 'b' = 0`."
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
@@ -1405,9 +1406,10 @@ msgid "For this specific situation, we have already proved the lemma `pow_cons_c
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "We can now use the fresh hypothesis `«{huv}»`:\n"
+msgid "We can now use the fresh hypothesis `«{huv}»`, utilizing the lemma `cat_count_zero`\n"
+"that we showed earlier:\n"
 "\n"
-"`exact (@cat_count_zero 'b' «{u}» «{v}» «{huv}»).right`"
+"`exact (cat_count_zero «{u}» «{v}» «{huv}»).right`"
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
@@ -1433,7 +1435,7 @@ msgid "We have a lot of unnecessary hypotheses, so let's remove them:\n"
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "The fact that v contains no a's should follow quite obviously from\n"
+msgid "The fact that v contains no `'a'`s should follow quite obviously from\n"
 "«{hnobs}» and «{hvchars}».\n"
 "\n"
 "We still need to do the rest of the work to show our statement. Let's pattern match\n"
@@ -1441,7 +1443,7 @@ msgid "The fact that v contains no a's should follow quite obviously from\n"
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "«{hv}» states that our word should have a length of at least 1, but\n"
+msgid "`«{hv}»` states that our word should have a length of at least 1, but\n"
 "the empty word `ε` has a length of 0, meaning that we get a contradiction\n"
 "in our hypotheses. As we can achieve any goal from a false hypothesis,\n"
 "this is exactly what we want!\n"
@@ -1456,7 +1458,7 @@ msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
 msgid "At this point, we don't specifically care about the fact that `«{w}».count 'a'`\n"
-"specifically describes how many a's there are in «{w}» - we just care about the fact that\n"
+"specifically describes how many `'a'`s there are in «{w}» - we just care about the fact that\n"
 "it is some arbitrary natural number. We can therefore make the proof state a bit more\n"
 "readible by generalizing it into some number `n`:\n"
 "\n"
@@ -1473,8 +1475,9 @@ msgid "This inequality is obviously true for any «{n}», so let's solve it dire
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "According to `«{hvchars}»`, `«{s}»` is either `'a'` or `'b'`, and `«{hs}»` states that\n"
-"`«{s}»` is not `'a'` - therefore, `«{s}»` must be `'b'`! Let's show this as a new hypothesis:\n"
+msgid "According to `«{hvchars}»`, `«{s}»` is either `'a'` or `'b'`, and\n"
+"`«{hs}»` states that `«{s}»` is not `'a'` - therefore, `«{s}»` must be `'b'`! Let's show this\n"
+"as a new hypothesis:\n"
 "\n"
 "`have hsb : «{s}» = 'b'`"
 msgstr ""
@@ -1484,8 +1487,9 @@ msgid "Let's remove the unrequired elements: `clear «{hnobs}» «{n}»`."
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "We want to mutate `«{hvchars}»` into a form where it essentially directly states\n"
-"that `«{s}»` is either `'a'` or `'b'`, so that `simp_all` can take care of the rest.\n"
+msgid "We want to mutate `«{hvchars}»` into a form where it essentially\n"
+"directly states that `«{s}»` is either `'a'` or `'b'`, so that `simp_all` can take care\n"
+"of the rest.\n"
 "\n"
 "Start with `rw [Word.chars] at «{hvchars}»`."
 msgstr ""
@@ -1510,8 +1514,8 @@ msgid "With the new hypothesis `«{hsb}»` we land in the `if` case in `hnobs`, 
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "We can now work through the main step of the proof. We want to show a negated\n"
-"statement. For a statement `φ`, its negation `¬φ` will actually be equivalent to\n"
+msgid "We can now work through the main step of the proof. We want to show\n"
+"a negated statement. For a statement `φ`, its negation `¬φ` will actually be equivalent to\n"
 "`φ → False` in Lean, so our goal is actually an implication right now. We therefore want to\n"
 "proceed by introducing the antecedent: `intro hin`."
 msgstr ""
@@ -1527,13 +1531,13 @@ msgid "To make several of our hypotheses easier to read, let's proceed with anot
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "After this last `simp_all`, our proof state contains some hypotheses that our no longer\n"
-"necessary. Let's remove them with `clear «{hlenlower}» «{hv}» «{hpos}» «{z}»`."
+msgid "After this last `simp_all`, our proof state contains some hypotheses\n"
+"that are no longer necessary. Let's remove them with `clear «{hlenlower}» «{hv}» «{hpos}» «{z}»`."
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "Our hypothesis `«{hin}»` states that `uvvw` is a word in the language `aⁿbⁿ`. Let's\n"
-"understand what this means exactly with `simp [anbn_lang, anbn] at «{hin}»`."
+msgid "Our hypothesis `«{hin}»` states that `uvvw` is a word in the language\n"
+"`aⁿbⁿ`. Let's understand what this means exactly with `simp [anbn_lang, anbn] at «{hin}»`."
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
@@ -1542,9 +1546,9 @@ msgid "Since `uvvw` is in `aⁿbⁿ`, there must be some `n` such that `uvvw = a
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "Our goal is to show some sort of contradiction now. The idea is that due to `«{hm}»`, the\n"
-"number of a's and b's in `uvvw` has to be equal. But according to `«{hcons}»`, `«{hnobs}»`,\n"
-"and `«{hatleastonea}»`, those counts have to be different!\n"
+msgid "Our goal is to show some sort of contradiction now. The idea is that\n"
+"due to `«{hm}»`, the number of `'a'`s and `'b'`s in `uvvw` has to be equal. But according to\n"
+"`«{hcons}»`, `«{hnobs}»`, and `«{hatleastonea}»`, those counts have to be different!\n"
 "\n"
 "Let's show the first statement now:\n"
 "`have heven : («{u}» ∘ «{v}» ∘ «{v}» ∘ «{w}»).count 'a' = («{u}» ∘ «{v}» ∘ «{v}» ∘ «{w}»).count 'b'`"
@@ -1558,15 +1562,15 @@ msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
 msgid "Remember that we stated the lemma `cat_count` to handle counts of concatenations,\n"
-"and further `pow_count` to state that #ₐ(aⁿ) = n. These two facts are obviously enough to\n"
+"and further `pow_count` to state that `#a(aⁿ) = n`. These two facts are obviously enough to\n"
 "show the goal right now, so let's just close it directly with\n"
 "`simp [cat_count, pow_count]`."
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "The more involved proof will be to use the previously proven hypotheses to show\n"
-"that the number of a's in `«{u}»«{v}»«{v}»«{w}»` differs from the number of b's.\n"
-"We first want to show that `«{u}»«{v}»«{w}»` indeed has the same amount of a's and b's.\n"
+msgid "The more involved proof will be to use the previously proven hypotheses\n"
+"to show that the number of `'a'`s in `«{u}»«{v}»«{v}»«{w}»` differs from the number of `'b'`s.\n"
+"We first want to show that `«{u}»«{v}»«{w}»` indeed has the same amount of `'a'`s and `'b'`s.\n"
 "\n"
 "`have hcount : («{u}» ∘ «{v}» ∘ «{w}»).count 'a' = («{u}» ∘ «{v}» ∘ «{w}»).count 'b'`"
 msgstr ""
@@ -1585,8 +1589,8 @@ msgid "Our proof state is almost exactly the same as at the end of our previous 
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "Since both `«{u}»«{v}»«{w}»` and `«{u}»«{v}»«{v}»«{w}»` have the same count of a's and b's, «{v}» must\n"
-"have the same count as well:\n"
+msgid "Since both `«{u}»«{v}»«{w}»` and `«{u}»«{v}»«{v}»«{w}»` have the same count of `'a'`s\n"
+"and `'b'`s, «{v}» must have the same count as well:\n"
 "\n"
 "`have hveqcount : «{v}».count 'a' = «{v}».count 'b'`"
 msgstr ""
@@ -1604,15 +1608,16 @@ msgid "Our goal follows from subtracting the equality `«{hcount}»` from the ot
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "The previous hypotheses we showed were only steps to get to «{hveqcount}»; to have a\n"
-"clearer view of what we actually need, let's remove them again:\n"
+msgid "The previous hypotheses we showed were only steps to get to\n"
+"`«{hveqcount}»`; to have a clearer view of what we actually need, let's remove them again:\n"
+"\n"
 "`clear «{heven}» «{hcount}» «{hm}» «{m}» «{hcons}»`."
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "The contradiction we now receive boils down to the fact that according to `«{hveqcount}»`,\n"
-"`«{v}»` contains as many a's as b's, but according to `«{hnobs}»` and `«{hatleastonea}»`, that\n"
-"number should be different.\n"
+msgid "The contradiction we now receive boils down to the fact that according\n"
+"to `«{hveqcount}»`, `«{v}»` contains as many `'a'`s as `'b'`s, but according to `«{hnobs}»` and\n"
+"`«{hatleastonea}»`, that number should be different.\n"
 "\n"
 "At this point our hypotheses contain enough information that `simp_all` or `omega` will\n"
 "close the goal, but if you want you can try to go for a more manual approach."

@@ -13,18 +13,18 @@ Let n > 0; we choose z = aⁿbⁿ ∈ anbn, clearly |z| = 2n > n.
 Let u, v, w be words over the alphabet \\{a, b} with z = uvw with |uv| ≤ n
 and |v| ≥ 1.
 We have to show that there is i ∈ ℕ such that uvⁱw ∉ aⁿbⁿ.
-Since |uv| ≤ n and the first n symbols of z are a's, we know that there are no b's
-in v.
-Since |v| ≥ 1, there must be at least one a in v.
+Since |uv| ≤ n and the first n symbols of z are `'a'`s, we know that `#b(v) = 0`.
+Since |v| ≥ 1, there must be at least one a in v, so `#a(v) ≥ 1`.
 So `#a(v) ≠ #b(v)`.
+
 We show that uvvw ∉ aⁿbⁿ by contradiction, so let us assume uvvw ∈ aⁿbⁿ.
-This directly means #a(uvvw) = #b(uvvw); since the count of a symbol in a word
-is just the sum of its counts in all its subwords, we directly get the equality
+From this `#a(uvvw) = #b(uvvw)` follows directly; since the count of a symbol in a word
+is just the sum of its counts in all its subwords, we thus get the equality
 `#a(u) + #a(v) + #a(v) + #a(w) = #b(u) + #b(v) + #b(v) + #b(w)`.
-Since uvw = z ∈ aⁿbⁿ, we also have #a(uvw) = #b(uvw), leading to the equality
+Since uvw = z ∈ aⁿbⁿ, we also have `#a(uvw) = #b(uvw)`, leading to the equality
 `#a(u) + #a(v) + #a(w) = #b(u) + #b(v) + #b(w)`.
 Subtracting the latter equality from the former yields `#a(v) = #b(v)`.
-But that is a contradiction to `#a(v) ≠ #b(v)`.
+But that is a contradiction with `#a(v) ≠ #b(v)`.
 Therefore, aⁿbⁿ is not regular.
 
 We will want to replicate the structure of the proof in Lean, but it will turn out
@@ -114,15 +114,16 @@ Statement : ¬pumping_property anbn_lang := by
       We now need to provide a suitable `i`; in the paper proof we chose `i = 2`,
       so let's `use 2`."
       use 2
-      Hint (strict := true) "In our paper proof, we made an argument for why there are no b's in `{v}`. For our formalization, let's have this as a separate hypothesis:
+      Hint (strict := true) "In our paper proof, we made an argument for why there are no `'b'`s in
+      `{v}`. For our formalization, let's have this as a separate hypothesis:
 
       `have hnobs : {v}.count 'b' = 0`"
       have hnobs : v.count 'b' = 0
       · Hint (strict := true) "Let's simplify the entire proof state with
         `simp_all [{z}]`"
         simp_all [z]
-        Hint (strict := true) "The argument in our proof works to show that there are no b's in
-        `uv`. Let's show that first: `have huv : (u ∘ v).count 'b' = 0`."
+        Hint (strict := true) "The argument in our proof implicitly works by showing that there are
+        no `'b'`s in `uv`. Let's show that first: `have huv : (u ∘ v).count 'b' = 0`."
         have huv : (u ∘ v).count 'b' = 0
         · Hint "We need to utilize the associativity that we proved earlier:
 
@@ -136,11 +137,13 @@ Statement : ¬pumping_property anbn_lang := by
 
           `apply pow_cons_count_uneq 'a' 'b'
           (ne_of_beq_false rfl) {n} ({u} ∘ {v}) {w} ('b' ^ {n}) {hcons} {hlenlower}`"
-          apply pow_cons_count_uneq 'a' 'b' (ne_of_beq_false rfl) n (u ∘ v) w ('b' ^ n) hcons hlenlower
-        Hint "We can now use the fresh hypothesis `{huv}`:
+          apply pow_cons_count_uneq 'a' 'b' (ne_of_beq_false rfl) n (u ∘ v) w ('b' ^ n) hcons
+            hlenlower
+        Hint "We can now use the fresh hypothesis `{huv}`, utilizing the lemma `cat_count_zero`
+        that we showed earlier:
 
-        `exact (@cat_count_zero 'b' {u} {v} {huv}).right`"
-        exact (@cat_count_zero 'b' u v huv).right
+        `exact (cat_count_zero {u} {v} {huv}).right`"
+        exact (cat_count_zero u v huv).right
       Hint (strict := true) "For the next step of our proof, we showed that `{v}` contained at least
       one `'a'`. This will unfortunately be much more involved to show!
 
@@ -157,13 +160,13 @@ Statement : ¬pumping_property anbn_lang := by
 
         `clear {hlenlower} {hcons} {hz} {u} {w} {z} {hpos} {n}`"
         clear hlenlower hcons hz u w z hpos n
-        Hint (strict := true) "The fact that v contains no a's should follow quite obviously from
+        Hint (strict := true) "The fact that v contains no `'a'`s should follow quite obviously from
         {hnobs} and {hvchars}.
 
         We still need to do the rest of the work to show our statement. Let's pattern match
         on `{v}` with `rcases v with _ | ⟨s, w⟩`."
         rcases v with _ | ⟨s, w⟩
-        · Hint "{hv} states that our word should have a length of at least 1, but
+        · Hint "`{hv}` states that our word should have a length of at least 1, but
           the empty word `ε` has a length of 0, meaning that we get a contradiction
           in our hypotheses. As we can achieve any goal from a false hypothesis,
           this is exactly what we want!
@@ -174,7 +177,7 @@ Statement : ¬pumping_property anbn_lang := by
         · Hint "Let's use `simp_all [Word.length, Word.count]` to simplify our proof state."
           simp_all [Word.length, Word.count]
           Hint "At this point, we don't specifically care about the fact that `{w}.count 'a'`
-          specifically describes how many a's there are in {w} - we just care about the fact that
+          specifically describes how many `'a'`s there are in {w} - we just care about the fact that
           it is some arbitrary natural number. We can therefore make the proof state a bit more
           readible by generalizing it into some number `n`:
 
@@ -185,16 +188,17 @@ Statement : ¬pumping_property anbn_lang := by
           · Hint "This inequality is obviously true for any {n}, so let's solve it directly
             with `omega`."
             omega
-          ·
-            Hint (strict := true) "According to `{hvchars}`, `{s}` is either `'a'` or `'b'`, and `{hs}` states that
-            `{s}` is not `'a'` - therefore, `{s}` must be `'b'`! Let's show this as a new hypothesis:
+          · Hint (strict := true) "According to `{hvchars}`, `{s}` is either `'a'` or `'b'`, and
+            `{hs}` states that `{s}` is not `'a'` - therefore, `{s}` must be `'b'`! Let's show this
+            as a new hypothesis:
 
             `have hsb : {s} = 'b'`"
             have hsb : s = 'b'
             · Hint (strict := true) "Let's remove the unrequired elements: `clear {hnobs} {n}`."
               clear hnobs n
-              Hint (strict := true) "We want to mutate `{hvchars}` into a form where it essentially directly states
-              that `{s}` is either `'a'` or `'b'`, so that `simp_all` can take care of the rest.
+              Hint (strict := true) "We want to mutate `{hvchars}` into a form where it essentially
+              directly states that `{s}` is either `'a'` or `'b'`, so that `simp_all` can take care
+              of the rest.
 
               Start with `rw [Word.chars] at {hvchars}`."
               rw [Word.chars] at hvchars
@@ -211,10 +215,8 @@ Statement : ¬pumping_property anbn_lang := by
             This statement is a contradiction, so `simp [{hsb}] at {hnobs}` will
             close the goal."
             simp [hsb] at hnobs
-      -- mind that our main hypotheses right now are hnobs and hatleastonea,
-      -- and those reflect the steps in the proof that we worked through first
-      Hint (strict := true) "We can now work through the main step of the proof. We want to show a negated
-      statement. For a statement `φ`, its negation `¬φ` will actually be equivalent to
+      Hint (strict := true) "We can now work through the main step of the proof. We want to show
+      a negated statement. For a statement `φ`, its negation `¬φ` will actually be equivalent to
       `φ → False` in Lean, so our goal is actually an implication right now. We therefore want to
       proceed by introducing the antecedent: `intro hin`."
       intro hin
@@ -224,18 +226,18 @@ Statement : ¬pumping_property anbn_lang := by
       Hint "To make several of our hypotheses easier to read, let's proceed with another
       simplification: `simp_all [cat_assoc, {z}]`."
       simp_all [cat_assoc, z]
-      Hint (strict := true) "After this last `simp_all`, our proof state contains some hypotheses that our no longer
-      necessary. Let's remove them with `clear {hlenlower} {hv} {hpos} {z}`."
+      Hint (strict := true) "After this last `simp_all`, our proof state contains some hypotheses
+      that are no longer necessary. Let's remove them with `clear {hlenlower} {hv} {hpos} {z}`."
       clear hlenlower hv hpos z
-      Hint (strict := true) "Our hypothesis `{hin}` states that `uvvw` is a word in the language `aⁿbⁿ`. Let's
-      understand what this means exactly with `simp [anbn_lang, anbn] at {hin}`."
+      Hint (strict := true) "Our hypothesis `{hin}` states that `uvvw` is a word in the language
+      `aⁿbⁿ`. Let's understand what this means exactly with `simp [anbn_lang, anbn] at {hin}`."
       simp [anbn_lang, anbn] at hin
       Hint "Since `uvvw` is in `aⁿbⁿ`, there must be some `n` such that `uvvw = aⁿbⁿ`. Let's access
       this `n` with `rcases {hin} with ⟨m, hm⟩`."
       rcases hin with ⟨m, hm⟩
-      Hint (strict := true) "Our goal is to show some sort of contradiction now. The idea is that due to `{hm}`, the
-      number of a's and b's in `uvvw` has to be equal. But according to `{hcons}`, `{hnobs}`,
-      and `{hatleastonea}`, those counts have to be different!
+      Hint (strict := true) "Our goal is to show some sort of contradiction now. The idea is that
+      due to `{hm}`, the number of `'a'`s and `'b'`s in `uvvw` has to be equal. But according to
+      `{hcons}`, `{hnobs}`, and `{hatleastonea}`, those counts have to be different!
 
       Let's show the first statement now:
       `have heven : ({u} ∘ {v} ∘ {v} ∘ {w}).count 'a' = ({u} ∘ {v} ∘ {v} ∘ {w}).count 'b'`"
@@ -245,13 +247,13 @@ Statement : ¬pumping_property anbn_lang := by
         Let's open by rewriting with `{hm}`: `rw [{hm}]`."
         rw [hm]
         Hint "Remember that we stated the lemma `cat_count` to handle counts of concatenations,
-        and further `pow_count` to state that #ₐ(aⁿ) = n. These two facts are obviously enough to
+        and further `pow_count` to state that `#a(aⁿ) = n`. These two facts are obviously enough to
         show the goal right now, so let's just close it directly with
         `simp [cat_count, pow_count]`."
         simp [cat_count, pow_count]
-      Hint (strict := true) "The more involved proof will be to use the previously proven hypotheses to show
-      that the number of a's in `{u}{v}{v}{w}` differs from the number of b's.
-      We first want to show that `{u}{v}{w}` indeed has the same amount of a's and b's.
+      Hint (strict := true) "The more involved proof will be to use the previously proven hypotheses
+      to show that the number of `'a'`s in `{u}{v}{v}{w}` differs from the number of `'b'`s.
+      We first want to show that `{u}{v}{w}` indeed has the same amount of `'a'`s and `'b'`s.
 
       `have hcount : ({u} ∘ {v} ∘ {w}).count 'a' = ({u} ∘ {v} ∘ {w}).count 'b'`"
       have hcount : (u ∘ v ∘ w).count 'a' = (u ∘ v ∘ w).count 'b'
@@ -264,8 +266,8 @@ Statement : ¬pumping_property anbn_lang := by
 
         `simp [cat_count, pow_count]`"
         simp [cat_count, pow_count]
-      Hint (strict := true) "Since both `{u}{v}{w}` and `{u}{v}{v}{w}` have the same count of a's and b's, {v} must
-      have the same count as well:
+      Hint (strict := true) "Since both `{u}{v}{w}` and `{u}{v}{v}{w}` have the same count of `'a'`s
+      and `'b'`s, {v} must have the same count as well:
 
       `have hveqcount : {v}.count 'a' = {v}.count 'b'`"
       have hveqcount : v.count 'a' = v.count 'b'
@@ -277,13 +279,14 @@ Statement : ¬pumping_property anbn_lang := by
         Since this is a simple arithmetic problem, we can close the goal
         with `omega`."
         omega
-      Hint (strict := true) "The previous hypotheses we showed were only steps to get to {hveqcount}; to have a
-      clearer view of what we actually need, let's remove them again:
+      Hint (strict := true) "The previous hypotheses we showed were only steps to get to
+      `{hveqcount}`; to have a clearer view of what we actually need, let's remove them again:
+
       `clear {heven} {hcount} {hm} {m} {hcons}`."
       clear heven hcount hm m hcons
-      Hint (strict := true) "The contradiction we now receive boils down to the fact that according to `{hveqcount}`,
-      `{v}` contains as many a's as b's, but according to `{hnobs}` and `{hatleastonea}`, that
-      number should be different.
+      Hint (strict := true) "The contradiction we now receive boils down to the fact that according
+      to `{hveqcount}`, `{v}` contains as many `'a'`s as `'b'`s, but according to `{hnobs}` and
+      `{hatleastonea}`, that number should be different.
 
       At this point our hypotheses contain enough information that `simp_all` or `omega` will
       close the goal, but if you want you can try to go for a more manual approach."

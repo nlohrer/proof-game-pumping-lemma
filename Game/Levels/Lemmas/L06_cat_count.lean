@@ -7,7 +7,7 @@ Level 6
 Title "cat_count"
 
 Introduction "We've just introduced the `count` definition, which counts how many times a certain character occurs in a word.
-`Word.count w s` is equivalent to the notation `#ₛ(w)` that we will later see in
+`Word.count w s` is equivalent to the notation `#s(w)` that we will later see in
 the non-regularity proof on paper.
 
 ```
@@ -35,7 +35,7 @@ def Word.count (w : Word) (s' : Char) : ℕ := match w with
   | .cons s w => if (s = s') then 1 + w.count s' else w.count s'
 ```
 
-`w.count s` shows `#ₛ(w)`, i.e. the amount of times that the character
+`w.count s` shows `#s(w)`, i.e. the amount of times that the character
 `s` occurs in the word `w`.
 -/
 DefinitionDoc Regular.Word.count as "Word.count"
