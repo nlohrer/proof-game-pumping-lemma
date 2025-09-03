@@ -19,13 +19,21 @@ Nonetheless, since we give optional hints for every single step required to go
 through all the levels, this game might still be of some use to you even if you
 have not worked with Lean before.
 
-The first world offers a refresher on the tactics we are going to need for this game.
+Start by clicking on the first world, `Basic Tactics`, which offers a refresher on the tactics we
+are going to need for this game.
+
+Mind that the introduction to the second world appears empty due to some unknown bug.
 "
 
 Info "
 This game is part of my Bachelor's thesis at LMU Munich.
 
 The [original code can be found on github](https://github.com/nlohrer/proof-game-pumping-lemma)
+
+## Credits
+
+* **Creators:** Norman Lohrer
+* **Game Engine:** Alexander Bentkamp, Jon Eugster, Patrick Massot
 "
 
 /-! Information to be displayed on the servers landing page. -/

@@ -62,14 +62,15 @@ A word over an alphabet, i.e. a string of symbols from that alphabet.
 -/
 DefinitionDoc Regular.Word as "Word"
 
-/-- Concatenation of words: for two words w₁ and w₂, the concatenation w₁ and w₂ yields w₁w₂.
-
+/--
 ```
 def Word.cat (x y : Word) : Word :=
   match x with
  | .ε => y
  | .cons s x => .cons s (x.cat y)
 ```
+
+Concatenation of words: for two words w₁ and w₂, the concatenation w₁ and w₂ yields w₁w₂.
 -/
 DefinitionDoc Regular.Word.cat as "Word.cat"
 

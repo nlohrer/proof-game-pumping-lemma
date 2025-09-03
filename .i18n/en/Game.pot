@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Sep  3 16:11:59 2025\n"
+"POT-Creation-Date: Wed Sep  3 19:03:40 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -384,7 +384,7 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L14_induction
 msgid "Both the type `Word` as well as our definitions for it will be\n"
-"inductive, so we will make frequent use of induction'!"
+"inductive, so we will make frequent use of `induction'`!"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L14_induction
@@ -401,7 +401,7 @@ msgid "# rcases\n"
 msgstr ""
 
 #: Game.Levels.LeanBasics.L15_rcases
-msgid ""
+msgid "Any proposition follows from a contradiction, also known as ex falso quodlibet."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L15_rcases
@@ -503,14 +503,14 @@ msgid "```\n"
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
-msgid "Concatenation of words: for two words w₁ and w₂, the concatenation w₁ and w₂ yields w₁w₂.\n"
-"\n"
-"```\n"
+msgid "```\n"
 "def Word.cat (x y : Word) : Word :=\n"
 "  match x with\n"
 " | .ε => y\n"
 " | .cons s x => .cons s (x.cat y)\n"
-"```"
+"```\n"
+"\n"
+"Concatenation of words: for two words w₁ and w₂, the concatenation w₁ and w₂ yields w₁w₂."
 msgstr ""
 
 #: Game.Levels.Lemmas.L01_Introduction
@@ -684,7 +684,7 @@ msgid "For characters `c, d` and words `x, y`, the equality `cx = dy` should res
 msgstr ""
 
 #: Game.Levels.Lemmas.L05_cons_cat_cancel
-msgid "Canceling"
+msgid "Canceling from either the right or left side when two words are equal."
 msgstr ""
 
 #: Game.Levels.Lemmas.L05_cons_cat_cancel
@@ -1435,8 +1435,11 @@ msgid "We have a lot of unnecessary hypotheses, so let's remove them:\n"
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "The fact that v contains no `'a'`s should follow quite obviously from\n"
-"«{hnobs}» and «{hvchars}».\n"
+msgid "The fact that `«{v}»` contains at least 1 `'a'` should follow quite\n"
+"obviously from `«{hv}»`, `«{hnobs}»` and `«{hvchars}»`:\n"
+"Due to `«{hv}»`, `«{v}»` contains at least one symbol, which according to `«{hvchars}»` is either\n"
+"`'a'` or `'b'`.\n"
+"But since `«{v}»` contains no `'b'`s according to `«{hnobs}»`, that symbol must then be `'a'`!\n"
 "\n"
 "We still need to do the rest of the work to show our statement. Let's pattern match\n"
 "on `«{v}»` with `rcases v with _ | ⟨s, w⟩`."
@@ -1466,7 +1469,7 @@ msgid "At this point, we don't specifically care about the fact that `«{w}».co
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
-msgid "We an now look at at the if statement in our goal: `split_ifs with hs`."
+msgid "We can now look at at the if statement in our goal: `split_ifs with hs`."
 msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
@@ -1515,7 +1518,7 @@ msgstr ""
 
 #: Game.Levels.NonregProof.L02_Proof
 msgid "We can now work through the main step of the proof. We want to show\n"
-"a negated statement. For a statement `φ`, its negation `¬φ` will actually be equivalent to\n"
+"a negated statement. For a statement `φ`, its negation `¬φ` will be equivalent to\n"
 "`φ → False` in Lean, so our goal is actually an implication right now. We therefore want to\n"
 "proceed by introducing the antecedent: `intro hin`."
 msgstr ""
@@ -1655,13 +1658,21 @@ msgid "# A Proof Game for the Pumping Lemma\n"
 "through all the levels, this game might still be of some use to you even if you\n"
 "have not worked with Lean before.\n"
 "\n"
-"The first world offers a refresher on the tactics we are going to need for this game."
+"Start by clicking on the first world, `Basic Tactics`, which offers a refresher on the tactics we\n"
+"are going to need for this game.\n"
+"\n"
+"Mind that the introduction to the second world appears empty due to some unknown bug."
 msgstr ""
 
 #: Game
 msgid "This game is part of my Bachelor's thesis at LMU Munich.\n"
 "\n"
-"The [original code can be found on github](https://github.com/nlohrer/proof-game-pumping-lemma)"
+"The [original code can be found on github](https://github.com/nlohrer/proof-game-pumping-lemma)\n"
+"\n"
+"## Credits\n"
+"\n"
+"* **Creators:** Norman Lohrer\n"
+"* **Game Engine:** Alexander Bentkamp, Jon Eugster, Patrick Massot"
 msgstr ""
 
 #: Game

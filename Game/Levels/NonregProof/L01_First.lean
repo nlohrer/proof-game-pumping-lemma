@@ -99,8 +99,6 @@ DefinitionDoc Regular.pumping_property as "Pumping Property"
 
 NewDefinition Regular.Language Regular.anbn_lang Regular.pumping_property Regular.anbn
 
-#check anbn
-
 Statement :
     (Symbol.pow 'a' 2) ∘ (Symbol.pow 'b' 2) ∈ anbn := by
   Hint "Start with `simp [anbn]`.

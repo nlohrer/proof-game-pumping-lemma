@@ -20,7 +20,7 @@ Statement (n : ℕ) : n < 2 ^ n := by
     omega
 
 Conclusion "Both the type `Word` as well as our definitions for it will be
-inductive, so we will make frequent use of induction'!"
+inductive, so we will make frequent use of `induction'`!"
 
 -- copied from the induction docstring
 /--

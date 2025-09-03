@@ -34,7 +34,7 @@ def Word.length : (w : Word) → ℕ
 
 The length of a word, i.e. the amount of symbols in it.
 -/
-DefinitionDoc Regular.Word.length as "length"
+DefinitionDoc Regular.Word.length as "Word.length"
 NewDefinition Regular.Word.length
 
 /--

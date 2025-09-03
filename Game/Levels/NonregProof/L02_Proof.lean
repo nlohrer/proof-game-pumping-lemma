@@ -160,8 +160,11 @@ Statement : ¬pumping_property anbn_lang := by
 
         `clear {hlenlower} {hcons} {hz} {u} {w} {z} {hpos} {n}`"
         clear hlenlower hcons hz u w z hpos n
-        Hint (strict := true) "The fact that v contains no `'a'`s should follow quite obviously from
-        {hnobs} and {hvchars}.
+        Hint (strict := true) "The fact that `{v}` contains at least 1 `'a'` should follow quite
+        obviously from `{hv}`, `{hnobs}` and `{hvchars}`:
+        Due to `{hv}`, `{v}` contains at least one symbol, which according to `{hvchars}` is either
+        `'a'` or `'b'`.
+        But since `{v}` contains no `'b'`s according to `{hnobs}`, that symbol must then be `'a'`!
 
         We still need to do the rest of the work to show our statement. Let's pattern match
         on `{v}` with `rcases v with _ | ⟨s, w⟩`."
@@ -183,7 +186,7 @@ Statement : ¬pumping_property anbn_lang := by
 
           `generalize {w}.count 'a' = m at *`"
           generalize w.count 'a' = n at *
-          Hint "We an now look at at the if statement in our goal: `split_ifs with hs`."
+          Hint "We can now look at at the if statement in our goal: `split_ifs with hs`."
           split_ifs with hs
           · Hint "This inequality is obviously true for any {n}, so let's solve it directly
             with `omega`."
@@ -216,7 +219,7 @@ Statement : ¬pumping_property anbn_lang := by
             close the goal."
             simp [hsb] at hnobs
       Hint (strict := true) "We can now work through the main step of the proof. We want to show
-      a negated statement. For a statement `φ`, its negation `¬φ` will actually be equivalent to
+      a negated statement. For a statement `φ`, its negation `¬φ` will be equivalent to
       `φ → False` in Lean, so our goal is actually an implication right now. We therefore want to
       proceed by introducing the antecedent: `intro hin`."
       intro hin

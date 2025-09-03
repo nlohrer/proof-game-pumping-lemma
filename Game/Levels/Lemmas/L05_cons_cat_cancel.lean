@@ -14,7 +14,7 @@ original equation.
 
 namespace Regular
 
-/-- Canceling -/
+/-- Canceling from either the right or left side when two words are equal. -/
 TheoremDoc Regular.cons_cat_cancel as "cons_cat_cancel" in "cat"
 
 Statement cons_cat_cancel (c d : Char) (x y : Word) :

@@ -10,6 +10,9 @@ Introduction "
 For some structures, we might just need to match the forms that they can appear in rather than going for a full blown induction.
 "
 
+/--
+Any proposition follows from a contradiction, also known as ex falso quodlibet.
+-/
 TheoremDoc False.elim as "False.elim" in "Minor Lemmas"
 NewTheorem False.elim
 
