@@ -50,7 +50,7 @@ in its subwords. -/
 TheoremDoc Regular.cat_chars as "cat_chars" in "cat"
 
 Statement cat_chars (x y : Word) : (x ∘ y).chars = x.chars ∪ y.chars := by
-  Hint "Start with induction' x with s w ih"
+  Hint "Start with `induction' x with s w ih`"
   induction' x with s w ih
   · Hint "You can either rewrite with fitting definitions and then `simp`,
     or directly give those definitions as arguments to `simp`."

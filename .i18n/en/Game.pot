@@ -1,7 +1,7 @@
 msgid ""
 msgstr "Project-Id-Version: Game v4.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: Wed Sep  3 19:03:40 2025\n"
+"POT-Creation-Date: Wed Sep  3 20:21:35 2025\n"
 "Last-Translator: \n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -229,7 +229,7 @@ msgstr ""
 
 #: Game.Levels.LeanBasics.L08_constructor
 msgid "# Induction\n"
-"To work through certain inductive structures, the `constructor` can be useful.\n"
+"To work through certain inductive structures, the `constructor` tactic can be useful.\n"
 "We will exclusively use it as a way to handle conjunctions appearing in the goal."
 msgstr ""
 
@@ -283,7 +283,9 @@ msgstr ""
 #: Game.Levels.LeanBasics.L10_simp_all
 msgid "# simp_all\n"
 "`simp_all` is similar to `simp`, but applies simplification to the goal\n"
-"and all hypotheses several times until they can not get simplified further."
+"and all hypotheses several times until they can not get simplified further,\n"
+"and also has access to all hypotheses in the proof state to carry out its\n"
+"simplifications."
 msgstr ""
 
 #: Game.Levels.LeanBasics.L10_simp_all
@@ -641,7 +643,7 @@ msgid "The set of characters in a word is the union of all sets of characters\n"
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars
-msgid "Start with induction' x with s w ih"
+msgid "Start with `induction' x with s w ih`"
 msgstr ""
 
 #: Game.Levels.Lemmas.L04_cat_chars

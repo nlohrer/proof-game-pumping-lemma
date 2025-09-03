@@ -7,7 +7,7 @@ Title "exact"
 
 Introduction "
 # Induction
-To work through certain inductive structures, the `constructor` can be useful.
+To work through certain inductive structures, the `constructor` tactic can be useful.
 We will exclusively use it as a way to handle conjunctions appearing in the goal.
 "
 

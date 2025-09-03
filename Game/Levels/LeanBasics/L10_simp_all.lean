@@ -8,7 +8,9 @@ Title "simp_all"
 Introduction "
 # simp_all
 `simp_all` is similar to `simp`, but applies simplification to the goal
-and all hypotheses several times until they can not get simplified further."
+and all hypotheses several times until they can not get simplified further,
+and also has access to all hypotheses in the proof state to carry out its
+simplifications."
 
 Statement (h : x = 2) : x = 2 := by
   Hint "`simp_all` closes the goal immediately."
